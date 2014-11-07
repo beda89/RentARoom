@@ -84,7 +84,8 @@ release.properties
 .LSOverride
 
 # Icon must ends with two \r.
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -102,8 +103,8 @@ Icon
 ### https://raw.github.com/github/gitignore/master/Global/Windows.gitignore
 
 # Windows image file caches
-Thumbs.db
-ehthumbs.db
+Thumbs.rentaroom.db
+ehthumbs.rentaroom.db
 
 # Folder config file
 Desktop.ini

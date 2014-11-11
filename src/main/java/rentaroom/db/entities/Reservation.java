@@ -22,6 +22,7 @@ public class Reservation implements Serializable{
     private Customer customer;
 
     @ManyToMany
+    //FIXME: lookup if list is defined correctly
     private List<Room> roomList;
 
     //percentage 0-100

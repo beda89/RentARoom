@@ -13,7 +13,7 @@ public class GuestController {
     @Autowired
     private GuestDao guestDao;
 
-    @RequestMapping(value= "/rentaroom/guest")
+    @RequestMapping(value= "/guest")
     public ModelAndView guestbook(HttpServletRequest request) {
         // Handle a new rentaroom.guest (if any):
         String name = request.getParameter("name");

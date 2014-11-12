@@ -5,10 +5,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.objectdb.tutorial.spring</groupId>
-	<artifactId>RentARoom</artifactId>
+	<artifactId>rentaroom</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
-	<name>RentARoom</name>
+	<name>rentaroom</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -94,7 +94,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>RentARoom</finalName>
+		<finalName>rentaroom</finalName>
 	</build>
 
 </project>

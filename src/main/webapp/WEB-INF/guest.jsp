@@ -22,5 +22,8 @@
             <li> <%= guest %> </li>
         <% } %>
         </ol><hr>
+
+
+        This is a test.
 	</body>
 </html>

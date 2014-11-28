@@ -20,9 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password("123456").roles("USER");
-        auth.inMemoryAuthentication().withUser("admin").password("123456").roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("dba").password("123456").roles("DBA");
+        auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
+        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
     }
 
     @Override
@@ -30,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/dba/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
+//                .antMatchers("/dba/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
                 .and().formLogin();
 
     }

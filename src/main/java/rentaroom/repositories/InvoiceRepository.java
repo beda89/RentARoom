@@ -1,9 +1,8 @@
-package rentaroom.db.repositories;
+package rentaroom.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import rentaroom.db.entities.Customer;
-import rentaroom.db.entities.Invoice;
+import rentaroom.entities.Invoice;
 
 /**
  * Created by Peter on 28.11.2014.

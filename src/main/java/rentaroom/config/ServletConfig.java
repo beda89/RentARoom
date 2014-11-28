@@ -19,7 +19,7 @@ import rentaroom.config.security.SecurityConfig;
 
 @Configuration //Marks this class as configuration
 //Specifies which package to scan
-@ComponentScan("rentaroom.controller")
+@ComponentScan("rentaroom")
 //Enables Spring's annotations
 @EnableWebMvc
 @Import({SecurityConfig.class})

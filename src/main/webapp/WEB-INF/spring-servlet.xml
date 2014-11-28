@@ -22,9 +22,11 @@
        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <!-- Use @Component annotations for bean definitions  !-->
-    <context:component-scan base-package="rentaroom" />
+    <context:component-scan base-package="rentaroom">
+            <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"></context:exclude-filter>
+    </context:component-scan>
 
-   <!-- <jpa:repositories base-package="rentaroom.db.repositories" /> -->
+   <jpa:repositories base-package="rentaroom.db.repositories" />
 
 
     <!-- Use @Controller annotations for MVC controller definitions -->

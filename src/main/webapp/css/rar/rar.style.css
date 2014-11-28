@@ -1,0 +1,36 @@
+.btn,
+.form-control,
+.input-group-addon,
+.dropdown-menu,
+.navbar-default {
+	border-radius: 0px;
+}
+@media (min-width:768px) {
+	#customer-search {
+		width: 300px;
+	}
+}
+#customer-search-result {
+	display: none;
+	position: fixed;
+	z-index: 2;
+	background-color: #FFF;
+	border: 1px solid #CCC;
+	margin: 0px;
+	padding: 0px;
+}
+#customer-search-result ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#customer-search-result  ul li {
+	padding: 5px;
+}
+#customer-search-result  ul li:hover {
+	background-color: #DDD;
+	cursor: pointer;
+}
+#customer-search-result a {
+	text-decoration: none;
+}

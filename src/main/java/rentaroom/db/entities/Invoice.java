@@ -1,5 +1,7 @@
 package rentaroom.db.entities;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,23 +10,19 @@ import java.util.Date;
  * Created by Peter on 07.11.2014.
  */
 
-@Entity
+@Document
 public class Invoice implements Serializable {
 
     private static final long serialVersionUID = 12321L;
 
     @Id
-    @GeneratedValue
     private Long invoice_id;
 
-    @ManyToOne
     private Customer customer;
 
-    @Column(nullable=false)
     private Date invoiceDate;
 
     //price in cent 100=1Euro
-    @Column(nullable=false)
     private Long price;
 
     public Invoice(){}

@@ -1,5 +1,7 @@
 package rentaroom.db.entities;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,36 +12,28 @@ import java.io.Serializable;
  * Created by Peter on 07.11.2014.
  */
 
-@Entity
+@Document
 public class Room implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
     private Long room_id;
 
-    @Column(nullable=false)
     private Long maxPersons;
 
     //all prices are in cents 100=1Euro
-    @Column(nullable=false)
     private Long price_singleRoom;
 
-    @Column(nullable=false)
     private Long price_doubleRoom;
 
     //Price for "Dreifachbelegung"
-    @Column(nullable=false)
     private Long price_threePersons;
 
-    @Column(nullable=false)
     private Long price_singleRoomOneChild;
 
-    @Column(nullable=false)
     private Long price_singleRoomTwoChildren;
 
-    @Column(nullable=false)
     private Long price_doubleRoomOneChild;
 
 

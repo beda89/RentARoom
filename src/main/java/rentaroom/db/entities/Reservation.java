@@ -9,30 +9,23 @@ import java.util.List;
  * Created by Peter on 07.11.2014.
  */
 
-@Entity
+@Document
 public class Reservation implements Serializable{
 
     private static final long serialVersionUID = 1111L;
 
     @Id
-    @GeneratedValue
     private Long reservation_id;
 
-    @ManyToOne
     private Customer customer;
 
-    @ManyToMany
-    //FIXME: lookup if list is defined correctly
     private List<Room> roomList;
 
     //percentage 0-100
-    @Column(nullable=false)
     private Long discount;
 
-    @Column(nullable=false)
     private Date dateFrom;
 
-    @Column(nullable=false)
     private Date dateTo;
 
     //roomprice for whole reservation period

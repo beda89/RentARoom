@@ -1,5 +1,7 @@
 package rentaroom.db.entities;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +12,7 @@ import java.io.Serializable;
  * Created by Peter on 07.11.2014.
  */
 
-@Entity
+@Document
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = 1444L;

@@ -1,4 +1,4 @@
-package rentaroom.controller.config;
+package rentaroom.config;
 
 /**
  * Created with IntelliJ IDEA.

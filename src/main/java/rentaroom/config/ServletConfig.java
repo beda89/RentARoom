@@ -1,4 +1,4 @@
-package rentaroom.controller.config;
+package rentaroom.config;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration //Marks this class as configuration
 //Specifies which package to scan
-@ComponentScan("rentaroom.controller")
+@ComponentScan("rentaroom")
 //Enables Spring's annotations
 @EnableWebMvc
 public class ServletConfig {

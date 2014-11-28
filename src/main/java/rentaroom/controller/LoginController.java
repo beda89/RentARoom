@@ -23,11 +23,12 @@ public class LoginController {
     @RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)
     public ModelAndView welcomePage() {
 
-        customerRepo.save(new Customer("Alice", "Smith"));
-        customerRepo.save(new Customer("Bob", "Smith"));
+        customerRepo.save(new Customer("John", "Doe"));
+
+        Customer customer = customerRepo.findByFirstName("John");
 
         ModelAndView model = new ModelAndView();
-        model.addObject("title", "Generic Title");
+        model.addObject("title", customer.getFirstName() + " " + customer.getLastName());
         model.addObject("message", "Welcome and a generic message here.");
         model.setViewName("hello");
         return model;

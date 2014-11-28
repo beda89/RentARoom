@@ -12,6 +12,4 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends MongoRepository<Customer, String> {
     public Customer findByFirstName(String firstName);
-    public Customer findByID(String firstName);
-    public List<Customer> findByLastName(String lastName);
 }

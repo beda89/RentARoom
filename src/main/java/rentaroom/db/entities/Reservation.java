@@ -1,6 +1,8 @@
 package rentaroom.db.entities;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +12,7 @@ import java.util.List;
  */
 
 @Document
-public class Reservation implements Serializable{
+public class Reservation implements Serializable {
 
     private static final long serialVersionUID = 1111L;
 
@@ -28,12 +30,11 @@ public class Reservation implements Serializable{
 
     private Date dateTo;
 
-    //roomprice for whole reservation period
-    @Column(nullable=false)
     private Long roomPrice;
 
 
-    public Reservation(){}
+    public Reservation() {
+    }
 
 
     public Long getReservation_id() {

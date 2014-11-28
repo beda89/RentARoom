@@ -1,11 +1,8 @@
 package rentaroom.db.entities;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
@@ -18,13 +15,10 @@ public class Customer implements Serializable {
     private static final long serialVersionUID = 1444L;
 
     @Id
-    @GeneratedValue
     private Long costumer_id;
 
-    @Column(nullable=false)
     private String name;
 
-    @Column(nullable=false)
     private String address;
 
     private String companyName;
@@ -33,10 +27,8 @@ public class Customer implements Serializable {
     private String notes;
 
     //percentage 0-100
-    @Column(nullable=false)
     private Integer discount;
 
-    @Column(nullable=false)
     private String phone;
 
     private String mail;
@@ -45,7 +37,8 @@ public class Customer implements Serializable {
 
     private String fax;
 
-    public Customer(){}
+    public Customer() {
+    }
 
     public Long getCostumer_id() {
         return costumer_id;

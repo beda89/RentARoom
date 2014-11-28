@@ -1,8 +1,8 @@
 package rentaroom.db.entities;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,7 +25,8 @@ public class Invoice implements Serializable {
     //price in cent 100=1Euro
     private Long price;
 
-    public Invoice(){}
+    public Invoice() {
+    }
 
     public Long getInvoice_id() {
         return invoice_id;

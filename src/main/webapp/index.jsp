@@ -1,1 +1,1 @@
-<jsp:forward page="guest.html" />
+<jsp:forward page="hello.jsp" />

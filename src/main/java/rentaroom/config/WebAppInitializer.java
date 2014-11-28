@@ -8,24 +8,23 @@ package rentaroom.config;
  * To change this template use File | Settings | File Templates.
  */
 
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
-import sun.security.krb5.Config;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRegistration;
+public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-public class WebAppInitializer implements WebApplicationInitializer {
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class[]{ServletConfig.class};
+    }
 
-    public void onStartup(ServletContext container) {
-        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(Config.class);
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return null;
+    }
 
-        ServletRegistration.Dynamic registration =
-                container.addServlet("dispatcher", new DispatcherServlet(ctx));
-        registration.setLoadOnStartup(1);
-        registration.addMapping("/");
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"};
     }
 
 }

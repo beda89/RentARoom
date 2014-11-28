@@ -24,7 +24,7 @@ public class Reservation implements Serializable {
     private List<Room> roomList;
 
     //percentage 0-100
-    private Long discount;
+    private Integer discount;
 
     private Date dateFrom;
 
@@ -53,11 +53,11 @@ public class Reservation implements Serializable {
         this.customer = customer;
     }
 
-    public Long getDiscount() {
+    public Integer getDiscount() {
         return discount;
     }
 
-    public void setDiscount(Long discount) {
+    public void setDiscount(Integer discount) {
         this.discount = discount;
     }
 

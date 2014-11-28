@@ -17,7 +17,9 @@ public class Room implements Serializable {
     @Id
     private Long room_id;
 
-    private Long maxPersons;
+    private Integer maxPersons;
+
+    private String roomNbr;
 
     //all prices are in cents 100=1Euro
     private Long price_singleRoom;
@@ -53,11 +55,11 @@ public class Room implements Serializable {
         this.price_singleRoom = price_singleRoom;
     }
 
-    public Long getMaxPersons() {
+    public Integer getMaxPersons() {
         return maxPersons;
     }
 
-    public void setMaxPersons(Long maxPersons) {
+    public void setMaxPersons(Integer maxPersons) {
         this.maxPersons = maxPersons;
     }
 
@@ -100,4 +102,13 @@ public class Room implements Serializable {
     public void setPrice_singleRoomTwoChildren(Long price_singleRoomTwoChildren) {
         this.price_singleRoomTwoChildren = price_singleRoomTwoChildren;
     }
+
+    public String getRoomNbr() {
+        return roomNbr;
+    }
+
+    public void setRoomNbr(String roomNbr) {
+        this.roomNbr = roomNbr;
+    }
+
 }

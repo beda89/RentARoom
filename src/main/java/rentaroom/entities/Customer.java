@@ -1,4 +1,4 @@
-package rentaroom.db.entities;
+package rentaroom.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,7 +17,9 @@ public class Customer implements Serializable {
     @Id
     private Long costumer_id;
 
-    private String name;
+    private String firstName;
+
+    private String lastName;
 
     private String address;
 
@@ -37,7 +39,9 @@ public class Customer implements Serializable {
 
     private String fax;
 
-    public Customer() {
+    public Customer(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Long getCostumer_id() {

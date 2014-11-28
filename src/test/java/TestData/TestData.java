@@ -5,12 +5,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import rentaroom.db.entities.Customer;
-import rentaroom.db.entities.Room;
-import rentaroom.db.repositories.CustomerRepository;
-import rentaroom.db.repositories.InvoiceRepository;
-import rentaroom.db.repositories.ReservationRepository;
-import rentaroom.db.repositories.RoomRepository;
+import rentaroom.entities.Customer;
+import rentaroom.entities.Room;
+import rentaroom.repositories.CustomerRepository;
+import rentaroom.repositories.InvoiceRepository;
+import rentaroom.repositories.ReservationRepository;
+import rentaroom.repositories.RoomRepository;
 
 /**
  * Created by Peter on 28.11.2014.

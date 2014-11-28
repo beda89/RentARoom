@@ -1,32 +1,48 @@
 package rentaroom.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import rentaroom.db.entities.Customer;
-import rentaroom.db.repositories.CustomerRepository;
-
-import java.util.List;
+import org.springframework.web.servlet.ModelAndView;
+import rentaroom.entities.Customer;
+import rentaroom.repositories.CustomerRepository;
 
 /**
  * Created by Peter on 11.11.2014.
  */
 
 @Controller
+@EnableMongoRepositories
 public class LoginController {
 
     @Autowired
     private CustomerRepository customerRepo;
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String hello(ModelMap model) {
+    @RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)
+    public ModelAndView welcomePage() {
 
-        List<Customer> allCustomers=customerRepo.findAll();
+        customerRepo.save(new Customer("Alice", "Smith"));
+        customerRepo.save(new Customer("Bob", "Smith"));
 
-        model.addAttribute("message", "Hello World!");
-        return "hello";
+        ModelAndView model = new ModelAndView();
+        model.addObject("title", "Generic Title");
+        model.addObject("message", "Welcome and a generic message here.");
+        model.setViewName("hello");
+        return model;
+
+    }
+
+    @RequestMapping(value = "/admin**", method = RequestMethod.GET)
+    public ModelAndView adminPage() {
+
+        ModelAndView model = new ModelAndView();
+        model.addObject("title", "Generic Title");
+        model.addObject("message", "This is protected page!");
+        model.setViewName("admin");
+
+        return model;
 
     }
 

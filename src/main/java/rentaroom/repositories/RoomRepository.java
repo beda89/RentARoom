@@ -1,7 +1,7 @@
-package rentaroom.db.repositories;
+package rentaroom.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import rentaroom.db.entities.Room;
+import rentaroom.entities.Room;
 
 /**
  * Created by Peter on 28.11.2014.

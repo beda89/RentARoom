@@ -11,23 +11,28 @@ package rentaroom.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import rentaroom.config.security.SecurityConfig;
 
 @Configuration //Marks this class as configuration
 //Specifies which package to scan
 @ComponentScan("rentaroom")
 //Enables Spring's annotations
 @EnableWebMvc
+@Import({SecurityConfig.class})
 public class ServletConfig {
 
     @Bean
-    public UrlBasedViewResolver setupViewResolver() {
-        UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-        resolver.setPrefix("/");
-        resolver.setSuffix(".jsp");
-        resolver.setViewClass(JstlView.class);
-        return resolver;
+    public InternalResourceViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver
+                = new InternalResourceViewResolver();
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("/Views/");
+        viewResolver.setSuffix(".jsp");
+        return viewResolver;
     }
+
 }

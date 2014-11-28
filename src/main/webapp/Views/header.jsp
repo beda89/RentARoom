@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <head>
     <title>Rent a Room</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
     <!-- jQuery -->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -16,31 +16,29 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" src="<c:url value='/css/rar/rar.style.css'/>">
+    <link rel="stylesheet" src="<c:url value='/resources/css/rar/rar.style.css'/>">
 
     <!-- Custom JavaScript -->
-    <script type="text/javascript" src="<c:url value='/js/rar/rar.init.js'/>"></script>
-    <script type="text/javascript" src="<c:url value='/js/rar/rar.header.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/resources/js/rar/rar.init.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/resources/js/rar/rar.header.js'/>"></script>
 
     <script>
-    /*
        $(document).ready(function() {
-
-       $('#roomgrid button.btn').click(function() {
-       $(this).toggleClass('active');
-       var countSelectedRooms = $('#roomgrid button.btn.active').length;
-       if (countSelectedRooms != 1) {
-       $editRoom.addClass('disabled');
-       } else {
-       $editRoom.removeClass('disabled');
-       }
-       if (countSelectedRooms > 0) {
-       $reserveRoom.removeClass('disabled');
-       } else {
-       $reserveRoom.addClass('disabled');
-       }
+           $('#roomgrid button.btn').click(function() {
+               $(this).toggleClass('active');
+               var countSelectedRooms = $('#roomgrid button.btn.active').length;
+               if (countSelectedRooms != 1) {
+               $editRoom.addClass('disabled');
+               } else {
+               $editRoom.removeClass('disabled');
+               }
+               if (countSelectedRooms > 0) {
+               $reserveRoom.removeClass('disabled');
+               } else {
+               $reserveRoom.addClass('disabled');
+               }
+           });
        });
-       });*/
     </script>
 </head>
 <body>

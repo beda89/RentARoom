@@ -1,6 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<jsp:include page="header.jsp">
+<jsp:include page="Views/header.jsp">
     <jsp:param name="noheading" value="true" />
 </jsp:include>
 
@@ -25,4 +25,4 @@
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
 
-<jsp:include page="footer.jsp" />
+<jsp:include page="Views/footer.jsp" />

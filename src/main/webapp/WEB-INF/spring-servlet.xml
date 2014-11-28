@@ -26,9 +26,6 @@
             <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"></context:exclude-filter>
     </context:component-scan>
 
-   <jpa:repositories base-package="rentaroom.db.repositories" />
-
-
     <!-- Use @Controller annotations for MVC controller definitions -->
     <mvc:annotation-driven />
 

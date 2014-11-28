@@ -7,7 +7,7 @@ import rentaroom.db.entities.Customer;
 /**
  * Created by Peter on 11.11.2014.
  */
-@Repository //-- not working, config is wrong
+//@Repository //-- not working, config is wrong
 public interface CustomerRepository extends CrudRepository<Customer,Long> {
 
 }

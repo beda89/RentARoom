@@ -22,6 +22,5 @@
             <li> <%= guest %> </li>
         <% } %>
         </ol><hr>
-blubb
 	</body>
 </html>

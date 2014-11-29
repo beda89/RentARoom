@@ -2,7 +2,9 @@
 .form-control,
 .input-group-addon,
 .dropdown-menu,
-.navbar-default {
+.navbar-default,
+.container .jumbotron,
+.alert {
 	border-radius: 0px;
 }
 @media (min-width:768px) {
@@ -33,4 +35,7 @@
 }
 #customer-search-result a {
 	text-decoration: none;
+}
+.subtitle {
+	color: #AAA;
 }

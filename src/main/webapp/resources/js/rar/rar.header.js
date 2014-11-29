@@ -8,7 +8,6 @@ var Header = (function(window, document, undefined) {
     var _initCustomerSearch = function() {
 		var $customerSearch = $(document.getElementById('customer-search'));
 		var $customerSearchResult = $(document.getElementById('customer-search-result'));
-	
 		$customerSearch.focus(function() {
 			var rect = this.getBoundingClientRect();
 			$customerSearchResult.fadeIn('fast');
@@ -27,7 +26,6 @@ var Header = (function(window, document, undefined) {
     //////////////////////
 
     var init = function() {
-		
 		_initCustomerSearch();
     };
 

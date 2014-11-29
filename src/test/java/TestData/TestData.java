@@ -340,6 +340,8 @@ public class TestData {
         customer1.setDiscount(10);
 //        customer1.setFirstName("Hans");
 //        customer1.setLastName("Huber");
+        customer1.setAddress("Weimarer Straße 3/3 1180 Wien");
+        customer1.setDiscount(10);
         customer1.setMail("huber@hans.com");
         customer1.setNotes("Stammgast, kommt mehrmals im Jahr");
         customer1.setPhone("+43 7744 1443");

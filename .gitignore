@@ -148,3 +148,4 @@ out/
 vagrant/
 MMI/src/main/webapp/node_modules
 MMI/src/main/webapp/bower_components
+/mongod.bat

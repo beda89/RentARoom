@@ -13,17 +13,18 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import rentaroom.config.security.SecurityConfig;
 
 @Configuration //Marks this class as configuration
 //Specifies which package to scan
-@ComponentScan("rentaroom")
+@ComponentScan({"rentaroom.controller", "rentaroom.repositories"})
 //Enables Spring's annotations
 @EnableWebMvc
 @Import({SecurityConfig.class})
-public class ServletConfig {
+public class ServletConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public InternalResourceViewResolver viewResolver() {

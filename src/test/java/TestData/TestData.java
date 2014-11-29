@@ -3,8 +3,12 @@ package TestData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import rentaroom.config.MongoConfig;
+import rentaroom.config.ServletConfig;
 import rentaroom.entities.Customer;
 import rentaroom.entities.Room;
 import rentaroom.repositories.CustomerRepository;
@@ -16,42 +20,44 @@ import rentaroom.repositories.RoomRepository;
  * Created by Peter on 28.11.2014.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+@ContextConfiguration(classes = {ServletConfig.class, MongoConfig.class})
+@WebAppConfiguration
+@EnableMongoRepositories
 public class TestData {
 
     //ALL PRICES ARE IN CENT
 
     //DOUBLEROOM PRICES
-    private static final Long HIGH_DOUBLEROOM_PRICE=20000L;
-    private static final Long MIDDLE_DOUBLEROOM_PRICE=15000L;
-    private static final Long CHEAP_DOUBLEROOM_PRICE=12500L;
+    private static final Long HIGH_DOUBLEROOM_PRICE = 20000L;
+    private static final Long MIDDLE_DOUBLEROOM_PRICE = 15000L;
+    private static final Long CHEAP_DOUBLEROOM_PRICE = 12500L;
 
     //SINGLEROOM PRICES
-    private static final Long HIGH_SINGLEROOM_PRICE=17500L;
-    private static final Long MIDDLE_SINGLEROOM_PRICE=12500L;
-    private static final Long CHEAP_SINGLEROOM_PRICE=10000L;
+    private static final Long HIGH_SINGLEROOM_PRICE = 17500L;
+    private static final Long MIDDLE_SINGLEROOM_PRICE = 12500L;
+    private static final Long CHEAP_SINGLEROOM_PRICE = 10000L;
 
     //DOUBLEROOM + 1 CHILD PRICES
-    private static final Long HIGH_DOUBLEROOM_PLUS1CHILD_PRICE=21000L;
-    private static final Long MIDDLE_DOUBLEROOM_PLUS1CHILD_PRICE=16000L;
-    private static final Long CHEAP_DOUBLEROOM_PLUS1CHILD_PRICE=13500L;
+    private static final Long HIGH_DOUBLEROOM_PLUS1CHILD_PRICE = 21000L;
+    private static final Long MIDDLE_DOUBLEROOM_PLUS1CHILD_PRICE = 16000L;
+    private static final Long CHEAP_DOUBLEROOM_PLUS1CHILD_PRICE = 13500L;
 
     //SINGLEROOM + 1 CHILD PRICES
-    private static final Long HIGH_SINGLEROOM_PLUS1CHILD_PRICE=18500L;
-    private static final Long MIDDLE_SINGLEROOM_PLUS1CHILD_PRICE=13500L;
-    private static final Long CHEAP_SINGLEROOM_PLUS1CHILD_PRICE=11000L;
+    private static final Long HIGH_SINGLEROOM_PLUS1CHILD_PRICE = 18500L;
+    private static final Long MIDDLE_SINGLEROOM_PLUS1CHILD_PRICE = 13500L;
+    private static final Long CHEAP_SINGLEROOM_PLUS1CHILD_PRICE = 11000L;
 
     //SINGLEROOM + 2 CHILDREN PRICES
-    private static final Long HIGH_SINGLEROOM_PLUS2CHILDREN_PRICE=19500L;
-    private static final Long MIDDLE_SINGLEROOM_PLUS2CHILDREN_PRICE=14500L;
-    private static final Long CHEAP_SINGLEROOM_PLUS2CHILDREN_PRICE=12000L;
+    private static final Long HIGH_SINGLEROOM_PLUS2CHILDREN_PRICE = 19500L;
+    private static final Long MIDDLE_SINGLEROOM_PLUS2CHILDREN_PRICE = 14500L;
+    private static final Long CHEAP_SINGLEROOM_PLUS2CHILDREN_PRICE = 12000L;
 
 
     //THREE PERSONS PRICE
-    private static final Long HIGH_THREEPERSON_PRICE=26000L;
-    private static final Long MIDDLE_THREEPERSON_PRICE=21500L;
-    private static final Long CHEAP_THREEPERSON_PRICE=185000L;
-    
+    private static final Long HIGH_THREEPERSON_PRICE = 26000L;
+    private static final Long MIDDLE_THREEPERSON_PRICE = 21500L;
+    private static final Long CHEAP_THREEPERSON_PRICE = 185000L;
+
 
     @Autowired
     private CustomerRepository customerRepo;
@@ -66,15 +72,15 @@ public class TestData {
     private InvoiceRepository invoiceRepo;
 
     @Test
-    public void initDBWithTestData(){
+    public void initDBWithTestData() {
         //setBackDatabase
         customerRepo.deleteAll();
         roomRepo.deleteAll();
         reservationRepo.deleteAll();
         invoiceRepo.deleteAll();
-        
+
         //----------------------------------------------create rooms for groundfloor----------------------------------------------------------//
-        Room room1= new Room();
+        Room room1 = new Room();
         room1.setMaxPersons(3);
         room1.setRoomNbr("001");
         room1.setPrice_doubleRoom(HIGH_DOUBLEROOM_PRICE);
@@ -86,7 +92,7 @@ public class TestData {
         roomRepo.save(room1);
 
 
-        Room room2= new Room();
+        Room room2 = new Room();
         room2.setMaxPersons(3);
         room2.setRoomNbr("002");
         room2.setPrice_doubleRoom(HIGH_DOUBLEROOM_PRICE);
@@ -98,7 +104,7 @@ public class TestData {
         roomRepo.save(room2);
 
 
-        Room room3= new Room();
+        Room room3 = new Room();
         room3.setMaxPersons(3);
         room3.setRoomNbr("003");
         room3.setPrice_doubleRoom(HIGH_DOUBLEROOM_PRICE);
@@ -109,8 +115,8 @@ public class TestData {
         room3.setPrice_threePersons(HIGH_THREEPERSON_PRICE);
         roomRepo.save(room3);
 
-   
-        Room room4= new Room();
+
+        Room room4 = new Room();
         room4.setMaxPersons(3);
         room4.setRoomNbr("004");
         room4.setPrice_doubleRoom(CHEAP_DOUBLEROOM_PRICE);
@@ -121,7 +127,7 @@ public class TestData {
         room4.setPrice_threePersons(CHEAP_THREEPERSON_PRICE);
         roomRepo.save(room4);
 
-        Room room5= new Room();
+        Room room5 = new Room();
         room5.setMaxPersons(3);
         room5.setRoomNbr("005");
         room5.setPrice_doubleRoom(CHEAP_DOUBLEROOM_PRICE);
@@ -132,8 +138,8 @@ public class TestData {
         room5.setPrice_threePersons(CHEAP_THREEPERSON_PRICE);
         roomRepo.save(room5);
 
-   
-        Room room6= new Room();
+
+        Room room6 = new Room();
         room6.setMaxPersons(3);
         room6.setRoomNbr("006");
         room6.setPrice_doubleRoom(MIDDLE_DOUBLEROOM_PRICE);
@@ -145,7 +151,7 @@ public class TestData {
         roomRepo.save(room6);
 
 
-        Room room7= new Room();
+        Room room7 = new Room();
         room7.setMaxPersons(3);
         room7.setRoomNbr("007");
         room7.setPrice_doubleRoom(MIDDLE_DOUBLEROOM_PRICE);
@@ -156,12 +162,10 @@ public class TestData {
         room7.setPrice_threePersons(MIDDLE_THREEPERSON_PRICE);
         roomRepo.save(room7);
 
-        
-        
-        
+
         //-------------------------------------------------create rooms for firstfloor--------------------------------------------------//
 
-        Room room8= new Room();
+        Room room8 = new Room();
         room8.setMaxPersons(3);
         room8.setRoomNbr("101");
         room8.setPrice_doubleRoom(HIGH_DOUBLEROOM_PRICE);
@@ -173,7 +177,7 @@ public class TestData {
         roomRepo.save(room8);
 
 
-        Room room9= new Room();
+        Room room9 = new Room();
         room9.setMaxPersons(3);
         room9.setRoomNbr("102");
         room9.setPrice_doubleRoom(HIGH_DOUBLEROOM_PRICE);
@@ -185,7 +189,7 @@ public class TestData {
         roomRepo.save(room9);
 
 
-        Room room10= new Room();
+        Room room10 = new Room();
         room10.setMaxPersons(3);
         room10.setRoomNbr("103");
         room10.setPrice_doubleRoom(HIGH_DOUBLEROOM_PRICE);
@@ -197,7 +201,7 @@ public class TestData {
         roomRepo.save(room10);
 
 
-        Room room11= new Room();
+        Room room11 = new Room();
         room11.setMaxPersons(3);
         room11.setRoomNbr("104");
         room11.setPrice_doubleRoom(CHEAP_DOUBLEROOM_PRICE);
@@ -208,7 +212,7 @@ public class TestData {
         room11.setPrice_threePersons(CHEAP_THREEPERSON_PRICE);
         roomRepo.save(room11);
 
-        Room room12= new Room();
+        Room room12 = new Room();
         room12.setMaxPersons(3);
         room12.setRoomNbr("105");
         room12.setPrice_doubleRoom(CHEAP_DOUBLEROOM_PRICE);
@@ -220,7 +224,7 @@ public class TestData {
         roomRepo.save(room12);
 
 
-        Room room13= new Room();
+        Room room13 = new Room();
         room13.setMaxPersons(3);
         room13.setRoomNbr("106");
         room13.setPrice_doubleRoom(MIDDLE_DOUBLEROOM_PRICE);
@@ -232,7 +236,7 @@ public class TestData {
         roomRepo.save(room13);
 
 
-        Room room14= new Room();
+        Room room14 = new Room();
         room14.setMaxPersons(3);
         room14.setRoomNbr("107");
         room14.setPrice_doubleRoom(MIDDLE_DOUBLEROOM_PRICE);
@@ -242,12 +246,12 @@ public class TestData {
         room14.setPrice_doubleRoomOneChild(MIDDLE_DOUBLEROOM_PLUS1CHILD_PRICE);
         room14.setPrice_threePersons(MIDDLE_THREEPERSON_PRICE);
         roomRepo.save(room14);
-        
-        
+
+
         //----------------------------------------------------------create rooms for secondfloor-------------------------------------------------------------//
 
 
-        Room room15= new Room();
+        Room room15 = new Room();
         room15.setMaxPersons(3);
         room15.setRoomNbr("201");
         room15.setPrice_doubleRoom(HIGH_DOUBLEROOM_PRICE);
@@ -259,7 +263,7 @@ public class TestData {
         roomRepo.save(room15);
 
 
-        Room room16= new Room();
+        Room room16 = new Room();
         room16.setMaxPersons(3);
         room16.setRoomNbr("202");
         room16.setPrice_doubleRoom(HIGH_DOUBLEROOM_PRICE);
@@ -271,7 +275,7 @@ public class TestData {
         roomRepo.save(room16);
 
 
-        Room room17= new Room();
+        Room room17 = new Room();
         room17.setMaxPersons(3);
         room17.setRoomNbr("203");
         room17.setPrice_doubleRoom(HIGH_DOUBLEROOM_PRICE);
@@ -283,7 +287,7 @@ public class TestData {
         roomRepo.save(room17);
 
 
-        Room room18= new Room();
+        Room room18 = new Room();
         room18.setMaxPersons(3);
         room18.setRoomNbr("204");
         room18.setPrice_doubleRoom(CHEAP_DOUBLEROOM_PRICE);
@@ -294,7 +298,7 @@ public class TestData {
         room18.setPrice_threePersons(CHEAP_THREEPERSON_PRICE);
         roomRepo.save(room18);
 
-        Room room19= new Room();
+        Room room19 = new Room();
         room19.setMaxPersons(3);
         room19.setRoomNbr("205");
         room19.setPrice_doubleRoom(CHEAP_DOUBLEROOM_PRICE);
@@ -306,7 +310,7 @@ public class TestData {
         roomRepo.save(room19);
 
 
-        Room room20= new Room();
+        Room room20 = new Room();
         room20.setMaxPersons(3);
         room20.setRoomNbr("206");
         room20.setPrice_doubleRoom(MIDDLE_DOUBLEROOM_PRICE);
@@ -318,7 +322,7 @@ public class TestData {
         roomRepo.save(room20);
 
 
-        Room room21= new Room();
+        Room room21 = new Room();
         room21.setMaxPersons(3);
         room21.setRoomNbr("207");
         room21.setPrice_doubleRoom(MIDDLE_DOUBLEROOM_PRICE);
@@ -328,14 +332,14 @@ public class TestData {
         room21.setPrice_doubleRoomOneChild(MIDDLE_DOUBLEROOM_PLUS1CHILD_PRICE);
         room21.setPrice_threePersons(MIDDLE_THREEPERSON_PRICE);
         roomRepo.save(room21);
-        
 
 
         //---------------------------------CREATE CUSTOMERS -----------------------------------------------------------//
-        Customer customer1= new Customer();
+        Customer customer1 = new Customer("Hans", "Huber");
         customer1.setAddress("Weimarer Straße 3/3 1180 Wien");
         customer1.setDiscount(10);
-        customer1.setName("Huber Hans");
+//        customer1.setFirstName("Hans");
+//        customer1.setLastName("Huber");
         customer1.setMail("huber@hans.com");
         customer1.setNotes("Stammgast, kommt mehrmals im Jahr");
         customer1.setPhone("+43 7744 1443");

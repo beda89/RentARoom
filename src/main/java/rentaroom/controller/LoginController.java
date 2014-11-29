@@ -1,6 +1,7 @@
 package rentaroom.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,14 +19,17 @@ import rentaroom.repositories.CustomerRepository;
 public class LoginController {
 
     @Autowired
-    private CustomerRepository customerRepo;
+    CustomerRepository customerRepository;
+
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     @RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)
     public ModelAndView welcomePage() {
 
-        customerRepo.save(new Customer("John", "Doe"));
+        customerRepository.save(new Customer("John", "Doe"));
 
-        Customer customer = customerRepo.findByFirstName("John");
+        Customer customer = customerRepository.findByFirstName("John");
 
         ModelAndView model = new ModelAndView();
         model.addObject("title", customer.getFirstName() + " " + customer.getLastName());

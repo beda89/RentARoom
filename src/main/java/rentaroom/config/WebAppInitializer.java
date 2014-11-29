@@ -9,17 +9,22 @@ package rentaroom.config;
  */
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import rentaroom.config.security.SecurityConfig;
 
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{ServletConfig.class};
+        return new Class[]{SecurityConfig.class, MongoConfig.class};
     }
 
+    //    @Override
+//    protected Class<?>[] getServletConfigClasses() {
+//        return null;
+//    }
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return null;
+        return new Class[]{ServletConfig.class};
     }
 
     @Override

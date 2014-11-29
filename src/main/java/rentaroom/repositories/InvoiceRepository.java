@@ -8,6 +8,6 @@ import rentaroom.entities.Invoice;
  * Created by Peter on 28.11.2014.
  */
 @Repository
-public interface InvoiceRepository extends MongoRepository<Invoice,Long> {
+public interface InvoiceRepository extends MongoRepository<Invoice, Long> {
 
 }

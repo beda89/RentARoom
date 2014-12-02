@@ -29,15 +29,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                    .antMatchers("/rooms/**", "/customer/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/rooms/**", "/customer/**").access("hasRole('ROLE_ADMIN')")
                 .and()
-                    .formLogin().loginPage("/login")
-                        .defaultSuccessUrl("/rooms")
-                        .failureUrl("/login?error")
+                .formLogin().loginPage("/login")
+                .defaultSuccessUrl("/rooms")
+                .failureUrl("/login?error")
                 .usernameParameter("username").passwordParameter("password")
                 .and()
-                    .logout().logoutSuccessUrl("/login?logout")
+                .logout().logoutSuccessUrl("/login?logout")
                 .and()
-                    .csrf();
+                .csrf();
     }
 }

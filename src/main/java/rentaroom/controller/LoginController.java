@@ -19,26 +19,11 @@ import rentaroom.repositories.CustomerRepository;
 @EnableMongoRepositories
 public class LoginController {
 
-    @Autowired
+    //@Autowired
     CustomerRepository customerRepository;
 
     @Autowired
     MongoTemplate mongoTemplate;
-
-    @RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)
-    public ModelAndView welcomePage() {
-
-        customerRepository.save(new Customer("John", "Doe"));
-
-        Customer customer = customerRepository.findByFirstName("John");
-
-        ModelAndView model = new ModelAndView();
-        model.addObject("title", customer.getFirstName() + " " + customer.getLastName());
-        model.addObject("message", "Welcome and a generic message here.");
-        model.setViewName("hello");
-        return model;
-
-    }
 
     @RequestMapping(value = "/login**", method = RequestMethod.GET)
     public ModelAndView login(

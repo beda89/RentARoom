@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,6 +19,7 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 
 @Configuration
 @ComponentScan("rentaroom.repositories")
+@EnableMongoRepositories(basePackages = {"rentaroom.repositories"})
 public class MongoConfig {
 
     public

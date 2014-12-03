@@ -16,10 +16,9 @@ import rentaroom.repositories.CustomerRepository;
  */
 
 @Controller
-@EnableMongoRepositories
 public class LoginController {
 
-    //@Autowired
+    @Autowired
     CustomerRepository customerRepository;
 
     @Autowired

@@ -15,7 +15,7 @@ public class Customer implements Serializable {
     private static final long serialVersionUID = 1444L;
 
     @Id
-    private Long costumer_id;
+    private long costumer_id;
 
     private String firstName;
 

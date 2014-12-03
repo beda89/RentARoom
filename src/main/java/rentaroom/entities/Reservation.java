@@ -19,7 +19,7 @@ public class Reservation implements Serializable {
 
 
     @Id
-    private String reservation_id;
+    private String id;
 
     private Customer customer;
 
@@ -38,12 +38,12 @@ public class Reservation implements Serializable {
     public Reservation() {
     }
 
-    public String getReservation_id() {
-        return reservation_id;
+    public String getId() {
+        return id;
     }
 
-    public void setReservation_id(String reservation_id) {
-        this.reservation_id = reservation_id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Customer getCustomer() {

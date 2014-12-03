@@ -7,25 +7,32 @@
   <jsp:param name="page" value="Customer" />
 </jsp:include>
 
-<h1>${customer.getFirstName()} ${customer.getLastName()}</h1>
+<c:choose>
+  <c:when test="${customer == null}">
+    <h1>Customer not found!</h1>
+  </c:when>
+  <c:otherwise>
+    <h1>${customer.getFirstName()} ${customer.getLastName()}</h1>
 
-<table class="table table-striped table-hover table-condensed">
-  <thead>
-    <th>#</th>
-    <th>Datum von</th>
-    <th>Datum bis</th>
-    <th>R&auml;ume</th>
-    <th>Preis</th>
-    <th>Rabatt</th>
-  </thead>
-  <tbody>
-    <td>1</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tbody>
-</table>
+    <table class="table table-striped table-hover table-condensed">
+      <thead>
+        <th>#</th>
+        <th>Datum von</th>
+        <th>Datum bis</th>
+        <th>R&auml;ume</th>
+        <th>Preis</th>
+        <th>Rabatt</th>
+      </thead>
+      <tbody>
+        <td>1</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tbody>
+    </table>
+  </c:otherwise>
+</c:choose>
 
-<jsp:include page="footer.jsp" />
+  <jsp:include page="footer.jsp" />

@@ -3,6 +3,7 @@ package rentaroom.controller;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,29 +20,18 @@ import rentaroom.services.CustomerService;
 public class CustomerController {
 
     @Autowired
-    CustomerRepository customerRepository;
-
-    @Autowired
     CustomerService customerService;
 
-    @RequestMapping(value = {"/customer"}, method = RequestMethod.GET)
-    public ModelAndView customerPage() {
+    @RequestMapping(value = {"/customer/{id}"}, method = RequestMethod.GET)
+    public ModelAndView customerPage(@PathVariable String id) throws Exception {
         ModelAndView model = new ModelAndView("customer");
-        Customer c1 = new Customer("Susi", "Sorglos1234");
-        c1.setAddress("Liechtensteinstraße 200/26, 1090 Wien");
-        c1.setCompanyName("Smart Assistand");
-        c1.setHomepage("http://www.google.com");
-        c1.setPhone("+436763649593");
-
-        customerRepository.save(c1);
-        Customer c2 = customerRepository.findByFirstName("Susi");
-        model.addObject("customer", c2);
+        model.addObject("customer", customerService.findById(id));
         return model;
     }
 
     @RequestMapping(value="/autocomplete/names",method=RequestMethod.GET)
     @ResponseBody
-    public String getCustomerJsonListWithId(){
+    public String getCustomerJsonListWithId() {
 
         return customerService.getAllCustomerJson().toJSONString();
 

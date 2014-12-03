@@ -15,7 +15,7 @@ public class Customer implements Serializable {
     private static final long serialVersionUID = 1444L;
 
     @Id
-    private String costumer_id;
+    private String id;
 
     private String firstName;
 
@@ -44,12 +44,12 @@ public class Customer implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getCostumer_id() {
-        return costumer_id;
+    public String getId() {
+        return id;
     }
 
-    public void setCostumer_id(String costumer_id) {
-        this.costumer_id = costumer_id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {

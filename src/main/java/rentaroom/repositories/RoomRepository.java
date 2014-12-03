@@ -1,6 +1,7 @@
 package rentaroom.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 import rentaroom.entities.Room;
 
@@ -9,5 +10,5 @@ import rentaroom.entities.Room;
  */
 
 @Repository
-public interface RoomRepository extends MongoRepository<Room, Long> {
+public interface RoomRepository extends PagingAndSortingRepository<Room, Long> {
 }

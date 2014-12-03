@@ -8,7 +8,6 @@ import rentaroom.entities.Customer;
 import rentaroom.repositories.CustomerRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Peter on 03.12.2014.
@@ -26,7 +25,7 @@ public class CustomerService {
         for(Customer customer:customerList){
             JSONObject customerJson=new JSONObject();
             customerJson.put("value",customer.getLastName()+" "+customer.getFirstName());
-            customerJson.put("data",customer.getCostumer_id());
+            customerJson.put("data",customer.getId());
             customerArray.add(customerJson);
         }
 
@@ -35,4 +34,9 @@ public class CustomerService {
 
         return jsonObject;
     }
+
+    public Customer findById(String id) {
+        return customerRepo.findOne(id);
+    }
+
 }

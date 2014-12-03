@@ -18,7 +18,7 @@ public class Invoice implements Serializable {
 
 
     @Id
-    private String invoice_id;
+    private String id;
 
     private Customer customer;
 
@@ -30,12 +30,12 @@ public class Invoice implements Serializable {
     public Invoice() {
     }
 
-    public String getInvoice_id() {
-        return invoice_id;
+    public String getId() {
+        return id;
     }
 
-    public void setInvoice_id(String invoice_id) {
-        this.invoice_id = invoice_id;
+    public void setId(String id) {
+        this.id = id;
     }
     
     public Customer getCustomer() {

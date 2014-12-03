@@ -30,18 +30,18 @@ public class Reservation implements Serializable {
 
     private Date dateTo;
 
-    private Long roomPrice;
+    private long roomPrice;
 
 
     public Reservation() {
     }
 
 
-    public Long getReservation_id() {
+    public long getReservation_id() {
         return reservation_id;
     }
 
-    public void setReservation_id(Long reservation_id) {
+    public void setReservation_id(long reservation_id) {
         this.reservation_id = reservation_id;
     }
 
@@ -85,11 +85,11 @@ public class Reservation implements Serializable {
         this.dateTo = dateTo;
     }
 
-    public Long getRoomPrice() {
+    public long getRoomPrice() {
         return roomPrice;
     }
 
-    public void setRoomPrice(Long roomPrice) {
+    public void setRoomPrice(long roomPrice) {
         this.roomPrice = roomPrice;
     }
 }

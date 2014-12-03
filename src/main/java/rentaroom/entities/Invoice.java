@@ -16,19 +16,19 @@ public class Invoice implements Serializable {
     private static final long serialVersionUID = 12321L;
 
     @Id
-    private Long invoice_id;
+    private long invoice_id;
 
     private Customer customer;
 
     private Date invoiceDate;
 
     //price in cent 100=1Euro
-    private Long price;
+    private long price;
 
     public Invoice() {
     }
 
-    public Long getInvoice_id() {
+    public long getInvoice_id() {
         return invoice_id;
     }
 
@@ -52,7 +52,7 @@ public class Invoice implements Serializable {
         this.invoiceDate = invoiceDate;
     }
 
-    public Long getPrice() {
+    public long getPrice() {
         return price;
     }
 

@@ -16,8 +16,10 @@ public class Reservation implements Serializable {
 
     private static final long serialVersionUID = 1111L;
 
+
+
     @Id
-    private Long reservation_id;
+    private String reservation_id;
 
     private Customer customer;
 
@@ -36,12 +38,11 @@ public class Reservation implements Serializable {
     public Reservation() {
     }
 
-
-    public long getReservation_id() {
+    public String getReservation_id() {
         return reservation_id;
     }
 
-    public void setReservation_id(long reservation_id) {
+    public void setReservation_id(String reservation_id) {
         this.reservation_id = reservation_id;
     }
 

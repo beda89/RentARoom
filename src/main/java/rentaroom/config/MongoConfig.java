@@ -18,7 +18,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  */
 
 @Configuration
-@ComponentScan("rentaroom.repositories")
 @EnableMongoRepositories(basePackages = {"rentaroom.repositories"})
 public class MongoConfig {
 

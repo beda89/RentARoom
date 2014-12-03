@@ -22,7 +22,6 @@ import rentaroom.repositories.RoomRepository;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ServletConfig.class, MongoConfig.class})
 @WebAppConfiguration
-@EnableMongoRepositories
 public class TestData {
 
     //ALL PRICES ARE IN CENT
@@ -338,14 +337,20 @@ public class TestData {
         Customer customer1 = new Customer("Hans", "Huber");
         customer1.setAddress("Weimarer Straße 3/3 1180 Wien");
         customer1.setDiscount(10);
-//        customer1.setFirstName("Hans");
-//        customer1.setLastName("Huber");
-        customer1.setAddress("Weimarer Straße 3/3 1180 Wien");
-        customer1.setDiscount(10);
         customer1.setMail("huber@hans.com");
         customer1.setNotes("Stammgast, kommt mehrmals im Jahr");
         customer1.setPhone("+43 7744 1443");
         customerRepo.save(customer1);
+
+        //---------------------------------CREATE CUSTOMERS -----------------------------------------------------------//
+        Customer customer2 = new Customer("Sepp", "Maier");
+        customer2.setAddress("Munderfing 18 5222 Munderfing");
+        customer2.setDiscount(8);
+        customer2.setMail("sepp@maier.com");
+        customer2.setNotes("Stammgast, kommt mehrmals im Jahr");
+        customer2.setPhone("+43 680 1231443");
+        customerRepo.save(customer2);
+
 
     }
 

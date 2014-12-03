@@ -15,7 +15,7 @@ public class Room implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private long room_id;
+    private String room_id;
 
     private Integer maxPersons;
 
@@ -39,11 +39,11 @@ public class Room implements Serializable {
     public Room() {
     }
 
-    public long getRoom_id() {
+    public String getRoom_id() {
         return room_id;
     }
 
-    public void setRoom_id(long room_id) {
+    public void setRoom_id(String room_id) {
         this.room_id = room_id;
     }
 

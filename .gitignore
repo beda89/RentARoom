@@ -65,7 +65,6 @@ local.properties
 
 ### https://raw.github.com/github/gitignore/master/Global/Linux.gitignore
 
-*~
 
 
 ### https://raw.github.com/github/gitignore/master/Maven.gitignore
@@ -149,3 +148,4 @@ vagrant/
 MMI/src/main/webapp/node_modules
 MMI/src/main/webapp/bower_components
 /mongod.bat
+/mongodb_startup.txt

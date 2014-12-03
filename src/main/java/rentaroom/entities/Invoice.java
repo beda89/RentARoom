@@ -15,8 +15,10 @@ public class Invoice implements Serializable {
 
     private static final long serialVersionUID = 12321L;
 
+
+
     @Id
-    private long invoice_id;
+    private String invoice_id;
 
     private Customer customer;
 
@@ -28,14 +30,14 @@ public class Invoice implements Serializable {
     public Invoice() {
     }
 
-    public long getInvoice_id() {
+    public String getInvoice_id() {
         return invoice_id;
     }
 
-    public void setInvoice_id(Long invoice_id) {
+    public void setInvoice_id(String invoice_id) {
         this.invoice_id = invoice_id;
     }
-
+    
     public Customer getCustomer() {
         return customer;
     }

@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrap.min.css' />">
     <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrap-theme.min.css' />">
     <script type="text/javascript" src="<c:url value='/resources/js/bootstrap/bootstrap.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/resources/js/autocomplete/jquery.autocomplete.min.js' />"></script>
     <!--
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -52,13 +53,25 @@
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
+                <input type="text" name="userSearch" id="autocomplete"/>
+
+                <!--<div class="form-group">
                     <div class="input-group">
                         <input id="customer-search" class="form-control" type="text" placeholder="Kundenname">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                    </div>
-                </div>
+                    </div> -->
+                <!--</div>-->
             </form>
+        <script>
+
+        $('#autocomplete').autocomplete({
+            serviceUrl: '/autocomplete/names',
+            onSelect: function (suggestion) {
+                alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+            }
+        });
+
+        </script>
 
             <ul class="nav navbar-nav">
                 <c:choose>

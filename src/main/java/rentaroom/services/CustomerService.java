@@ -20,24 +20,18 @@ public class CustomerService {
     private CustomerRepository customerRepo;
 
     public JSONObject getAllCustomerJson(){
-
         ArrayList<Customer> customerList= (ArrayList<Customer>) customerRepo.findAll();
-
         JSONArray customerArray=new JSONArray();
 
-
         for(Customer customer:customerList){
-            JSONObject customerJson = new JSONObject();
-            customerJson.put(customer.getLastName()+" "+customer.getFirstName(),customer.getCostumer_id());
-
+            JSONObject customerJson=new JSONObject();
+            customerJson.put("value",customer.getLastName()+" "+customer.getFirstName());
+            customerJson.put("data",customer.getCostumer_id());
             customerArray.add(customerJson);
         }
 
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("suggestions",customerArray);
-
-
-        String jsonString=jsonObject.toJSONString();
 
         return jsonObject;
     }

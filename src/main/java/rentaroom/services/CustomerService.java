@@ -39,4 +39,17 @@ public class CustomerService {
         return customerRepo.findOne(id);
     }
 
+    public Customer add(String firstName, String lastName, String address, String companyName, String phone, String fax,
+                        String mail, String homepage, String avatarUrl, String notes) {
+        Customer c = new Customer(firstName, lastName);
+        c.setAddress(address);
+        c.setCompanyName(companyName);
+        c.setPhone(phone);
+        c.setFax(fax);
+        c.setMail(mail);
+        c.setHomepage(homepage);
+        c.setAvatarUrl(avatarUrl);
+        c.setNotes(notes);
+        return customerRepo.save(c);
+    }
 }

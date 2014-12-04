@@ -25,10 +25,7 @@ public class Invoice implements Serializable {
     //price in cent 100=1Euro
     private long price;
 
-    private boolean payed;
-
     public Invoice() {
-        this.payed = false;
     }
 
     public String getId() {
@@ -65,14 +62,6 @@ public class Invoice implements Serializable {
 
     public String invoiceDateAsString() {
         return Reservation.dateFormatter.format(invoiceDate);
-    }
-
-    public boolean isPayed() {
-        return payed;
-    }
-
-    public void pay() {
-        this.payed = true;
     }
 
 }

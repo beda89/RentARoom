@@ -30,15 +30,15 @@
             <a href="${avatarUrl}"><img class="avatar" src="<c:url value='${avatarUrl}' />"></a>
           </div>
           <div class="col-md-4">
-            <p>${customer.companyName}</p>
-            <p><span class="glyphicon glyphicon-map-marker"></span> ${customer.address}</p>
-            <p>${customer.phone}</p>
-            <p>${customer.fax}</p>
-            <p><a href="mailto:${customer.mail}">${customer.mail}</a></p>
-            <p>${customer.homepage}</p>
+            <c:if test="${customer.companyName != null}"><p><b>${customer.companyName}</b></p></c:if>
+            <c:if test="${customer.address != null}"><p><span class="glyphicon glyphicon-map-marker"></span> ${customer.address}</p></c:if>
+            <c:if test="${customer.phone != null}"><p>${customer.phone}</p></c:if>
+            <c:if test="${customer.fax != null}"><p>${customer.fax}</p></c:if>
+            <c:if test="${customer.mail != null}"><p><a href="mailto:${customer.mail}">${customer.mail}</a></p></c:if>
+            <c:if test="${customer.homepage != null}"><p><a href="${customer.homepage}" target="_blank">${customer.homepage}</a></p></c:if>
           </div>
           <div class="col-md-4">
-            <div class="well"><i>${customer.notes}</i></div >
+            <c:if test="${customer.notes != null}"><div class="well"><i>${customer.notes}</i></div ></c:if>
           </div>
         </div>
       </div>
@@ -87,8 +87,6 @@
         <th>#</th>
         <th>Datum</th>
         <th>Betrag</th>
-        <th>Bezahlt</th>
-        <th width="1%"></th>
         </thead>
         <tbody>
         <c:set var="i" value="1"></c:set>
@@ -97,22 +95,6 @@
             <td>${i}</td>
             <td>${invoice.invoiceDateAsString()}</td>
             <td>${invoice.price/100} &euro;</td>
-            <td>
-            <c:choose>
-              <c:when test="${invoice.payed}">
-                <c:set var="payedClass" value='glyphicon-ok' />
-              </c:when>
-              <c:otherwise>
-                <c:set var="payedClass" value='glyphicon-remove' />
-              </c:otherwise>
-            </c:choose>
-              <span class="glyphicon ${payedClass}"></span>
-            </td>
-            <td width="1%">
-              <c:if test="${!invoice.payed}">
-              <button class="btn btn-xs btn-default" type="button">Bezahlen</button>
-              </c:if>
-            </td>
           </tr>
           <c:set var="i" value="${i + 1}"></c:set>
         </c:forEach>

@@ -19,4 +19,5 @@ $(document).ready(function() {
 	// init components
     Header.init();
 	Rooms.init();
+	Customer.init();
 });

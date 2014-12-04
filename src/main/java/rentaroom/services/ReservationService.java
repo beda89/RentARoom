@@ -25,9 +25,11 @@ public class ReservationService {
 
     public List<Reservation> findOutstandingByCustomer(Customer c) {
         List<Reservation> reservations = new ArrayList<Reservation>();
-        for (Reservation r: reservationRepo.findByDateFromGreaterThan(new Date().getTime())) {
-            if (r.getCustomer().getId().equals(c.getId())) {
-                reservations.add(r);
+        if (c != null) {
+            for (Reservation r : reservationRepo.findByDateFromGreaterThan(new Date().getTime())) {
+                if (r.getCustomer().getId().equals(c.getId())) {
+                    reservations.add(r);
+                }
             }
         }
         return reservations;

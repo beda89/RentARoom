@@ -394,7 +394,6 @@ public class TestData {
         Invoice i2 = new Invoice();
         i2.setCustomer(customer2);
         i2.setPrice(350L);
-        i2.pay();
         i2.setInvoiceDate(Reservation.dateFormatter.parse("15.06.2014").getTime());
         invoiceRepo.save(i2);
     }

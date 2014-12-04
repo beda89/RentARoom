@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Reservation implements Serializable {
 
     private static final long serialVersionUID = 1111L;
 
-
+    public static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
 
     @Id
     private String id;
@@ -28,9 +29,9 @@ public class Reservation implements Serializable {
     //percentage 0-100
     private Integer discount;
 
-    private Date dateFrom;
+    private long dateFrom;
 
-    private Date dateTo;
+    private long dateTo;
 
     private long roomPrice;
 
@@ -70,19 +71,19 @@ public class Reservation implements Serializable {
         this.roomList = roomList;
     }
 
-    public Date getDateFrom() {
+    public long getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
+    public void setDateFrom(long dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    public Date getDateTo() {
+    public long getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(Date dateTo) {
+    public void setDateTo(long dateTo) {
         this.dateTo = dateTo;
     }
 
@@ -92,5 +93,13 @@ public class Reservation implements Serializable {
 
     public void setRoomPrice(long roomPrice) {
         this.roomPrice = roomPrice;
+    }
+
+    public String dateFromAsString() {
+        return dateFormatter.format(dateFrom);
+    }
+
+    public String dateToAsString() {
+        return dateFormatter.format(dateTo);
     }
 }

@@ -25,7 +25,6 @@ public class Customer implements Serializable {
 
     private String companyName;
 
-
     private String notes;
 
     //percentage 0-100
@@ -38,6 +37,8 @@ public class Customer implements Serializable {
     private String homepage;
 
     private String fax;
+
+    private String avatarUrl;
 
     public Customer(String firstName, String lastName) {
         this.firstName = firstName;
@@ -132,5 +133,11 @@ public class Customer implements Serializable {
         this.fax = fax;
     }
 
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
 
+    public void setAvatarUrl(String url) {
+        avatarUrl = url;
+    }
 }

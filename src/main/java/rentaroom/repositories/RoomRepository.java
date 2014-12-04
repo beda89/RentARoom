@@ -10,5 +10,5 @@ import rentaroom.entities.Room;
  */
 
 @Repository
-public interface RoomRepository extends PagingAndSortingRepository<Room, Long> {
+public interface RoomRepository extends PagingAndSortingRepository<Room, String> {
 }

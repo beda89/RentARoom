@@ -4,7 +4,10 @@
 .dropdown-menu,
 .navbar-default,
 .container .jumbotron,
-.alert {
+.alert,
+.well,
+.panel,
+.panel-heading {
 	border-radius: 0px;
 }
 @media (min-width:768px) {
@@ -38,4 +41,9 @@
 }
 .subtitle {
 	color: #AAA;
+}
+.avatar {
+	width: 130px;
+	height: 130px;
+	border: 1px solid #DDD;
 }

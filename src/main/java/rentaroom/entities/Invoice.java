@@ -15,19 +15,20 @@ public class Invoice implements Serializable {
 
     private static final long serialVersionUID = 12321L;
 
-
-
     @Id
     private String id;
 
     private Customer customer;
 
-    private Date invoiceDate;
+    private long invoiceDate;
 
     //price in cent 100=1Euro
     private long price;
 
+    private boolean payed;
+
     public Invoice() {
+        this.payed = false;
     }
 
     public String getId() {
@@ -46,11 +47,11 @@ public class Invoice implements Serializable {
         this.customer = customer;
     }
 
-    public Date getInvoiceDate() {
+    public long getInvoiceDate() {
         return invoiceDate;
     }
 
-    public void setInvoiceDate(Date invoiceDate) {
+    public void setInvoiceDate(long invoiceDate) {
         this.invoiceDate = invoiceDate;
     }
 
@@ -60,6 +61,18 @@ public class Invoice implements Serializable {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    public String invoiceDateAsString() {
+        return Reservation.dateFormatter.format(invoiceDate);
+    }
+
+    public boolean isPayed() {
+        return payed;
+    }
+
+    public void pay() {
+        this.payed = true;
     }
 
 }

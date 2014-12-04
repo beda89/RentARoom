@@ -10,11 +10,19 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import rentaroom.config.MongoConfig;
 import rentaroom.config.ServletConfig;
 import rentaroom.entities.Customer;
+import rentaroom.entities.Invoice;
+import rentaroom.entities.Reservation;
 import rentaroom.entities.Room;
 import rentaroom.repositories.CustomerRepository;
 import rentaroom.repositories.InvoiceRepository;
 import rentaroom.repositories.ReservationRepository;
 import rentaroom.repositories.RoomRepository;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Peter on 28.11.2014.
@@ -57,7 +65,6 @@ public class TestData {
     private static final Long MIDDLE_THREEPERSON_PRICE = 21500L;
     private static final Long CHEAP_THREEPERSON_PRICE = 185000L;
 
-
     @Autowired
     private CustomerRepository customerRepo;
 
@@ -71,7 +78,7 @@ public class TestData {
     private InvoiceRepository invoiceRepo;
 
     @Test
-    public void initDBWithTestData() {
+    public void initDBWithTestData() throws ParseException {
         //setBackDatabase
         customerRepo.deleteAll();
         roomRepo.deleteAll();
@@ -349,9 +356,47 @@ public class TestData {
         customer2.setMail("sepp@maier.com");
         customer2.setNotes("Stammgast, kommt mehrmals im Jahr");
         customer2.setPhone("+43 680 1231443");
+        customer2.setAvatarUrl("http://ww1.prweb.com/prfiles/2013/08/14/12190096/gI_137366_glenAvatar.png");
         customerRepo.save(customer2);
 
+        //---------------------------------CREATE RESERVATIONS -----------------------------------------------------------//
+        Reservation r1 = new Reservation();
+        r1.setCustomer(customer2);
+        r1.setDateFrom(Reservation.dateFormatter.parse("01.01.2014").getTime());
+        r1.setDateTo(Reservation.dateFormatter.parse("01.02.2014").getTime());
+        r1.setRoomPrice(CHEAP_DOUBLEROOM_PRICE);
+        r1.setDiscount(0);
+        List<Room> roomList = new ArrayList<Room>();
+        roomList.add(room1);
+        r1.setRoomList(roomList);
+        reservationRepo.save(r1);
 
+        Reservation r2 = new Reservation();
+        r2.setCustomer(customer2);
+        r2.setDateFrom(Reservation.dateFormatter.parse("01.01.2015").getTime());
+        r2.setDateTo(Reservation.dateFormatter.parse("01.03.2015").getTime());
+        r2.setRoomPrice(HIGH_SINGLEROOM_PRICE);
+        r2.setDiscount(10);
+        roomList = new ArrayList<Room>();
+        roomList.add(room2);
+        roomList.add(room3);
+        roomList.add(room4);
+        r2.setRoomList(roomList);
+        reservationRepo.save(r2);
+
+        //---------------------------------CREATE INVOICES -----------------------------------------------------------//
+        Invoice i1 = new Invoice();
+        i1.setCustomer(customer2);
+        i1.setPrice(300L);
+        i1.setInvoiceDate(Reservation.dateFormatter.parse("01.08.2014").getTime());
+        invoiceRepo.save(i1);
+
+        Invoice i2 = new Invoice();
+        i2.setCustomer(customer2);
+        i2.setPrice(350L);
+        i2.pay();
+        i2.setInvoiceDate(Reservation.dateFormatter.parse("15.06.2014").getTime());
+        invoiceRepo.save(i2);
     }
 
 }

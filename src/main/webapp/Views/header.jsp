@@ -68,7 +68,7 @@
         $('#autocomplete').autocomplete({
             serviceUrl: '/autocomplete/names',
             onSelect: function (suggestion) {
-                alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+              //TODO: forward to userdata page
             }
         });
 

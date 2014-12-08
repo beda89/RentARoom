@@ -55,13 +55,6 @@
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <form class="navbar-form navbar-left" role="search">
                 <input type="text" name="userSearch" id="autocomplete"/>
-
-                <!--<div class="form-group">
-                    <div class="input-group">
-                        <input id="customer-search" class="form-control" type="text" placeholder="Kundenname">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                    </div> -->
-                <!--</div>-->
             </form>
         <script>
 

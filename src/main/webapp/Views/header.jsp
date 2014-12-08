@@ -68,7 +68,7 @@
         $('#autocomplete').autocomplete({
             serviceUrl: '/autocomplete/names',
             onSelect: function (suggestion) {
-              //TODO: forward to userdata page
+                window.location.href = "/customer/"+suggestion.data;
             }
         });
 

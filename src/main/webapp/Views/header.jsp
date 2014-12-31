@@ -7,28 +7,29 @@
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="base" value="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}" />
 <!DOCTYPE html>
+<html lang="de">
 <head>
     <title>Rent a Room</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='${base}//resources/outlook_calendar_day.ico' />">
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='${base}//resources/outlook_calendar_day.ico' />"></link>
 
     <!-- jQuery -->
     <script type="text/javascript" src="<c:url value='/resources/js/jquery/jquery-1.11.0.min.js' />"></script>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrap.min.css' />">
-    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrap-theme.min.css' />">
+    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrap.min.css' />"></link>
+    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrap-theme.min.css' />"></link>
     <script type="text/javascript" src="<c:url value='/resources/js/bootstrap/bootstrap.min.js' />"></script>
 
     <!-- Plugin: jQuery Auto-Complete -->
     <script type="text/javascript" src="<c:url value='/resources/js/jquery/jquery.autocomplete.min.js' />"></script>
 
     <!-- Plugin: Bootstrap Validator -->
-    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrapValidator.css' />">
+    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrapValidator.css' />"></link>
     <script type="text/javascript" src="<c:url value='/resources/js/bootstrap/validator/bootstrapValidator.min.js' />"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="<c:url value='${base}/resources/css/rar/rar.style.css' />">
+    <link rel="stylesheet" href="<c:url value='${base}/resources/css/rar/rar.style.css' />"></link>
 
     <!-- Custom JavaScript -->
     <script type="text/javascript" src="<c:url value='/resources/js/rar/rar.init.js' />"></script>
@@ -98,11 +99,9 @@
                     <button type="submit" class="btn btn-primary">Ausloggen</button>
                 </div>
             </form>
-            <c:if test="${param.page == 'Customer'}">
             <form class="navbar-form navbar-right">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#add-customer"><span class="glyphicon glyphicon-plus"></span> Neuer Kunde</button>
             </form>
-            </c:if>
         </sec:authorize>
 
     </div>

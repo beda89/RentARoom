@@ -60,9 +60,9 @@
         <script>
 
         $('#autocomplete').autocomplete({
-            serviceUrl: '/RentARoom/autocomplete/names',
+            serviceUrl: '${base}/autocomplete/names',
             onSelect: function (suggestion) {
-                window.location.href = "/RentARoom/customer/"+suggestion.data;
+                window.location.href = "${base}/customer/"+suggestion.data;
             }
         });
 
@@ -115,7 +115,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Neuen Kunden anlegen</h4>
             </div>
-            <form id="add-customer-form" role="form" accept-charset="UTF-8" action="<c:url value="${base}/customer" />" method="POST" class="form-horizontal">
+            <form id="add-customer-form" role="form" action="<c:url value="${base}/customer" />" method="POST" class="form-horizontal">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 <div class="modal-body">
                     <div class="form-group">

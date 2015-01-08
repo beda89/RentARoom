@@ -2,6 +2,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:set var="req" value="${pageContext.request}" />
+<c:set var="url">${req.requestURL}</c:set>
+<c:set var="uri" value="${req.requestURI}" />
+<c:set var="base" value="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}" />
 
 <jsp:include page="header.jsp">
   <jsp:param name="page" value="Customer" />
@@ -21,7 +25,7 @@
           <div class="col-md-4">
             <c:choose>
               <c:when test="${customer.avatarUrl == null || customer.avatarUrl.isEmpty()}">
-                <c:set var="avatarUrl" value='/resources/img/default-avatar.gif' />
+                <c:set var="avatarUrl" value='${base}/resources/img/default-avatar.gif' />
               </c:when>
               <c:otherwise>
                 <c:set var="avatarUrl" value='${customer.avatarUrl}' />

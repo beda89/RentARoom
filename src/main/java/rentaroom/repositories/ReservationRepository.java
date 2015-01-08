@@ -20,7 +20,9 @@ public interface ReservationRepository extends PagingAndSortingRepository<Reserv
     public List<Reservation> findByDateFromGreaterThan(long time);
 
 
-    @Query("{$or:['dateFrom' : {$gte : ?0, $lt : ?1}, 'dateTo' : {$gte: ?0 , $lt: ?1 }]}")
-    public List<Reservation> getReservedRoomsByDates(Long beginDate, Long endDate);
+    //@Query("{$or:['dateFrom' : {$gte : ?0, $lt : ?1}, 'dateTo' : {$gte: ?0 , $lt: ?1 }]}")
+
+    @Query("{'dateFrom' : {$gte : ?0}}")
+    public List<Reservation> getReservationsByDate(Long beginDate, Long endDate);
 
 }

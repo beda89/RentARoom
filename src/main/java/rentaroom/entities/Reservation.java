@@ -2,10 +2,9 @@ package rentaroom.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import rentaroom.Utils.CommonUtils;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,8 +15,6 @@ import java.util.List;
 public class Reservation implements Serializable {
 
     private static final long serialVersionUID = 1111L;
-
-    public static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
 
     @Id
     private String id;
@@ -96,10 +93,10 @@ public class Reservation implements Serializable {
     }
 
     public String dateFromAsString() {
-        return dateFormatter.format(dateFrom);
+        return CommonUtils.dateFormatter.format(dateFrom);
     }
 
     public String dateToAsString() {
-        return dateFormatter.format(dateTo);
+        return CommonUtils.dateFormatter.format(dateTo);
     }
 }

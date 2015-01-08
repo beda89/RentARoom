@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import rentaroom.entities.Customer;
 import rentaroom.entities.Reservation;
+import rentaroom.entities.Room;
 import rentaroom.repositories.CustomerRepository;
 import rentaroom.repositories.ReservationRepository;
 
@@ -33,6 +34,18 @@ public class ReservationService {
             }
         }
         return reservations;
+    }
+
+    public List<Room> getReservedRoomsByDate(Long beginDate,Long endDate){
+
+        List<Room> roomList= new ArrayList<Room>();
+        List<Reservation>  reservationList=reservationRepo.getReservedRoomsByDates(beginDate,endDate);
+
+        for(Reservation r: reservationList){
+            roomList.addAll(r.getRoomList());
+        }
+
+        return roomList;
     }
 
 }

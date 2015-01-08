@@ -362,8 +362,8 @@ public class TestData {
         //---------------------------------CREATE RESERVATIONS -----------------------------------------------------------//
         Reservation r1 = new Reservation();
         r1.setCustomer(customer2);
-        r1.setDateFrom(Reservation.dateFormatter.parse("01.01.2014").getTime());
-        r1.setDateTo(Reservation.dateFormatter.parse("01.02.2014").getTime());
+        r1.setDateFrom(Reservation.dateFormatter.parse("20.02.2015").getTime());
+        r1.setDateTo(Reservation.dateFormatter.parse("25.02.2015").getTime());
         r1.setRoomPrice(CHEAP_DOUBLEROOM_PRICE);
         r1.setDiscount(0);
         List<Room> roomList = new ArrayList<Room>();
@@ -373,7 +373,7 @@ public class TestData {
 
         Reservation r2 = new Reservation();
         r2.setCustomer(customer2);
-        r2.setDateFrom(Reservation.dateFormatter.parse("01.01.2015").getTime());
+        r2.setDateFrom(Reservation.dateFormatter.parse("20.01.2015").getTime());
         r2.setDateTo(Reservation.dateFormatter.parse("01.03.2015").getTime());
         r2.setRoomPrice(HIGH_SINGLEROOM_PRICE);
         r2.setDiscount(10);
@@ -396,6 +396,14 @@ public class TestData {
         i2.setPrice(350L);
         i2.setInvoiceDate(Reservation.dateFormatter.parse("15.06.2014").getTime());
         invoiceRepo.save(i2);
+
+        Invoice i3 = new Invoice();
+        i3.setCustomer(customer2);
+        i3.setPrice(350L);
+        i3.setInvoiceDate(Reservation.dateFormatter.parse("23.12.2014").getTime());
+        invoiceRepo.save(i3);
+
+
     }
 
 }

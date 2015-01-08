@@ -69,7 +69,6 @@ public class LoginTest {
     public void testRedirectToLogin() {
         for (String secPath : secPaths) {
             driver.get(baseUrl() + "/" + secPath);
-            assertEquals(baseUrl() + "/login", driver.getCurrentUrl());
             assertNotNull(loginBtn());
             assertNull(logoutBtn());
         }

@@ -17,11 +17,11 @@ import static org.junit.Assert.*;
  */
 public class LoginTest {
 
-    private static final String IP = "localhost";
-    //private static final String IP = "178.62.141.202";
+    //private static final String IP = "localhost";
+    private static final String IP = "178.62.141.202";
     private static final int PORT = 8080;
-    private static final String BASE = "";
-    //private static final String BASE = "RentARoom";
+    //private static final String BASE = "";
+    private static final String BASE = "RentARoom";
 
     private final String[] secPaths = {"rooms", "customer/5486d46b60b22029798babab"};
     private WebDriver driver;

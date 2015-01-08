@@ -108,4 +108,85 @@
   </c:otherwise>
 </c:choose>
 
+<!-- Modals -->
+<div class="modal fade" id="edit-customer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Kunden editieren</h4>
+      </div>
+      <form id="edit-customer-form" role="form" action="<c:url value="${base}/customer/${customer.id}" />" method="POST" class="form-horizontal">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Vorname</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="firstName" value="${customer.firstName}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Nachname</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="lastName" value="${customer.lastName}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Firma</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="companyName" value="${customer.companyName}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Adresse</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="address" value="${customer.address}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Telefon</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="phone" value="${customer.phone}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Fax</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="fax" value="${customer.fax}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">E-Mail</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="mail" value="${customer.mail}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Homepage</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="homepage" value="${customer.homepage}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Avatar Url</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="avatarUrl" value="${customer.avatarUrl}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Description</label>
+            <div class="col-sm-8">
+              <textarea class="form-control" name="notes" rows="3"><c:out value="${customer.notes}"></c:out></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+          <button type="submit" class="btn btn-primary">Speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <jsp:include page="footer.jsp" />

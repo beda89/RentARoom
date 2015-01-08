@@ -52,6 +52,22 @@ public class CustomerController {
         return "redirect:/customer/" + c.getId();
     }
 
+    @RequestMapping(value = {"/customer/{id}"}, method = RequestMethod.POST)
+    public String editCustomer(@PathVariable String id,
+                               @RequestParam String firstName,
+                              @RequestParam String lastName,
+                              @RequestParam String address,
+                              @RequestParam String companyName,
+                              @RequestParam String phone,
+                              @RequestParam String fax,
+                              @RequestParam String mail,
+                              @RequestParam String homepage,
+                              @RequestParam String avatarUrl,
+                              @RequestParam String notes) {
+        customerService.edit(id, firstName, lastName, address, companyName, phone, fax, mail, homepage, avatarUrl, notes);
+        return "redirect:/customer/" + id;
+    }
+
     @RequestMapping(value="/autocomplete/names",method=RequestMethod.GET)
     @ResponseBody
     public String getCustomerJsonListWithId() {

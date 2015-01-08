@@ -102,6 +102,11 @@
             <form class="navbar-form navbar-right">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#add-customer"><span class="glyphicon glyphicon-plus"></span> Neuer Kunde</button>
             </form>
+            <c:if test="${param.page == 'Customer'}">
+                <form class="navbar-form navbar-right">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#edit-customer"><span class="glyphicon glyphicon-pencil"></span> Editieren</button>
+                </form>
+            </c:if>
         </sec:authorize>
 
     </div>

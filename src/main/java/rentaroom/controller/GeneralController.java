@@ -21,7 +21,7 @@ public class GeneralController {
     }
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
-    public ModelAndView indexPage(ModelMap model, Principal principal ) throws Exception {
+    public ModelAndView indexPage(ModelMap model, Principal principal) throws Exception {
         return new ModelAndView(principal == null ? "login" : "rooms");
     }
 

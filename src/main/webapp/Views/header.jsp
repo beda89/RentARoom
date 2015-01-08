@@ -60,9 +60,9 @@
         <script>
 
         $('#autocomplete').autocomplete({
-            serviceUrl: '/RentARoom/autocomplete/names',
+            serviceUrl: '${base}/autocomplete/names',
             onSelect: function (suggestion) {
-                window.location.href = "/RentARoom/customer/"+suggestion.data;
+                window.location.href = "${base}/customer/"+suggestion.data;
             }
         });
 

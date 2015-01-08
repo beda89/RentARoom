@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Christian on 31.12.2014.
  */
-public class LoginTest {
+public class Login {
 
     //private static final String IP = "localhost";
     private static final String IP = "178.62.141.202";

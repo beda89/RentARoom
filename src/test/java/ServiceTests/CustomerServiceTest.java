@@ -1,86 +1,111 @@
 package ServiceTests;
 
-import org.json.simple.JSONObject;
-import org.junit.Assert;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import rentaroom.config.MongoConfig;
 import rentaroom.entities.Customer;
 import rentaroom.repositories.CustomerRepository;
 import rentaroom.services.CustomerService;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-
-import java.util.ArrayList;
+import static org.junit.Assert.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Simerle Christopher
- * Date: 08/01/15
- * Time: 18:46
- * To change this template use File | Settings | File Templates.
+ * Created by Christian on 31.12.2014.
  */
-
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {MongoConfig.class, CustomerService.class})
 public class CustomerServiceTest {
 
-    @Mock
-    private CustomerRepository customerRepository;
+    @Autowired
+    CustomerService customerService;
 
-    @InjectMocks
-    private CustomerService customerService = new CustomerService();
+    @Autowired
+    CustomerRepository customerRepository;
 
-    private Customer customer1;
-    private ArrayList<Customer> customerList;
+    private Iterable<Customer> customersBackup;
+    private Customer c;
+    private final String FIRSTNAME = "Susi",
+            LASTNAME = "Sorglos",
+            ADDRESS = "Testweg 12",
+            COMPANYNAME = "Apple",
+            PHONE = "1244363463",
+            FAX = "16565143",
+            MAIL = "test@mail.com",
+            HOMEPAGE = "https://bitbucket.org/csim/rentaroom/overview",
+            AVATARURL = "",
+            NOTES = "very reliable customer";
 
     @Before
     public void setUp() {
-        customer1 = new Customer("Hans", "Huber");
-        customer1.setId("54aec4e360b263045a3db672");
-        customer1.setAddress("Weimarer Straße 3/3 1180 Wien");
-        customer1.setDiscount(10);
-        customer1.setMail("huber@hans.com");
-        customer1.setNotes("Stammgast, kommt mehrmals im Jahr");
-        customer1.setPhone("+43 7744 1443");
+        customersBackup = customerRepository.findAll();
+        c = new Customer(FIRSTNAME, LASTNAME);
+        c.setAddress(ADDRESS);
+        c.setCompanyName(COMPANYNAME);
+        c.setPhone(PHONE);
+        c.setFax(FAX);
+        c.setMail(MAIL);
+        c.setHomepage(HOMEPAGE);
+        c.setAvatarUrl(AVATARURL);
+        c.setNotes(NOTES);
+    }
 
-        customerList = new ArrayList<Customer>();
-        customerList.add(customer1);
-        customerList.add(customer1);
-        customerList.add(customer1);
-        customerList.add(customer1);
+    @After
+    public void tearDown() {
+        customerRepository.deleteAll();
+        customerRepository.save(customersBackup);
+        c = null;
     }
 
     @Test
-    public void testGetAllCustomerJson() {
-        Mockito.when(customerRepository.findAll()).thenReturn(customerList);
-        JSONObject getAllCustomerJsonResult = customerService.getAllCustomerJson();
-        Assert.assertTrue(!getAllCustomerJsonResult.isEmpty());
-        Assert.assertEquals(getAllCustomerJsonResult.toJSONString(), "{\"suggestions\":[{\"data\":\"54aec4e360b263045a3db672\",\"value\":\"Huber Hans\"},{\"data\":\"54aec4e360b263045a3db672\",\"value\":\"Huber Hans\"},{\"data\":\"54aec4e360b263045a3db672\",\"value\":\"Huber Hans\"},{\"data\":\"54aec4e360b263045a3db672\",\"value\":\"Huber Hans\"}]}");
+    public void testAddNewCustomer() {
+        Customer saved = customerService.add(FIRSTNAME, LASTNAME, ADDRESS, COMPANYNAME, PHONE, FAX, MAIL, HOMEPAGE, AVATARURL, NOTES);
+        assertNotNull(customerRepository.findOne(saved.getId()));
+        assertEquals(FIRSTNAME, saved.getFirstName());
+        assertEquals(LASTNAME, saved.getLastName());
+        assertEquals(ADDRESS, saved.getAddress());
+        assertEquals(COMPANYNAME, saved.getCompanyName());
+        assertEquals(PHONE, saved.getPhone());
+        assertEquals(FAX, saved.getFax());
+        assertEquals(MAIL, saved.getMail());
+        assertEquals(HOMEPAGE, saved.getHomepage());
+        assertEquals(AVATARURL, saved.getAvatarUrl());
+        assertEquals(NOTES, saved.getNotes());
     }
 
     @Test
     public void testFindById() {
-        Mockito.when(customerRepository.findOne("1")).thenReturn(customer1);
-        Customer CustomerResult = customerService.findById("1");
-        Assert.assertEquals(customer1, CustomerResult);
+        String id = "best-id-ever";
+        c.setId(id);
+        customerRepository.save(c);
+        Customer retrieved = customerService.findById(id);
+        assertNotNull(retrieved);
+        assertEquals(c.getId(), retrieved.getId());
     }
 
     @Test
-    public void testFindById_NotFound() {
-        Mockito.when(customerRepository.findOne("1")).thenReturn(null);
-        Customer CustomerResult = customerService.findById("20");
-        Assert.assertEquals(null, CustomerResult);
+    public void testEditCustomer() {
+        Customer saved = customerRepository.save(c);
+        customerService.edit(saved.getId(),
+                saved.getFirstName(),
+                saved.getLastName(),
+                ADDRESS + "123",
+                saved.getCompanyName(),
+                saved.getPhone(),
+                saved.getFax(),
+                "12345" + MAIL,
+                saved.getHomepage(),
+                saved.getAvatarUrl(),
+                "notes");
+        Customer edited = customerRepository.findOne(saved.getId());
+        assertNotNull(edited);
+        assertEquals(ADDRESS + "123", edited.getAddress());
+        assertEquals("12345" + MAIL, edited.getMail());
+        assertEquals("notes", edited.getNotes());
     }
 
-    @Test
-    public void testAdd() {
-        Mockito.when(customerRepository.save(any(Customer.class))).thenReturn(customer1);
-        Customer CustomerResult = customerService.add("Hans", "Huber", "Weimarer Straße 3/3 1180 Wien", "", "+43 7744 1443", "", "huber@hans.com", "", "", "Stammgast, kommt mehrmals im Jahr");
-        Assert.assertEquals(customer1, CustomerResult);
-    }
 }

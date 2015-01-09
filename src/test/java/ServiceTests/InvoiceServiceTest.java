@@ -1,13 +1,14 @@
 package ServiceTests;
 
-import org.junit.Assert;
+import junit.framework.Assert;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import rentaroom.config.MongoConfig;
 import rentaroom.entities.Customer;
 import rentaroom.entities.Invoice;
 import rentaroom.entities.Reservation;
@@ -15,103 +16,80 @@ import rentaroom.repositories.InvoiceRepository;
 import rentaroom.services.InvoiceService;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Simerle Christopher
  * Date: 09/01/15
- * Time: 13:44
+ * Time: 15:40
  * To change this template use File | Settings | File Templates.
  */
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {MongoConfig.class, InvoiceService.class})
 public class InvoiceServiceTest {
 
-    @Mock
-    private InvoiceRepository invoiceRepository;
+    @Autowired
+    InvoiceService invoiceService;
 
-    @InjectMocks
-    private InvoiceService invoiceService = new InvoiceService();
+    @Autowired
+    InvoiceRepository invoiceRepository;
 
-    private Customer customer1;
-
-    private Invoice invoice1;
-    private Invoice invoice2;
-    private Invoice invoice3;
-    private List<Invoice> invoiceList;
+    private Iterable<Invoice> invoiceBackup;
+    private Customer customer2;
+    private Invoice i1;
+    private Invoice i2;
+    private Invoice i3;
 
     @Before
     public void setUp() {
-        customer1 = new Customer("Hans", "Huber");
-        customer1.setId("54aec4e360b263045a3db672");
-        customer1.setAddress("Weimarer Straße 3/3 1180 Wien");
-        customer1.setDiscount(10);
-        customer1.setMail("huber@hans.com");
-        customer1.setNotes("Stammgast, kommt mehrmals im Jahr");
-        customer1.setPhone("+43 7744 1443");
+        invoiceBackup = invoiceRepository.findAll();
+        customer2 = new Customer("Sepp", "Mayerhofer");
+        customer2.setId("sepps_id");
+        customer2.setAddress("Munderfing 19");
+        customer2.setDiscount(10);
+        customer2.setMail("sepp@hofer.com");
+        customer2.setNotes("Stammgast");
+        customer2.setPhone("+43 680 1231443234");
+        customer2.setAvatarUrl("some_avatar");
 
         try {
-            invoice1 = new Invoice();
-            invoice1.setCustomer(customer1);
-            invoice1.setPrice(300L);
-            invoice1.setInvoiceDate(Reservation.dateFormatter.parse("01.08.2014").getTime());
+            i1 = new Invoice();
+            i1.setCustomer(customer2);
+            i1.setPrice(300L);
+            i1.setInvoiceDate(Reservation.dateFormatter.parse("01.08.2018").getTime());
 
+            i2 = new Invoice();
+            i2.setCustomer(customer2);
+            i2.setPrice(350L);
+            i2.setInvoiceDate(Reservation.dateFormatter.parse("15.06.2018").getTime());
 
-            invoice2 = new Invoice();
-            invoice2.setCustomer(customer1);
-            invoice2.setPrice(350L);
-            invoice2.setInvoiceDate(Reservation.dateFormatter.parse("15.06.2014").getTime());
+            i3 = new Invoice();
+            i3.setCustomer(customer2);
+            i3.setPrice(350L);
+            i3.setInvoiceDate(Reservation.dateFormatter.parse("23.12.2018").getTime());
 
-            invoice3 = new Invoice();
-            invoice3.setCustomer(customer1);
-            invoice3.setPrice(350L);
-            invoice3.setInvoiceDate(Reservation.dateFormatter.parse("23.12.2014").getTime());
+            invoiceRepository.save(i1);
+            invoiceRepository.save(i2);
+            invoiceRepository.save(i3);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
 
-        invoiceList = new ArrayList<Invoice>();
-        invoiceList.add(invoice1);
-        invoiceList.add(invoice2);
-        invoiceList.add(invoice3);
+    @After
+    public void tearDown() {
+        invoiceRepository.deleteAll();
+        invoiceRepository.save(invoiceBackup);
     }
 
     @Test
-    public void testFindByCustomer(){
-        Mockito.when(invoiceRepository.findByCustomer(Mockito.any(Customer.class))).thenReturn(invoiceList);
-        List<Invoice> returnedInvoiceList = invoiceService.findByCustomer(customer1);
-        Assert.assertTrue(!returnedInvoiceList.isEmpty());
-        Assert.assertEquals(invoiceList, returnedInvoiceList);
+    public void testFindByCustomer() {
+        List<Invoice> foundInvoiceList = invoiceService.findByCustomer(customer2);
+        assertTrue(!foundInvoiceList.isEmpty());
+        assertEquals(customer2.getFirstName(), foundInvoiceList.get(0).getCustomer().getFirstName());
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

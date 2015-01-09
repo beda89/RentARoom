@@ -13,7 +13,7 @@
 
 <c:choose>
   <c:when test="${customer == null}">
-    <h1>Customer not found!</h1>
+    <h1>Kunde nicht gefunden!</h1>
   </c:when>
   <c:otherwise>
     <div class="panel panel-default">
@@ -109,6 +109,24 @@
 </c:choose>
 
 <!-- Modals -->
+<div class="modal fade" id="really-proceed-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Wirklich fortfahren?</h4>
+      </div>
+      <form role="form" action="<c:url value="${base}/" />" method="POST" class="form-horizontal">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+          <button type="submit" class="btn btn-primary"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="edit-customer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -168,13 +186,13 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label">Avatar Url</label>
+            <label class="col-sm-3 control-label">Link zu Avatar</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" name="avatarUrl" value="${customer.avatarUrl}" />
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label">Description</label>
+            <label class="col-sm-3 control-label">Notizen</label>
             <div class="col-sm-8">
               <textarea class="form-control" name="notes" rows="3"><c:out value="${customer.notes}"></c:out></textarea>
             </div>

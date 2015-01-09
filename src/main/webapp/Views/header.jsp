@@ -172,13 +172,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Avatar Url</label>
+                        <label class="col-sm-3 control-label">Link zu Avatar</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" name="avatarUrl" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Description</label>
+                        <label class="col-sm-3 control-label">Notizen</label>
                         <div class="col-sm-8">
                             <textarea class="form-control" name="notes" rows="3"></textarea>
                         </div>

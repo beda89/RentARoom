@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import rentaroom.Utils.CommonUtils;
 import rentaroom.config.MongoConfig;
 import rentaroom.entities.Customer;
 import rentaroom.entities.Reservation;
@@ -92,8 +93,8 @@ public class ReservationServiceTest {
         try {
             r1 = new Reservation();
             r1.setCustomer(customer2);
-            r1.setDateFrom(Reservation.dateFormatter.parse("20.02.2018").getTime());
-            r1.setDateTo(Reservation.dateFormatter.parse("25.02.2018").getTime());
+            r1.setDateFrom(CommonUtils.dateFormatter.parse("20.02.2018").getTime());
+            r1.setDateTo(CommonUtils.dateFormatter.parse("25.02.2018").getTime());
             r1.setRoomPrice(CHEAP_DOUBLEROOM_PRICE);
             r1.setDiscount(0);
             List<Room> roomList = new ArrayList<Room>();
@@ -102,8 +103,8 @@ public class ReservationServiceTest {
 
             r2 = new Reservation();
             r2.setCustomer(customer2);
-            r2.setDateFrom(Reservation.dateFormatter.parse("20.01.2018").getTime());
-            r2.setDateTo(Reservation.dateFormatter.parse("01.03.2018").getTime());
+            r2.setDateFrom(CommonUtils.dateFormatter.parse("20.01.2018").getTime());
+            r2.setDateTo(CommonUtils.dateFormatter.parse("01.03.2018").getTime());
             r2.setRoomPrice(HIGH_SINGLEROOM_PRICE);
             r2.setDiscount(10);
             roomList = new ArrayList<Room>();

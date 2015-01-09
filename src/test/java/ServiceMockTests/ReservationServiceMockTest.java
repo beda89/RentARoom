@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import rentaroom.Utils.CommonUtils;
 import rentaroom.entities.Customer;
 import rentaroom.entities.Reservation;
 import rentaroom.entities.Room;
@@ -84,8 +85,8 @@ public class ReservationServiceMockTest {
         try {
             r1 = new Reservation();
             r1.setCustomer(customer1);
-            r1.setDateFrom(Reservation.dateFormatter.parse("20.02.2015").getTime());
-            r1.setDateTo(Reservation.dateFormatter.parse("25.02.2015").getTime());
+            r1.setDateFrom(CommonUtils.dateFormatter.parse("20.02.2015").getTime());
+            r1.setDateTo(CommonUtils.dateFormatter.parse("25.02.2015").getTime());
             r1.setRoomPrice(CHEAP_DOUBLEROOM_PRICE);
             r1.setDiscount(0);
             List<Room> roomList = new ArrayList<Room>();
@@ -94,8 +95,8 @@ public class ReservationServiceMockTest {
 
             r2 = new Reservation();
             r2.setCustomer(customer1);
-            r2.setDateFrom(Reservation.dateFormatter.parse("20.01.2015").getTime());
-            r2.setDateTo(Reservation.dateFormatter.parse("01.03.2015").getTime());
+            r2.setDateFrom(CommonUtils.dateFormatter.parse("20.01.2015").getTime());
+            r2.setDateTo(CommonUtils.dateFormatter.parse("01.03.2015").getTime());
             r2.setRoomPrice(HIGH_SINGLEROOM_PRICE);
             r2.setDiscount(10);
             roomList = new ArrayList<Room>();

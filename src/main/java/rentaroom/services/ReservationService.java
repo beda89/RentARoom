@@ -35,4 +35,12 @@ public class ReservationService {
         return reservations;
     }
 
+    public void delete(String id) {
+        reservationRepo.delete(id);
+    }
+
+    public Reservation findById(String id) {
+        return reservationRepo.findOne(id);
+    }
+
 }

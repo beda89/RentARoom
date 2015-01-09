@@ -23,4 +23,8 @@ public class InvoiceService {
         return invoiceRepo.findByCustomer(c);
     }
 
+    public void add(Invoice i) {
+        invoiceRepo.save(i);
+    }
+
 }

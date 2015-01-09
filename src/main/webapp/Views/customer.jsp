@@ -64,7 +64,7 @@
         <tbody>
         <c:set var="i" value="1"></c:set>
         <c:forEach items="${reservations}" var="reservation">
-          <tr>
+          <tr data-rar-reservation-id="${reservation.id}">
             <td>${i}</td>
             <td>${reservation.dateFromAsString()}</td>
             <td>${reservation.dateToAsString()}</td>
@@ -75,8 +75,8 @@
             </td>
             <td>${reservation.roomPrice/100} &euro;</td>
             <td>${reservation.discount} %</td>
-            <td width="1%"><button class="btn btn-xs btn-default" type="button">Stornieren</button></td>
-            <td width="1%"><button class="btn btn-xs btn-default" type="button">Checkout</button></td>
+            <td width="1%"><button class="btn btn-xs btn-default cancel-reservation" type="button">Stornieren</button></td>
+            <td width="1%"><button class="btn btn-xs btn-default checkout-reservation" type="button">Checkout</button></td>
           </tr>
           <c:set var="i" value="${i + 1}"></c:set>
         </c:forEach>
@@ -107,5 +107,25 @@
     </div>
   </c:otherwise>
 </c:choose>
+
+
+<!-- Modals -->
+<div class="modal fade" id="really-proceed-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Wirklich fortfahren?</h4>
+      </div>
+      <form role="form" action="<c:url value="${base}/" />" method="POST" class="form-horizontal">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+          <button type="submit" class="btn btn-primary"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 <jsp:include page="footer.jsp" />

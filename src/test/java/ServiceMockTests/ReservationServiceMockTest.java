@@ -1,4 +1,4 @@
-package ServiceTests;
+package ServiceMockTests;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 @RunWith(MockitoJUnitRunner.class)
-public class ReservationService {
+public class ReservationServiceMockTest {
 
     //DOUBLEROOM PRICES
     private static final Long HIGH_DOUBLEROOM_PRICE = 20000L;

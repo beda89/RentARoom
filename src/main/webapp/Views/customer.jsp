@@ -64,7 +64,7 @@
         <tbody>
         <c:set var="i" value="1"></c:set>
         <c:forEach items="${reservations}" var="reservation">
-          <tr>
+          <tr data-rar-reservation-id="${reservation.id}">
             <td>${i}</td>
             <td>${reservation.dateFromAsString()}</td>
             <td>${reservation.dateToAsString()}</td>
@@ -75,8 +75,8 @@
             </td>
             <td>${reservation.roomPrice/100} &euro;</td>
             <td>${reservation.discount} %</td>
-            <td width="1%"><button class="btn btn-xs btn-default" type="button">Stornieren</button></td>
-            <td width="1%"><button class="btn btn-xs btn-default" type="button">Checkout</button></td>
+            <td width="1%"><button class="btn btn-xs btn-default cancel-reservation" type="button">Stornieren</button></td>
+            <td width="1%"><button class="btn btn-xs btn-default checkout-reservation" type="button">Checkout</button></td>
           </tr>
           <c:set var="i" value="${i + 1}"></c:set>
         </c:forEach>

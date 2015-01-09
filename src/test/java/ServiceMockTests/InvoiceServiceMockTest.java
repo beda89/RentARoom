@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import rentaroom.Utils.CommonUtils;
 import rentaroom.entities.Customer;
 import rentaroom.entities.Invoice;
 import rentaroom.entities.Reservation;
@@ -56,18 +57,18 @@ public class InvoiceServiceMockTest {
             invoice1 = new Invoice();
             invoice1.setCustomer(customer1);
             invoice1.setPrice(300L);
-            invoice1.setInvoiceDate(Reservation.dateFormatter.parse("01.08.2014").getTime());
+            invoice1.setInvoiceDate(CommonUtils.dateFormatter.parse("01.08.2014").getTime());
 
 
             invoice2 = new Invoice();
             invoice2.setCustomer(customer1);
             invoice2.setPrice(350L);
-            invoice2.setInvoiceDate(Reservation.dateFormatter.parse("15.06.2014").getTime());
+            invoice2.setInvoiceDate(CommonUtils.dateFormatter.parse("15.06.2014").getTime());
 
             invoice3 = new Invoice();
             invoice3.setCustomer(customer1);
             invoice3.setPrice(350L);
-            invoice3.setInvoiceDate(Reservation.dateFormatter.parse("23.12.2014").getTime());
+            invoice3.setInvoiceDate(CommonUtils.dateFormatter.parse("23.12.2014").getTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }

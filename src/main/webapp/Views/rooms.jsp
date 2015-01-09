@@ -9,11 +9,23 @@
 
 <div id="roomgrid">
   <div class="row">
-    <div class="col-xs-2">
-      <button class="btn btn-danger">
-        <p><b>E01</b></p>14,-
-      </button>
-    </div>
+    <c:forEach items="${roomList}" var="room">
+      <div class="col-xs-2">
+        <c:if test="${room.isReserved}">
+          <button class="btn btn-danger">
+            <p><b>${room.roomNbr}</b></p>
+          </button>
+        </c:if>
+
+
+        <c:if test="${!room.isReserved}">
+          <button class="btn btn-success">
+            <p><b>${room.roomNbr}</b></p>
+          </button>
+        </c:if>
+      </div>
+    </c:forEach>
+
   </div><br>
 </div>
 

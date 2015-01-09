@@ -2,6 +2,7 @@ package rentaroom.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import rentaroom.Utils.CommonUtils;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -61,7 +62,7 @@ public class Invoice implements Serializable {
     }
 
     public String invoiceDateAsString() {
-        return Reservation.dateFormatter.format(invoiceDate);
+        return CommonUtils.dateFormatter.format(invoiceDate);
     }
 
 }

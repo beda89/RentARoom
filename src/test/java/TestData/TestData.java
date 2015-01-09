@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import rentaroom.Utils.CommonUtils;
 import rentaroom.config.MongoConfig;
 import rentaroom.config.ServletConfig;
 import rentaroom.entities.Customer;
@@ -362,8 +363,8 @@ public class TestData {
         //---------------------------------CREATE RESERVATIONS -----------------------------------------------------------//
         Reservation r1 = new Reservation();
         r1.setCustomer(customer2);
-        r1.setDateFrom(Reservation.dateFormatter.parse("20.02.2015").getTime());
-        r1.setDateTo(Reservation.dateFormatter.parse("25.02.2015").getTime());
+        r1.setDateFrom(CommonUtils.dateFormatter.parse("20.02.2015").getTime());
+        r1.setDateTo(CommonUtils.dateFormatter.parse("25.02.2015").getTime());
         r1.setRoomPrice(CHEAP_DOUBLEROOM_PRICE);
         r1.setDiscount(0);
         List<Room> roomList = new ArrayList<Room>();
@@ -373,8 +374,8 @@ public class TestData {
 
         Reservation r2 = new Reservation();
         r2.setCustomer(customer2);
-        r2.setDateFrom(Reservation.dateFormatter.parse("20.01.2015").getTime());
-        r2.setDateTo(Reservation.dateFormatter.parse("01.03.2015").getTime());
+        r2.setDateFrom(CommonUtils.dateFormatter.parse("20.01.2015").getTime());
+        r2.setDateTo(CommonUtils.dateFormatter.parse("01.03.2015").getTime());
         r2.setRoomPrice(HIGH_SINGLEROOM_PRICE);
         r2.setDiscount(10);
         roomList = new ArrayList<Room>();
@@ -388,19 +389,19 @@ public class TestData {
         Invoice i1 = new Invoice();
         i1.setCustomer(customer2);
         i1.setPrice(300L);
-        i1.setInvoiceDate(Reservation.dateFormatter.parse("01.08.2014").getTime());
+        i1.setInvoiceDate(CommonUtils.dateFormatter.parse("01.08.2014").getTime());
         invoiceRepo.save(i1);
 
         Invoice i2 = new Invoice();
         i2.setCustomer(customer2);
         i2.setPrice(350L);
-        i2.setInvoiceDate(Reservation.dateFormatter.parse("15.06.2014").getTime());
+        i2.setInvoiceDate(CommonUtils.dateFormatter.parse("15.06.2014").getTime());
         invoiceRepo.save(i2);
 
         Invoice i3 = new Invoice();
         i3.setCustomer(customer2);
         i3.setPrice(350L);
-        i3.setInvoiceDate(Reservation.dateFormatter.parse("23.12.2014").getTime());
+        i3.setInvoiceDate(CommonUtils.dateFormatter.parse("23.12.2014").getTime());
         invoiceRepo.save(i3);
 
 

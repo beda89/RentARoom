@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import rentaroom.Utils.CommonUtils;
 import rentaroom.config.MongoConfig;
 import rentaroom.entities.Customer;
 import rentaroom.entities.Invoice;
@@ -60,17 +61,17 @@ public class InvoiceServiceTest {
             i1 = new Invoice();
             i1.setCustomer(customer2);
             i1.setPrice(300L);
-            i1.setInvoiceDate(Reservation.dateFormatter.parse("01.08.2018").getTime());
+            i1.setInvoiceDate(CommonUtils.dateFormatter.parse("01.08.2018").getTime());
 
             i2 = new Invoice();
             i2.setCustomer(customer2);
             i2.setPrice(350L);
-            i2.setInvoiceDate(Reservation.dateFormatter.parse("15.06.2018").getTime());
+            i2.setInvoiceDate(CommonUtils.dateFormatter.parse("15.06.2018").getTime());
 
             i3 = new Invoice();
             i3.setCustomer(customer2);
             i3.setPrice(350L);
-            i3.setInvoiceDate(Reservation.dateFormatter.parse("23.12.2018").getTime());
+            i3.setInvoiceDate(CommonUtils.dateFormatter.parse("23.12.2018").getTime());
 
             invoiceRepository.save(i1);
             invoiceRepository.save(i2);

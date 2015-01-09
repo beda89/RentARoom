@@ -47,7 +47,6 @@ public class ReservationService {
 
         List<RoomDto> roomList= new ArrayList<RoomDto>();
         Iterable<Reservation> reservations= reservationRepo.findAll();
-//1424386800000
         List<Reservation>  reservationList= reservationRepo.getReservationsByDate(beginDate,endDate);
         List<Room> reservedRoomList= new ArrayList<Room>();
 
@@ -83,5 +82,13 @@ public class ReservationService {
         return roomList;
     }
 
+    public void delete(String id) {
+        reservationRepo.delete(id);
+    }
+
+
+    public Reservation findById(String id) {
+        return reservationRepo.findOne(id);
+    }
 
 }

@@ -52,4 +52,21 @@ public class CustomerService {
         c.setNotes(notes);
         return customerRepo.save(c);
     }
+
+    public void edit(String id, String firstName, String lastName, String address, String companyName, String phone, String fax,
+                     String mail, String homepage, String avatarUrl, String notes) {
+        Customer c = customerRepo.findOne(id);
+        c.setFirstName(firstName);
+        c.setLastName(lastName);
+        c.setAddress(address);
+        c.setCompanyName(companyName);
+        c.setPhone(phone);
+        c.setFax(fax);
+        c.setMail(mail);
+        c.setHomepage(homepage);
+        c.setAvatarUrl(avatarUrl);
+        c.setNotes(notes);
+        customerRepo.save(c);
+    }
+
 }

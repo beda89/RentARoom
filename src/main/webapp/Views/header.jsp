@@ -11,7 +11,7 @@
 <head>
     <title>Rent a Room</title>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='${base}//resources/outlook_calendar_day.ico' />"></link>
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='${base}/resources/outlook_calendar_day.ico' />"></link>
 
     <!-- jQuery -->
     <script type="text/javascript" src="<c:url value='/resources/js/jquery/jquery-1.11.0.min.js' />"></script>
@@ -102,6 +102,11 @@
             <form class="navbar-form navbar-right">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#add-customer"><span class="glyphicon glyphicon-plus"></span> Neuer Kunde</button>
             </form>
+            <c:if test="${param.page == 'Customer'}">
+                <form class="navbar-form navbar-right">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#edit-customer"><span class="glyphicon glyphicon-pencil"></span> Editieren</button>
+                </form>
+            </c:if>
         </sec:authorize>
 
     </div>
@@ -167,13 +172,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Avatar Url</label>
+                        <label class="col-sm-3 control-label">Link zu Avatar</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" name="avatarUrl" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Description</label>
+                        <label class="col-sm-3 control-label">Notizen</label>
                         <div class="col-sm-8">
                             <textarea class="form-control" name="notes" rows="3"></textarea>
                         </div>

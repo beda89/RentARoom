@@ -44,6 +44,27 @@ var Customer = (function(window, document, undefined) {
                     mail: { validators: { notEmpty: {message: 'Pflichtfeld' }, emailAddress: { message: "Keine g&uuml;ltige E-Mail Adresse" }}}
                 }
             });
+
+        // Stornieren Buttons
+        $('.cancel-reservation').click(function() {
+            var id = $(this).parents("tr").attr("data-rar-reservation-id");
+            reallyProceedModal(id, "Stornieren", "reservations/cancel/" + id);
+        });
+
+        // Checkout Buttons
+        $('.checkout-reservation').click(function() {
+            var id = $(this).parents("tr").attr("data-rar-reservation-id");
+            reallyProceedModal(id, "Checkout", "reservations/checkout/" + id);
+        });
+    };
+
+    var reallyProceedModal = function(id, submitCaption, url) {
+        var modal = $("#really-proceed-modal");
+        var submitBtn = modal.find('button[type="submit"]');
+        var form = modal.find("form");
+        form.attr("action", form.attr("action") + url);
+        submitBtn.html(submitCaption);
+        modal.modal();
     };
 
     return {

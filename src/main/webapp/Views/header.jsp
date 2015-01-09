@@ -11,7 +11,7 @@
 <head>
     <title>Rent a Room</title>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='${base}//resources/outlook_calendar_day.ico' />"></link>
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='${base}/resources/outlook_calendar_day.ico' />"></link>
 
     <!-- jQuery -->
     <script type="text/javascript" src="<c:url value='/resources/js/jquery/jquery-1.11.0.min.js' />"></script>

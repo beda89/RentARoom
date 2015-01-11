@@ -14,5 +14,5 @@ import java.util.List;
  */
 @Repository
 public interface InvoiceRepository extends PagingAndSortingRepository<Invoice, String> {
-    List<Invoice> findByCustomer(Customer c);
+    List<Invoice> findByCustomerOrderByInvoiceDateDesc(Customer c);
 }

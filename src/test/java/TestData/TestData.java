@@ -385,6 +385,18 @@ public class TestData {
         r2.setRoomList(roomList);
         reservationRepo.save(r2);
 
+        Reservation r3 = new Reservation();
+        r3.setCustomer(customer2);
+        r3.setDateFrom(CommonUtils.dateFormatter.parse("01.01.2015").getTime());
+        r3.setDateTo(CommonUtils.dateFormatter.parse("01.03.2015").getTime());
+        r3.setRoomPrice(CHEAP_DOUBLEROOM_PRICE);
+        r3.setDiscount(30);
+        roomList = new ArrayList<Room>();
+        roomList.add(room2);
+        roomList.add(room3);
+        r3.setRoomList(roomList);
+        reservationRepo.save(r3);
+
         //---------------------------------CREATE INVOICES -----------------------------------------------------------//
         Invoice i1 = new Invoice();
         i1.setCustomer(customer2);

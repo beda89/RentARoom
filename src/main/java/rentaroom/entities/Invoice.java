@@ -26,6 +26,10 @@ public class Invoice implements Serializable {
     //price in cent 100=1Euro
     private long price;
 
+    private Reservation reservation;
+
+    private String notes;
+
     public Invoice() {
     }
 
@@ -63,6 +67,22 @@ public class Invoice implements Serializable {
 
     public String invoiceDateAsString() {
         return CommonUtils.dateFormatter.format(invoiceDate);
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
 }

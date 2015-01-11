@@ -32,7 +32,6 @@ public class Reservation implements Serializable {
 
     private long roomPrice;
 
-
     public Reservation() {
     }
 

@@ -2,6 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<jsp:useBean id="now" class="java.util.Date" />
 <c:set var="req" value="${pageContext.request}" />
 <c:set var="url">${req.requestURL}</c:set>
 <c:set var="uri" value="${req.requestURI}" />
@@ -75,8 +76,8 @@
             </td>
             <td>${reservation.roomPrice/100} &euro;</td>
             <td>${reservation.discount} %</td>
-            <td width="1%"><button class="btn btn-xs btn-default cancel-reservation" type="button">Stornieren</button></td>
-            <td width="1%"><button class="btn btn-xs btn-default checkout-reservation" type="button">Checkout</button></td>
+            <td width="1%"><button class="btn btn-xs btn-default cancel-reservation <c:if test="${reservation.dateFrom <= now.time}">disabled</c:if>" type="button">Stornieren</button></td>
+            <td width="1%"><button class="btn btn-xs btn-default checkout-reservation <c:if test="${reservation.dateFrom > now.time}">disabled</c:if>" type="button">Checkout</button></td>
           </tr>
           <c:set var="i" value="${i + 1}"></c:set>
         </c:forEach>
@@ -88,9 +89,12 @@
     <div class="panel-heading">Rechnungen</div>
       <table class="table table-striped table-hover table-condensed">
         <thead>
-        <th>#</th>
-        <th>Datum</th>
-        <th>Betrag</th>
+          <th>#</th>
+          <th>Datum</th>
+          <th>Betrag</th>
+          <th># Zimmer</th>
+          <th># Tage</th>
+          <th>Notizen</th>
         </thead>
         <tbody>
         <c:set var="i" value="1"></c:set>
@@ -99,6 +103,9 @@
             <td>${i}</td>
             <td>${invoice.invoiceDateAsString()}</td>
             <td>${invoice.price/100} &euro;</td>
+            <td>${invoice.reservation.roomList.size()}</td>
+            <td>${(invoice.reservation.dateTo - invoice.reservation.dateFrom)/86400000}</td>
+            <td>${invoice.notes}</td>
           </tr>
           <c:set var="i" value="${i + 1}"></c:set>
         </c:forEach>

@@ -81,7 +81,7 @@ public class InvoiceServiceMockTest {
 
     @Test
     public void testFindByCustomer(){
-        Mockito.when(invoiceRepository.findByCustomer(Mockito.any(Customer.class))).thenReturn(invoiceList);
+        Mockito.when(invoiceRepository.findByCustomerOrderByInvoiceDateDesc(Mockito.any(Customer.class))).thenReturn(invoiceList);
         List<Invoice> returnedInvoiceList = invoiceService.findByCustomer(customer1);
         Assert.assertTrue(!returnedInvoiceList.isEmpty());
         Assert.assertEquals(invoiceList, returnedInvoiceList);

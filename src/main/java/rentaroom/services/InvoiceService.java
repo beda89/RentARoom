@@ -20,7 +20,7 @@ public class InvoiceService {
     private InvoiceRepository invoiceRepo;
 
     public List<Invoice> findByCustomer(Customer c) {
-        return invoiceRepo.findByCustomer(c);
+        return invoiceRepo.findByCustomerOrderByInvoiceDateDesc(c);
     }
 
     public void add(Invoice i) {

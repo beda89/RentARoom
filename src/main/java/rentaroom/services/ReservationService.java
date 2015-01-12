@@ -1,6 +1,7 @@
 package rentaroom.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import rentaroom.Utils.CommonUtils;
 import rentaroom.dtos.*;
@@ -47,7 +48,7 @@ public class ReservationService {
 
         RoomOverviewDto roomOverview= new RoomOverviewDto();
 
-        //we show 2 weeks before chosen date and 2 weeks after chosen date
+        //we show 1 week before chosen date and 3 weeks after chosen date
         Long beginDate=chosenDate-ONE_WEEK_IN_MS;
         Long endDate=chosenDate+ONE_WEEK_IN_MS*3;
 
@@ -80,7 +81,7 @@ public class ReservationService {
         //*********** COMPUTE ROOM OVERVIEW*****************************
         //get date of every day + weekday for header in webpage
 
-        Iterable<Room> allRoomsList= roomRepo.findAll();
+        Iterable<Room> allRoomsList= roomRepo.findAll(new Sort(Sort.Direction.ASC, "roomNbr"));
 
         List<Reservation>  reservationList= reservationRepo.getReservationsByDate(beginDate,endDate);
 

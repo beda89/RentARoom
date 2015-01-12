@@ -55,3 +55,66 @@
 .autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
 .autocomplete-group { padding: 2px 5px; }
 .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+
+
+.dayHeaderDiv{
+	-moz-transform: rotate(-45.0deg);  /* FF3.5+ */
+	-ms-transform: rotate(-45.0deg);  /* IE9+ */
+	-o-transform: rotate(-45.0deg);  /* Opera 10.5 */
+	-webkit-transform: rotate(-45.0deg);  /* Safari 3.1+, Chrome */
+	transform: rotate(-45.0deg);  /* Standard */
+}
+
+.dayHeaderTd{
+	height:	40px;
+}
+
+#roomgrid{
+	padding-top:	15px;
+}
+
+#roomgrid input[type='checkbox']{
+	display:	none;
+	margin-left:	5px;
+	margin-right:	5px;
+}
+
+#roomgrid input[type='checkbox']:checked + label {
+	background-color:	green;
+}
+
+.roomCheckbox{
+	width: 30px;
+	height: 30px
+}
+
+.roomCheckbox.available{
+	background-color:	lightgrey;
+}
+
+.roomCheckbox.available.weekend{
+	background-color:	lightskyblue;
+}
+
+.roomCheckbox.reserved{
+	background-color:	darkred;
+}
+
+#roomgrid label{
+	margin-left:	5px;
+	margin-right:	5px;
+	margin-bottom:	0px;
+	margin-top:		0px;
+	cursor:	pointer;
+	clear: none;
+}
+
+#roomgrid td.roomColumn{
+	padding-right: 10px;
+}
+
+
+td.today{
+	border-left: 2px solid lightseagreen;
+	border-right: 2px solid lightseagreen;
+}

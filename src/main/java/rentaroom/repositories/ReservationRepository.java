@@ -19,10 +19,24 @@ public interface ReservationRepository extends PagingAndSortingRepository<Reserv
     public List<Reservation> findByCustomer(Customer c);
     public List<Reservation> findByDateToGreaterThanOrderByDateFromAsc(long time);
 
-
-    //@Query("{$or:['dateFrom' : {$gte : ?0, $lt : ?1}, 'dateTo' : {$gte: ?0 , $lt: ?1 }]}")
-
-    @Query("{'dateFrom' : {$gte : ?0}}")
+    @Query("{$or: [" +
+            " {$and: " +
+            "[ {'dateFrom':{$gte :?0}}," +
+            "  {'dateFrom':{$lte: ?1}}" +
+            "]" +
+            " }," +
+            " {$and: " +
+            "[ {'dateTo': {$gte : ?0}}," +
+            "  {'dateTo': {$lte: ?1}}" +
+            "]" +
+            " }," +
+            " {$and: " +
+            "[ {'dateFrom':{$lte: ?1}}," +
+            "  {'dateTo': {$gte : ?0}}" +
+            "]" +
+            " }" +
+            "]} ")
     public List<Reservation> getReservationsByDate(Long beginDate, Long endDate);
+
 
 }

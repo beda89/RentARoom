@@ -10,7 +10,7 @@
 <div class="jumbotron">
     <div class="container">
         <h1>Willkommen!</h1>
-        <p>Mit dieser Plattform lassen Reservierungen in Hotels oder Ferienwohnungen kinderleicht verwalten.</p>
+        <p>Mit dieser Plattform lassen sich Reservierungen in Hotels oder Ferienwohnungen kinderleicht verwalten.</p>
     </div>
 </div>
 

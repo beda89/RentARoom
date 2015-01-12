@@ -7,30 +7,26 @@
   <jsp:param name="page" value="Rooms" />
 </jsp:include>
 
-<div id="roomgrid">
-  <div class="row">
-    <c:forEach items="${roomList}" var="room">
-      <div class="col-xs-2">
-        <c:if test="${room.isReserved}">
-          <button class="btn btn-danger">
-            <p><b>${room.roomNbr}</b></p>
-          </button>
-        </c:if>
 
 
-        <c:if test="${!room.isReserved}">
-          <button class="btn btn-success">
-            <p><b>${room.roomNbr}</b></p>
-          </button>
-        </c:if>
-      </div>
-    </c:forEach>
 
-  </div><br>
+<div id="dateSelection">
+  <form id="dateSelectionForm" method="GET" action="<c:url value='/getRoomsForDate' />" >
+    <input type="text" id="selectedDate" name="selectedDate" value="${selectedDate}" />
+    <input type="submit" id="submitTimeBtn" class="btn btn-default" name="submitTimeBtn" value="Zeit auswaehlen"/>
+  </form>
 </div>
 
+<script>
+  $(function() {
+    $( "#selectedDate" ).datepicker({
+      dateFormat: "dd.mm.yy"
+    });
+  });
+</script>
+
+
 <div class="btn-group">
-  <button id="edit-room" type="button" class="btn btn-default disabled">Bearbeiten</button>
   <button id="reserve-room" type="button" class="btn btn-default dropdown-toggle disabled" data-toggle="dropdown">
     Reservieren <span class="caret"></span>
   </button>
@@ -38,6 +34,50 @@
     <li><a href="#">F&uuml;r bestehenden Kunden</a></li>
     <li><a href="#">F&uuml;r neuen Kunden</a></li>
   </ul>
+</div>
+
+<div id="roomgrid">
+  <table class="overviewTable">
+      <tr>
+        <td>
+        </td>
+        <c:forEach items="${roomOverview.headerList}" var="day" varStatus="loop">
+          <td class="<c:if test="${loop.index==7}">today</c:if> dayHeaderTd">
+            <div class="dayHeaderDiv">
+            ${day.dateString}
+            </div>
+          </td>
+        </c:forEach>
+      </tr>
+
+      <c:forEach items="${roomOverview.rooms}" var="room">
+        <tr>
+          <td class="roomColumn">
+            <button class="btn btn-success">
+              ${room.roomNbr}
+            </button>
+          </td>
+            <c:forEach items="${room.dayOverview}" var="day" varStatus="loop">
+            <td <c:if test="${loop.index==7}">class="today"</c:if>>
+              <c:if test="${!day.isReserved}">
+                <c:if test="${!day.isWeekend}">
+                  <input type="checkbox" class="roomCheckbox" name="${room.roomNbr}_${day.selectBoxId}" id="${room.roomNbr}_${day.selectBoxId}">
+                  <label class="roomCheckbox available" for="${room.roomNbr}_${day.selectBoxId}"></label>
+                </c:if>
+                <c:if test="${day.isWeekend}">
+                  <input type="checkbox" class="roomCheckbox" name="${room.roomNbr}_${day.selectBoxId}" id="${room.roomNbr}_${day.selectBoxId}">
+                  <label class="roomCheckbox available weekend" for="${room.roomNbr}_${day.selectBoxId}"></label>
+                </c:if>
+              </c:if>
+              <c:if test="${day.isReserved}">
+                <input type="checkbox" class="roomCheckbox" disabled id="${room.roomNbr}_${day.selectBoxId}" name="${room.roomNbr}_${day.selectBoxId}">
+                <label class="roomCheckbox reserved" for="${room.roomNbr}_${day.selectBoxId}"></label>
+              </c:if>
+            </td>
+            </c:forEach>
+        </tr>
+      </c:forEach>
+  </table>
 </div>
 
 <div id="customer-search-result">

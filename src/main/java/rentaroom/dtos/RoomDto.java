@@ -2,11 +2,12 @@ package rentaroom.dtos;
 
 import rentaroom.entities.Room;
 
+import java.util.List;
+
 /**
  * Created by Peter on 08.01.2015.
  */
 public class RoomDto {
-
 
     public String id;
 
@@ -28,7 +29,7 @@ public class RoomDto {
 
     public long price_doubleRoomOneChild;
 
-    public boolean isReserved;
+    public List<DayDto> dayOverview;
 
     public RoomDto(Room r){
         this.id=r.getId();
@@ -71,8 +72,12 @@ public class RoomDto {
         return price_doubleRoomOneChild;
     }
 
-    public boolean getIsReserved() {
-        return isReserved;
+    public List<DayDto> getDayOverview(){
+        return dayOverview;
+    }
+
+    public void setDayOverview(List<DayDto> dayOverview){
+        this.dayOverview=dayOverview;
     }
 
     public long getPrice_singleRoomTwoChildren() {

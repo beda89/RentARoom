@@ -28,6 +28,12 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrapValidator.css' />"></link>
     <script type="text/javascript" src="<c:url value='/resources/js/bootstrap/validator/bootstrapValidator.min.js' />"></script>
 
+
+    <!-- jquery UI google hosted -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<c:url value='${base}/resources/css/rar/rar.style.css' />"></link>
 

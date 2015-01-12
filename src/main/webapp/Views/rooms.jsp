@@ -51,4 +51,73 @@
   </ul>
 </div>
 
+<!-- Modals -->
+<div class="modal fade" id="edit-rooms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Zimmer editieren</h4>
+      </div>
+      <form id="edit-room-form" role="form" action="<c:url value="${base}/room/" />" method="POST" class="form-horizontal">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Raumnummer</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="roomNbr" value="" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Max. Personen</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="maxPersons" value="" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Preis EZ</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="price_singleRoom" value="" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Preis EZ mit Kind</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="price_singleRoomOneChild" value="" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Preis EZ mit 2 Kindern</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="price_singleRoomTwoChildren" value="" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Preis DZ</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="price_doubleRoom" value="" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Preis DZ mit Kind</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="price_doubleRoomOneChild" value="" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Preis Dreifachbelegung</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="price_threePersons" value="" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+          <button type="submit" class="btn btn-primary">Speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <jsp:include page="footer.jsp" />

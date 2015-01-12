@@ -33,7 +33,6 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 
-
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<c:url value='${base}/resources/css/rar/rar.style.css' />"></link>
 
@@ -63,20 +62,10 @@
             <form class="navbar-form navbar-left" role="search">
                 <input type="text" name="userSearch" id="autocomplete"/>
             </form>
-        <script>
-
-        $('#autocomplete').autocomplete({
-            serviceUrl: '${base}/autocomplete/names',
-            onSelect: function (suggestion) {
-                window.location.href = "${base}/customer/"+suggestion.data;
-            }
-        });
-
-        </script>
 
             <ul class="nav navbar-nav">
                 <c:choose>
-                <c:when test="${param.page == 'Rooms'}">
+                <c:when test="${param.page eq 'Rooms'}">
                 <li class="active">
                     </c:when>
                     <c:otherwise>
@@ -89,7 +78,7 @@
 
         <ul class="nav navbar-nav">
             <c:choose>
-            <c:when test="${param.page == 'About'}">
+            <c:when test="${param.page eq 'About'}">
             <li class="active">
                 </c:when>
                 <c:otherwise>
@@ -108,7 +97,7 @@
             <form class="navbar-form navbar-right">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#add-customer"><span class="glyphicon glyphicon-plus"></span> Neuer Kunde</button>
             </form>
-            <c:if test="${param.page == 'Customer'}">
+            <c:if test="${param.page eq 'Customer'}">
                 <form class="navbar-form navbar-right">
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#edit-customer"><span class="glyphicon glyphicon-pencil"></span> Editieren</button>
                 </form>

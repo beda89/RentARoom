@@ -44,19 +44,6 @@ public class CommonUtils {
             if(reservationDates.getBeginDate().getTime()<=date.getTime() && reservationDates.getEndDate().getTime()>=date.getTime()){
                 return true;
             }
-
-            /*
-            if(reservationDates.getBeginDate().getTime()<=date.getTime()){
-
-                return true;
-            }
-
-            if(reservationDates.getBeginDate().getTime()<=date.getTime()){
-
-                return true;
-            } */
-
-
         }
 
         return false;

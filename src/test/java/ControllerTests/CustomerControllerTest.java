@@ -54,7 +54,6 @@ public class CustomerControllerTest {
     public void setUp() {
         customersBackup = customerRepository.findAll();
         c = new Customer(FIRSTNAME, LASTNAME);
-        c.setId("");
         c.setAddress(ADDRESS);
         c.setCompanyName(COMPANYNAME);
         c.setPhone(PHONE);
@@ -74,12 +73,14 @@ public class CustomerControllerTest {
 
     @Test
     public void testCustomerPage() throws Exception {
-        ModelAndView model = customerController.customerPage("54afec020364b22085291bbb");
+        customerRepository.save(c);
+        Customer savedCustomer = customerRepository.findByFirstName("CustomerControllerTest");
+        ModelAndView model = customerController.customerPage(savedCustomer.getId());
         assertEquals("customer", model.getViewName());
         assertTrue(model.getModel().containsKey("customer"));
         assertTrue(model.getModel().containsKey("reservations"));
         assertTrue(model.getModel().containsKey("invoices"));
-        assertEquals("54afec020364b22085291bbb", ((Customer) model.getModel().get("customer")).getId());
+        assertEquals(savedCustomer.getId(), ((Customer) model.getModel().get("customer")).getId());
     }
 
     @Test

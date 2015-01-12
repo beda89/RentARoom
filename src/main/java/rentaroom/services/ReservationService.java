@@ -1,15 +1,12 @@
 package rentaroom.services;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import rentaroom.dtos.RoomDto;
+import rentaroom.Utils.CommonUtils;
+import rentaroom.dtos.*;
 import rentaroom.entities.Customer;
 import rentaroom.entities.Reservation;
 import rentaroom.entities.Room;
-import rentaroom.repositories.CustomerRepository;
 import rentaroom.repositories.ReservationRepository;
 import rentaroom.repositories.RoomRepository;
 
@@ -23,6 +20,9 @@ import java.util.List;
  */
 @Service
 public class ReservationService {
+
+    private final Long DAY_IN_MS=1000*60*60*24L;
+    private final Long ONE_WEEK_IN_MS=DAY_IN_MS*7;
 
     @Autowired
     private ReservationRepository reservationRepo;
@@ -43,43 +43,103 @@ public class ReservationService {
         return reservations;
     }
 
-    public List<RoomDto> getRoomsWithStateByDate(Long beginDate,Long endDate){
+    public RoomOverviewDto getRoomsWithStateByDate(Long chosenDate){
+
+        RoomOverviewDto roomOverview= new RoomOverviewDto();
+
+        //we show 2 weeks before chosen date and 2 weeks after chosen date
+        Long beginDate=chosenDate-ONE_WEEK_IN_MS;
+        Long endDate=chosenDate+ONE_WEEK_IN_MS*3;
 
         List<RoomDto> roomList= new ArrayList<RoomDto>();
-        Iterable<Reservation> reservations= reservationRepo.findAll();
-        List<Reservation>  reservationList= reservationRepo.getReservationsByDate(beginDate,endDate);
-        List<Room> reservedRoomList= new ArrayList<Room>();
+        List<DayHeaderDto> dayHeaderList= new ArrayList<DayHeaderDto>();
 
-        //collect all reserved rooms
-        for(Reservation r: reservationList){
-            reservedRoomList.addAll(r.getRoomList());
+
+        //*********** COMPUTE HEADER *****************************
+        //get date of every day + weekday for header in webpage
+        for(int i=0;i<28;i++){
+            DayHeaderDto dayHeaderDto = new DayHeaderDto();
+
+            Date date=new Date(beginDate+i*DAY_IN_MS);
+
+            int day=date.getDay();
+
+            //if weekend
+            if(day==0 || day==6){
+                dayHeaderDto.setIsWeekend(true);
+            }
+
+            dayHeaderDto.setDateString(CommonUtils.getFormattedDateString(date));
+
+            dayHeaderList.add(dayHeaderDto);
         }
 
-        //put reserved rooms in hashmap for performance issues
+        roomOverview.setHeaderList(dayHeaderList);
 
-        HashMap<String,Room> reservedRoomMap = new HashMap<String,Room>();
 
-        for(Room r: reservedRoomList){
-            reservedRoomMap.put(r.getId(),r);
-        }
-
+        //*********** COMPUTE ROOM OVERVIEW*****************************
+        //get date of every day + weekday for header in webpage
 
         Iterable<Room> allRoomsList= roomRepo.findAll();
 
+        List<Reservation>  reservationList= reservationRepo.getReservationsByDate(beginDate,endDate);
+
+        HashMap<String,ArrayList<ReservationDates>> roomReservationMap= new HashMap<String,ArrayList<ReservationDates>>();
+
+        for(Reservation reservation:reservationList){
+            ReservationDates reservationDates= new ReservationDates();
+            reservationDates.setBeginDate(new Date(reservation.getDateFrom()));
+            reservationDates.setEndDate(new Date(reservation.getDateTo()));
+
+            for(Room room:reservation.getRoomList()) {
+                ArrayList<ReservationDates> dates = roomReservationMap.get(room.getId());
+
+                if (dates == null) {
+                    dates=new ArrayList<ReservationDates>();
+                    dates.add(reservationDates);
+                    roomReservationMap.put(room.getId(),dates);
+
+                }else {
+                    dates.add(reservationDates);
+                }
+            }
+        }
+
         for(Room r: allRoomsList){
+            ArrayList<DayDto> dayOverview=new ArrayList<DayDto>();
 
-            RoomDto roomDto= new RoomDto(r);
 
-            if(reservedRoomMap.get(r.getId())!=null){
-                roomDto.isReserved=true;
-            }else{
-                roomDto.isReserved=false;
+
+            for(int i=0;i<28;i++){
+                DayDto dayDto = new DayDto();
+
+                Date date=new Date(beginDate+i*DAY_IN_MS);
+
+                int day=date.getDay();
+
+                //if weekend
+                if(day==0 || day==6){
+                    dayDto.setIsWeekend(true);
+                }
+
+                dayDto.setSelectBoxId(CommonUtils.getFormDateString(date));
+
+
+                if(CommonUtils.checkIfReserved(roomReservationMap.get(r.getId()),date)){
+                    dayDto.setIsReserved(true);
+                }
+
+                dayOverview.add(dayDto);
             }
 
+            RoomDto roomDto= new RoomDto(r);
+            roomDto.setDayOverview(dayOverview);
             roomList.add(roomDto);
         }
 
-        return roomList;
+        roomOverview.setRooms(roomList);
+
+        return roomOverview;
     }
 
     public void delete(String id) {

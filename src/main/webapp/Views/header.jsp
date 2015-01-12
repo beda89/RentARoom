@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrapValidator.css' />"></link>
     <script type="text/javascript" src="<c:url value='/resources/js/bootstrap/validator/bootstrapValidator.min.js' />"></script>
 
+
+
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<c:url value='${base}/resources/css/rar/rar.style.css' />"></link>
 

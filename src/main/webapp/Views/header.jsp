@@ -73,15 +73,28 @@
             </form>
 
             <ul class="nav navbar-nav">
+                <!-- Kunden -->
                 <c:choose>
-                <c:when test="${param.page eq 'Rooms'}">
+                <c:when test="${param.page eq 'Customer'}">
                 <li class="active">
                     </c:when>
                     <c:otherwise>
                 <li>
                     </c:otherwise>
                     </c:choose>
-                    <a href="${base}/rooms" />Zimmer</a></li>
+                    <a href="${base}/customer" />Kunden</a></li>
+
+                <!-- Zimmer -->
+                <c:choose>
+                    <c:when test="${param.page eq 'Rooms'}">
+                        <li class="active">
+                    </c:when>
+                    <c:otherwise>
+                         <li>
+                    </c:otherwise>
+                </c:choose>
+                <a href="${base}/rooms" />Zimmer</a></li>
+
             </ul>
         </sec:authorize>
 

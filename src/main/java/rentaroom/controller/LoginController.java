@@ -38,10 +38,10 @@ public class LoginController {
             return model;
         }
         if (error != null) {
-            model.addObject("error", "Invalid username and password!");
+            model.addObject("error", "Falscher Benutzername oder Passwort!");
         }
         if (logout != null) {
-            model.addObject("msg", "You've been logged out successfully.");
+            model.addObject("msg", "Erfolgreich ausgeloggt.");
         }
         return model;
     }

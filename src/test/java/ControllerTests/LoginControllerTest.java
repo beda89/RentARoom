@@ -44,13 +44,13 @@ public class LoginControllerTest {
     public void testLoginErrorNoPrincipal() {
         ModelAndView model = loginController.login("", "error", null);
         assertTrue(model.getModel().containsKey("error"));
-        assertEquals("Invalid username and password!", model.getModel().get("error"));
+        assertEquals("Falscher Benutzername oder Passwort!", model.getModel().get("error"));
     }
 
     @Test
     public void testLoginLogoutNoErrorNoPrincipal() {
         ModelAndView model = loginController.login("logout", "", null);
         assertTrue(model.getModel().containsKey("msg"));
-        assertEquals("You've been logged out successfully.", model.getModel().get("msg"));
+        assertEquals("Erfolgreich ausgeloggt.", model.getModel().get("msg"));
     }
 }

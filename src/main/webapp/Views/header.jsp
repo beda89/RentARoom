@@ -11,36 +11,45 @@
 <head>
     <title>Rent a Room</title>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='${base}/resources/outlook_calendar_day.ico' />"></link>
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='${base}/resources/outlook_calendar_day.ico' />">
 
     <!-- jQuery -->
     <script type="text/javascript" src="<c:url value='/resources/js/jquery/jquery-1.11.0.min.js' />"></script>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrap.min.css' />"></link>
-    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrap-theme.min.css' />"></link>
+    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrap.min.css' />">
+    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrap-theme.min.css' />">
     <script type="text/javascript" src="<c:url value='/resources/js/bootstrap/bootstrap.min.js' />"></script>
 
-    <!-- Plugin: jQuery Auto-Complete -->
-    <script type="text/javascript" src="<c:url value='/resources/js/jquery/jquery.autocomplete.min.js' />"></script>
-
     <!-- Plugin: Bootstrap Validator -->
-    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrapValidator.css' />"></link>
+    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap/bootstrapValidator.css' />">
     <script type="text/javascript" src="<c:url value='/resources/js/bootstrap/validator/bootstrapValidator.min.js' />"></script>
-
 
     <!-- jquery UI google hosted -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 
+    <!-- Plugin: jQuery Auto-Complete -->
+    <script type="text/javascript" src="<c:url value='/resources/js/jquery/jquery.autocomplete.min.js' />"></script>
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="<c:url value='${base}/resources/css/rar/rar.style.css' />"></link>
+    <link rel="stylesheet" href="<c:url value='${base}/resources/css/rar/rar.style.css' />">
 
     <!-- Custom JavaScript -->
     <script type="text/javascript" src="<c:url value='/resources/js/rar/rar.init.js' />"></script>
     <script type="text/javascript" src="<c:url value='/resources/js/rar/rar.header.js' />"></script>
     <script type="text/javascript" src="<c:url value='/resources/js/rar/rar.rooms.js' />"></script>
     <script type="text/javascript" src="<c:url value='/resources/js/rar/rar.customer.js' />"></script>
+    <script>
+
+        $('#autocomplete').autocomplete({
+            serviceUrl: '${base}/autocomplete/names',
+            onSelect: function (suggestion) {
+                window.location.href = "${base}/customer/"+suggestion.data;
+            }
+        });
+
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -60,7 +69,7 @@
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <form class="navbar-form navbar-left" role="search">
-                <input type="text" name="userSearch" id="autocomplete"/>
+                <input type="text" name="userSearch" id="autocomplete" title="Kundensuche"/>
             </form>
 
             <ul class="nav navbar-nav">
@@ -72,24 +81,25 @@
                 <li>
                     </c:otherwise>
                     </c:choose>
-                    <a href="<c:url value="${base}/rooms" />">Zimmer</a></li>
+                    <a href="${base}/rooms" />Zimmer</a></li>
             </ul>
         </sec:authorize>
 
         <ul class="nav navbar-nav">
             <c:choose>
-            <c:when test="${param.page eq 'About'}">
-            <li class="active">
+                <c:when test="${param.page eq 'About'}">
+                    <li class="active">
                 </c:when>
                 <c:otherwise>
-            <li>
+                    <li>
                 </c:otherwise>
-                </c:choose>
-                <a href="<c:url value="${base}/about" />">&Uuml;ber</a></li>
+            </c:choose>
+                <a href="${base}/about" />&Uuml;ber</a>
+            </li>
         </ul>
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <form class="navbar-form navbar-right" role="search" accept-charset="UTF-8" action="<c:url value="${base}/logout" />">
+            <form class="navbar-form navbar-right" role="search" accept-charset="UTF-8" action="${base}/logout" />
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Ausloggen</button>
                 </div>
@@ -115,7 +125,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Neuen Kunden anlegen</h4>
             </div>
-            <form id="add-customer-form" role="form" action="<c:url value="${base}/customer" />" method="POST" class="form-horizontal">
+            <form id="add-customer-form" role="form" action="${base}/customer" method="POST" class="form-horizontal">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 <div class="modal-body">
                     <div class="form-group">

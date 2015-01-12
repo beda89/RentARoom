@@ -6,7 +6,6 @@ var Rooms = (function(window, document, undefined) {
     //////////////////////
 
     var init = function() {
-        var requiredField = { validators: {notEmpty: {message: 'Pflichtfeld' }, stringLength: { min: 3, message: "Muss l&auml;nger als 3 Zeichen sein" } } };
         $('#edit-rooms')
             // IMPORTANT: You must declare .on('init.field.bv')
             // before calling .bootstrapValidator(options)

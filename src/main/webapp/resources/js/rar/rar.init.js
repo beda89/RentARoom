@@ -6,12 +6,7 @@ var Init = (function(window, document, undefined) {
 	//////////////////////
 
 	var init = function() {
-		$('#autocomplete').autocomplete({
-			serviceUrl: '/autocomplete/names',
-			onSelect: function (suggestion) {
-				window.location.href = "${base}/customer/"+suggestion.data;
-			}
-		});
+
 	};
 
 	return {

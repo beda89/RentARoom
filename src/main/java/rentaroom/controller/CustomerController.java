@@ -27,6 +27,13 @@ public class CustomerController {
     @Autowired
     InvoiceService invoiceService;
 
+    @RequestMapping(value = {"/customers"}, method = RequestMethod.GET)
+    public ModelAndView allCustomers() {
+        ModelAndView model = new ModelAndView("customers");
+        model.addObject("customers", customerService.findAll());
+        return model;
+    }
+
     @RequestMapping(value = {"/customer/{id}"}, method = RequestMethod.GET)
     public ModelAndView customerPage(@PathVariable String id) {
         ModelAndView model = new ModelAndView("customer");

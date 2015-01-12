@@ -75,14 +75,14 @@
             <ul class="nav navbar-nav">
                 <!-- Kunden -->
                 <c:choose>
-                <c:when test="${param.page eq 'Customer'}">
+                <c:when test="${param.page eq 'Customer' || param.page eq 'Customerlist'}">
                 <li class="active">
                     </c:when>
                     <c:otherwise>
                 <li>
                     </c:otherwise>
                     </c:choose>
-                    <a href="${base}/customer" />Kunden</a></li>
+                    <a href="${base}/customers" />Kunden</a></li>
 
                 <!-- Zimmer -->
                 <c:choose>

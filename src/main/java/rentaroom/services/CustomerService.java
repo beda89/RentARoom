@@ -3,11 +3,13 @@ package rentaroom.services;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import rentaroom.entities.Customer;
 import rentaroom.repositories.CustomerRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Peter on 03.12.2014.
@@ -69,4 +71,7 @@ public class CustomerService {
         customerRepo.save(c);
     }
 
+    public Iterable<Customer> findAll() {
+        return customerRepo.findAll(new Sort(Sort.Direction.ASC, "lastName"));
+    }
 }

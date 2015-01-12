@@ -35,10 +35,12 @@ public class RoomController {
     public ModelAndView roomsPage() {
         ModelAndView model=new ModelAndView("rooms");
 
+        Date selectedDate=new Date();
 
         try {
-            RoomOverviewDto roomOverview = resService.getRoomsWithStateByDate(CommonUtils.getDateWithoutTime(new Date()).getTime());
+            RoomOverviewDto roomOverview = resService.getRoomsWithStateByDate(CommonUtils.getDateWithoutTime(selectedDate).getTime());
             model.addObject("roomOverview", roomOverview);
+            model.addObject("selectedDate",CommonUtils.dateFormatter.format(selectedDate));
 
         }catch(ParseException e){
 
@@ -48,15 +50,18 @@ public class RoomController {
     }
 
 
-    @RequestMapping(value = {"/roomsForDate"}, method = RequestMethod.GET)
-    public ModelAndView roomsForDatePage() {
+    @RequestMapping(value = {"/getRoomsForDate"}, method = RequestMethod.GET)
+    public ModelAndView roomsForDatePage(@RequestParam(value="selectedDate", required=true) String date) {
         ModelAndView model=new ModelAndView("rooms");
 
         try {
-            RoomOverviewDto roomOverview = resService.getRoomsWithStateByDate(CommonUtils.getDateWithoutTime(new Date()).getTime());
+            Date selectedDate=CommonUtils.dateFormatter.parse(date);
+            RoomOverviewDto roomOverview = resService.getRoomsWithStateByDate(selectedDate.getTime());
             model.addObject("roomOverview", roomOverview);
-        }catch(ParseException e){
+            model.addObject("selectedDate", date);
 
+        }catch(ParseException e){
+            return null;
         }
 
         return model;

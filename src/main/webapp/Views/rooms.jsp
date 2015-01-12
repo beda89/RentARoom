@@ -9,9 +9,22 @@
 
 
 
+
 <div id="dateSelection">
-  <input type="text" id="date" name="date">
+  <form id="dateSelectionForm" method="GET" action="<c:url value='/getRoomsForDate' />" >
+    <input type="text" id="selectedDate" name="selectedDate" value="${selectedDate}" />
+    <input type="submit" id="submitTimeBtn" class="btn btn-default" name="submitTimeBtn" value="Zeit auswaehlen"/>
+  </form>
 </div>
+
+<script>
+  $(function() {
+    $( "#selectedDate" ).datepicker({
+      dateFormat: "dd.mm.yy"
+    });
+  });
+</script>
+
 
 <div class="btn-group">
   <button id="reserve-room" type="button" class="btn btn-default dropdown-toggle disabled" data-toggle="dropdown">
@@ -28,8 +41,8 @@
       <tr>
         <td>
         </td>
-        <c:forEach items="${roomOverview.headerList}" var="day">
-          <td class="dayHeaderTd">
+        <c:forEach items="${roomOverview.headerList}" var="day" varStatus="loop">
+          <td class="<c:if test="${loop.index==7}">today</c:if> dayHeaderTd">
             <div class="dayHeaderDiv">
             ${day.dateString}
             </div>
@@ -44,8 +57,8 @@
               ${room.roomNbr}
             </button>
           </td>
-            <c:forEach items="${room.dayOverview}" var="day">
-            <td>
+            <c:forEach items="${room.dayOverview}" var="day" varStatus="loop">
+            <td <c:if test="${loop.index==7}">class="today"</c:if>>
               <c:if test="${!day.isReserved}">
                 <c:if test="${!day.isWeekend}">
                   <input type="checkbox" class="roomCheckbox" name="${room.roomNbr}_${day.selectBoxId}" id="${room.roomNbr}_${day.selectBoxId}">

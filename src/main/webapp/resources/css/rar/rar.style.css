@@ -75,6 +75,8 @@
 
 #roomgrid input[type='checkbox']{
 	display:	none;
+	margin-left:	5px;
+	margin-right:	5px;
 }
 
 #roomgrid input[type='checkbox']:checked + label {
@@ -99,11 +101,20 @@
 }
 
 #roomgrid label{
-	margin:	0px;
+	margin-left:	5px;
+	margin-right:	5px;
+	margin-bottom:	0px;
+	margin-top:		0px;
 	cursor:	pointer;
 	clear: none;
 }
 
 #roomgrid td.roomColumn{
 	padding-right: 10px;
+}
+
+
+td.today{
+	border-left: 2px solid lightseagreen;
+	border-right: 2px solid lightseagreen;
 }

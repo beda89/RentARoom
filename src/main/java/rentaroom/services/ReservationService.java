@@ -291,7 +291,10 @@ public class ReservationService {
             i.setCustomer(r.getCustomer());
             i.setInvoiceDate(System.currentTimeMillis());
             double numDays = ((r.getDateTo() - r.getDateFrom()) / 86400000); // gesamtdauer der reservierung
-            i.setPrice((long) (r.getRoomPrice() * numDays * (100 - r.getDiscount()) / 100.0));
+            i.setPrice((long) (r.getRoomPrice() * numDays));
+            if (r.getDiscount() != null) {
+                i.setPrice((long) (i.getPrice() * (100 - r.getDiscount()) / 100.0));
+            }
             i.setReservation(r);
             if (System.currentTimeMillis() < r.getDateTo()) {
                 // frühzeitige Abreise -> prozentuelle abrechnung + 15% aufschlag

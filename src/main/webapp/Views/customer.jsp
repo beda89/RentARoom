@@ -75,7 +75,7 @@
               </c:forEach>
             </td>
             <td>${reservation.roomPrice/100} &euro;</td>
-            <td>${reservation.discount} %</td>
+            <td><c:choose><c:when test="${reservation.discount != null}">${reservation.discount} %</c:when><c:otherwise>-</c:otherwise></c:choose></td>
             <td width="1%"><button class="btn btn-xs btn-default cancel-reservation <c:if test="${reservation.dateFrom <= now.time}">disabled</c:if>" type="button">Stornieren</button></td>
             <td width="1%"><button class="btn btn-xs btn-default checkout-reservation <c:if test="${reservation.dateFrom > now.time}">disabled</c:if>" type="button">Checkout</button></td>
           </tr>

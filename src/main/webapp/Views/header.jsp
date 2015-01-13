@@ -32,8 +32,6 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
     <script type="text/javascript" src="<c:url value='/resources/js/jquery/jquery-ui.min.js' />"></script>
 
-
-
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<c:url value='${base}/resources/css/rar/rar.style.css' />">
 
@@ -43,6 +41,12 @@
     <script type="text/javascript" src="<c:url value='/resources/js/rar/rar.rooms.js' />"></script>
     <script type="text/javascript" src="<c:url value='/resources/js/rar/rar.customer.js' />"></script>
 
+    <!-- Global JavaScript Constants -->
+    <script>
+        var Constants = {
+            BASE_URL: "${base}"
+        };
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -121,18 +125,6 @@
         </sec:authorize>
 
     </div>
-
-    <script>
-
-        $('#autocomplete').autocomplete({
-            serviceUrl: '${base}/autocomplete/names',
-            onSelect: function (suggestion) {
-                window.location.href = "${base}/customer/"+suggestion.data;
-            }
-        });
-
-    </script>
-
 </nav>
 
 <!-- Modals -->

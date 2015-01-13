@@ -36,8 +36,6 @@ public class ReservationService {
     private ReservationInProgressRepository inProgressRepo;
 
     @Autowired
-    private CustomerService customerService;
-
     private InvoiceRepository invoiceRepo;
 
     public List<Reservation> findOutstandingByCustomer(Customer c) {
@@ -224,8 +222,16 @@ public class ReservationService {
 
     public ReservationInProgress addNewCustomerToReservationInProgess(String reservationInProgressId, String firstName, String lastName, String address, String companyName, String phone, String fax,
                                                                       String mail, String homepage, String avatarUrl, String notes){
-
-        Customer c = customerService.add(firstName, lastName, address, companyName, phone, fax, mail, homepage, avatarUrl, notes);
+        Customer c = new Customer(firstName, lastName);
+        c.setAddress(address);
+        c.setCompanyName(companyName);
+        c.setPhone(phone);
+        c.setFax(fax);
+        c.setMail(mail);
+        c.setHomepage(homepage);
+        c.setAvatarUrl(avatarUrl);
+        c.setNotes(notes);
+        Customer saved = customerRepo.save(c);
 
         ReservationInProgress reservationInProgress= inProgressRepo.findOne(reservationInProgressId);
 
@@ -233,7 +239,7 @@ public class ReservationService {
             return null;
         }
 
-        reservationInProgress.setCustomer(c);
+        reservationInProgress.setCustomer(saved);
 
         return reservationInProgress;
     }

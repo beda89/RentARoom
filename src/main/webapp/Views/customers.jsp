@@ -14,7 +14,7 @@
 
 <div class="list-group">
   <c:forEach items="${customers}" var="customer">
-    <a href="/customer/${customer.id}" class="list-group-item">${customer.firstName} <b>${customer.lastName}</b></a>
+    <a href="${base}/customer/${customer.id}" class="list-group-item">${customer.firstName} <b>${customer.lastName}</b></a>
   </c:forEach>
 </div>
 

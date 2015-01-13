@@ -23,8 +23,4 @@ public class InvoiceService {
         return invoiceRepo.findByCustomerOrderByInvoiceDateDesc(c);
     }
 
-    public void add(Invoice i) {
-        invoiceRepo.save(i);
-    }
-
 }

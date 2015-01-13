@@ -110,49 +110,49 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">Raumnummer</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" name="roomNbr" value="" />
+              <input type="text" class="form-control" disabled="disabled" name="roomNbr" value="" />
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Max. Personen</label>
             <div class="col-sm-8">
-              <input type="number" class="form-control" name="maxPersons" value="" />
+              <input type="number" class="form-control" name="maxPersons" value="" min="0" />
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Preis EZ</label>
             <div class="col-sm-8">
-              <input type="number" class="form-control" name="price_singleRoom" value="" />
+              <input type="number" class="form-control" name="price_singleRoom" value="" min="0" />
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Preis EZ mit Kind</label>
             <div class="col-sm-8">
-              <input type="number" class="form-control" name="price_singleRoomOneChild" value="" />
+              <input type="number" class="form-control" name="price_singleRoomOneChild" value="" min="0" />
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Preis EZ mit 2 Kindern</label>
             <div class="col-sm-8">
-              <input type="number" class="form-control" name="price_singleRoomTwoChildren" value="" />
+              <input type="number" class="form-control" name="price_singleRoomTwoChildren" value="" min="0" />
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Preis DZ</label>
             <div class="col-sm-8">
-              <input type="number" class="form-control" name="price_doubleRoom" value="" />
+              <input type="number" class="form-control" name="price_doubleRoom" value="" min="0" />
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Preis DZ mit Kind</label>
             <div class="col-sm-8">
-              <input type="number" class="form-control" name="price_doubleRoomOneChild" value="" />
+              <input type="number" class="form-control" name="price_doubleRoomOneChild" value="" min="0" />
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Preis Dreifachbelegung</label>
             <div class="col-sm-8">
-              <input type="number" class="form-control" name="price_threePersons" value="" />
+              <input type="number" class="form-control" name="price_threePersons" value="" min="0" />
             </div>
           </div>
         </div>

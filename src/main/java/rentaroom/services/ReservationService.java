@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 import rentaroom.Utils.CommonUtils;
 import rentaroom.dtos.*;
 import rentaroom.entities.Customer;
+import rentaroom.entities.Invoice;
 import rentaroom.entities.Reservation;
 import rentaroom.entities.ReservationInProgress;
 import rentaroom.entities.Room;
 import rentaroom.repositories.CustomerRepository;
 import rentaroom.repositories.ReservationInProgressRepository;
+import rentaroom.repositories.InvoiceRepository;
 import rentaroom.repositories.ReservationRepository;
 import rentaroom.repositories.RoomRepository;
 
@@ -40,6 +42,7 @@ public class ReservationService {
     @Autowired
     private ReservationInProgressRepository inProgressRepo;
 
+    private InvoiceRepository invoiceRepo;
 
     public List<Reservation> findOutstandingByCustomer(Customer c) {
         List<Reservation> reservations = new ArrayList<Reservation>();
@@ -152,15 +155,11 @@ public class ReservationService {
         return roomOverview;
     }
 
-    public void delete(String id) {
-        reservationRepo.delete(id);
-    }
-
-
     public Reservation findById(String id) {
         return reservationRepo.findOne(id);
     }
 
+<<<<<<< HEAD
     public ReservationInProgress preReserveSelectedDays(List<String> selectedCheckboxes){
 
         ReservationInProgress reservationInProgress = new ReservationInProgress();
@@ -252,6 +251,38 @@ public class ReservationService {
         Reservation reservation=new Reservation(reservationInProgress);
 
         reservationRepo.save(reservation);
+	}
+        
+    public void cancel(Reservation r) {
+        if (r.getDateFrom() > System.currentTimeMillis()) {
+            Invoice i = new Invoice();
+            i.setCustomer(r.getCustomer());
+            i.setPrice(CommonUtils.STORNO_GEBUEHR);
+            i.setInvoiceDate(System.currentTimeMillis());
+            i.setNotes("storniert");
+            i.setReservation(r);
+            invoiceRepo.save(i);
+            reservationRepo.delete(r.getId());
+        }
+    }
 
+    public void checkout(Reservation r) {
+        if (r.getDateFrom() <= System.currentTimeMillis()) {
+            Invoice i = new Invoice();
+            i.setCustomer(r.getCustomer());
+            i.setInvoiceDate(System.currentTimeMillis());
+            double numDays = ((r.getDateTo() - r.getDateFrom()) / 86400000); // gesamtdauer der reservierung
+            i.setPrice((long) (r.getRoomPrice() * numDays * (100 - r.getDiscount()) / 100.0));
+            i.setReservation(r);
+            if (System.currentTimeMillis() < r.getDateTo()) {
+                // frühzeitige Abreise -> prozentuelle abrechnung + 15% aufschlag
+                i.setNotes("frühzeitige Abreise");
+                double spentDays = ((System.currentTimeMillis() - r.getDateFrom()) / 86400000); // anzahl der gebliebenen tage
+                i.setPrice((long) ((double) (i.getPrice()) * Math.min(1.0, (spentDays / numDays) + 0.15)));
+            }
+            String customerId = r.getCustomer().getId();
+            invoiceRepo.save(i);
+            reservationRepo.delete(r.getId());
+        }
     }
 }

@@ -39,7 +39,7 @@ var Rooms = (function(window, document, undefined) {
 
         $('.edit-room').click(function() {
             var id = $(this).parents("tr").attr("data-rar-room-id");
-            $.get("/rooms/" + id, null, function(data) {
+            $.get(Constants.BASE_URL + "/rooms/" + id, null, function(data) {
                 var modal = $('#edit-rooms');
                 var form = modal.find("form");
                 form.attr("action", form.attr("action") + id);
@@ -57,7 +57,7 @@ var Rooms = (function(window, document, undefined) {
                         data[$(inputs[i]).attr("name")] = $(inputs[i]).val();
                     });
                     //console.log(data);
-                    $.post("/rooms/" + id, data, function(data) {
+                    $.post(Constants.BASE_URL + "/rooms/" + id, data, function(data) {
                         modal.modal('hide');
                     }).fail(function(e) {
                         console.error(e);
@@ -66,7 +66,8 @@ var Rooms = (function(window, document, undefined) {
                 });
 
                 // show modal dialog
-                modal.modal();
+                modal.modal('show');
+                modal.show();
             }).fail(function(e) {
                 console.error(e);
             });;

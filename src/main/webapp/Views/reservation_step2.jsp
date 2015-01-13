@@ -12,6 +12,21 @@
 <form id="chooseRoom" method="POST" action="<c:url value='/reservations/reserve/step2/${progressId}' />" >
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
+    <h2>Zimmerbelegung</h2>
+
+    <c:forEach items="${reservationInProgress.roomList}" var="room">
+      ${room.roomNbr} :
+        <select name="_selection">
+          <option value="0">Einzelzimmer</option>
+          <option value="1">Einzelzimmer mit Kind</option>
+          <option value="2">Einzelzimmer mit zwei Kindern</option>
+          <option value="3">Doppelzimmer</option>
+          <option value="4">Doppelzimmer mit Kind</option>
+          <option value="5">Dreifachbelegung</option>
+        </select>
+      <br/>
+      <br/>
+    </c:forEach>
 
 
     <div class="btn-group">

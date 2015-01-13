@@ -77,12 +77,11 @@ public class ReservationController {
 
         ModelAndView model = new ModelAndView("reservation_step2");
 
-
-
         ReservationInProgress reservationInProgress=reservationService.preReserveSelectedDays(roomCheckbox);
 
 
         model.addObject("progressId",reservationInProgress.getId());
+        model.addObject("reservationInProgress",reservationInProgress);
 
         return model;
     }

@@ -35,6 +35,7 @@ public class Room implements Serializable {
 
     private long price_doubleRoomOneChild;
 
+    private RoomTypEnum bookedRoom;
 
     public Room() {
     }
@@ -111,4 +112,11 @@ public class Room implements Serializable {
         this.roomNbr = roomNbr;
     }
 
+    public RoomTypEnum getBookedRoom() {
+        return bookedRoom;
+    }
+
+    public void setBookedRoom(RoomTypEnum bookedRoom) {
+        this.bookedRoom = bookedRoom;
+    }
 }

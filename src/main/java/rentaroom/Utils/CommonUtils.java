@@ -88,11 +88,7 @@ public class CommonUtils {
             return "Freitag";
         }
 
-
         return "Samstag";
-
-
-
     }
 
 }

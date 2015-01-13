@@ -49,4 +49,15 @@ public class CommonUtils {
         return false;
     }
 
+    public static Date parseCheckboxDate(String checkBoxDate){
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+
+
+        try {
+            return dateFormatter.parse(checkBoxDate);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
 }

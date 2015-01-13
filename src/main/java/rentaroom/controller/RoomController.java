@@ -44,6 +44,7 @@ public class RoomController {
             model.addObject("roomOverview", roomOverview);
             model.addObject("selectedDate",CommonUtils.dateFormatter.format(selectedDate));
 
+
         }catch(ParseException e){
 
         }

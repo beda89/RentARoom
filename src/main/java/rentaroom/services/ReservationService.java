@@ -7,7 +7,9 @@ import rentaroom.Utils.CommonUtils;
 import rentaroom.dtos.*;
 import rentaroom.entities.Customer;
 import rentaroom.entities.Reservation;
+import rentaroom.entities.ReservationInProgress;
 import rentaroom.entities.Room;
+import rentaroom.repositories.ReservationInProgressRepository;
 import rentaroom.repositories.ReservationRepository;
 import rentaroom.repositories.RoomRepository;
 
@@ -30,6 +32,9 @@ public class ReservationService {
 
     @Autowired
     private RoomRepository roomRepo;
+
+    @Autowired
+    private ReservationInProgressRepository inProgressRepo;
 
 
     public List<Reservation> findOutstandingByCustomer(Customer c) {
@@ -152,4 +157,58 @@ public class ReservationService {
         return reservationRepo.findOne(id);
     }
 
+    public ReservationInProgress preReserveSelectedDays(List<String> selectedCheckboxes){
+
+        ReservationInProgress reservationInProgress = new ReservationInProgress();
+
+        HashMap<String,List<Date>> roomReservationMap = new HashMap<String,List<Date>>();
+
+        for(String selected:selectedCheckboxes){
+            String[] splitted= selected.split("_");
+
+            if(splitted.length!=2){
+                //wrong dateformat -> ignore this checkbox
+                continue;
+            }
+
+
+            String roomNbr=splitted[0];
+            String date=splitted[1];
+
+            List<Date> dateList=roomReservationMap.get(roomNbr);
+
+            if(dateList==null){
+                dateList=new ArrayList<Date>();
+
+                Date parsedDate=CommonUtils.parseCheckboxDate(splitted[1]);
+
+                if(parsedDate!=null) {
+                    dateList.add(parsedDate);
+
+                    roomReservationMap.put(roomNbr,dateList);
+
+                }
+            }else{
+                Date parsedDate=CommonUtils.parseCheckboxDate(splitted[1]);
+                dateList.add(parsedDate);
+            }
+        }
+
+
+        List<Room> roomList= new ArrayList<Room>();
+
+        for(String key:roomReservationMap.keySet()){
+            Room room=roomRepo.findOneByRoomNbr(key);
+            roomList.add(room);
+        }
+
+
+
+        reservationInProgress.setRoomList(roomList);
+    //    reservationInProgress.setDateFrom();
+    //    reservationInProgress.setDateTo();
+
+
+        return inProgressRepo.save(reservationInProgress);
+    }
 }

@@ -15,4 +15,5 @@ import java.util.List;
 @Repository
 public interface RoomRepository extends PagingAndSortingRepository<Room, String> {
 
+    public Room findOneByRoomNbr(String roomNbr);
 }

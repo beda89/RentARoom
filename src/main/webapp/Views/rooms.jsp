@@ -25,18 +25,22 @@
   });
 </script>
 
-
+<form id="reservationForm" method="POST" action="<c:url value='/reservations/reserve' />" >
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 <div class="btn-group">
-  <button id="reserve-room" type="button" class="btn btn-default dropdown-toggle disabled" data-toggle="dropdown">
+  <input type="submit" id="reserve-room" class="btn btn-default" name="reserve-room" value="Reservieren"/>
+
+ <!-- <button id="reserve-room" type="button" class="btn btn-default dropdown-toggle disabled" data-toggle="dropdown">
     Reservieren <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
     <li><a href="#">F&uuml;r bestehenden Kunden</a></li>
     <li><a href="#">F&uuml;r neuen Kunden</a></li>
-  </ul>
+  </ul> -->
 </div>
 
 <div id="roomgrid">
+
   <table class="overviewTable">
       <tr>
         <td>
@@ -61,16 +65,16 @@
             <td <c:if test="${loop.index==7}">class="today"</c:if>>
               <c:if test="${!day.isReserved}">
                 <c:if test="${!day.isWeekend}">
-                  <input type="checkbox" class="roomCheckbox" name="${room.roomNbr}_${day.selectBoxId}" id="${room.roomNbr}_${day.selectBoxId}">
+                  <input type="checkbox" class="roomCheckbox" name="roomCheckbox" id="${room.roomNbr}_${day.selectBoxId}" value="${room.roomNbr}_${day.selectBoxId}">
                   <label class="roomCheckbox available" for="${room.roomNbr}_${day.selectBoxId}"></label>
                 </c:if>
                 <c:if test="${day.isWeekend}">
-                  <input type="checkbox" class="roomCheckbox" name="${room.roomNbr}_${day.selectBoxId}" id="${room.roomNbr}_${day.selectBoxId}">
+                  <input type="checkbox" class="roomCheckbox" name="roomCheckbox" id="${room.roomNbr}_${day.selectBoxId}" value="${room.roomNbr}_${day.selectBoxId}">
                   <label class="roomCheckbox available weekend" for="${room.roomNbr}_${day.selectBoxId}"></label>
                 </c:if>
               </c:if>
               <c:if test="${day.isReserved}">
-                <input type="checkbox" class="roomCheckbox" disabled id="${room.roomNbr}_${day.selectBoxId}" name="${room.roomNbr}_${day.selectBoxId}">
+                <input type="checkbox" class="roomCheckbox" disabled id="${room.roomNbr}_${day.selectBoxId}" name="roomCheckbox" value="${room.roomNbr}_${day.selectBoxId}">
                 <label class="roomCheckbox reserved" for="${room.roomNbr}_${day.selectBoxId}"></label>
               </c:if>
             </td>
@@ -79,6 +83,7 @@
       </c:forEach>
   </table>
 </div>
+</form>
 
 <div id="customer-search-result">
   <ul>

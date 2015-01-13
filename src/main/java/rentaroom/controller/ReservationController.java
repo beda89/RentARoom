@@ -6,13 +6,16 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import rentaroom.entities.Invoice;
 import rentaroom.entities.Reservation;
+import rentaroom.entities.ReservationInProgress;
 import rentaroom.services.InvoiceService;
 import rentaroom.services.ReservationService;
 
 import java.security.Principal;
+import java.util.List;
 
 /**
  * Created by Christian on 08.01.2015.
@@ -64,6 +67,16 @@ public class ReservationController {
 
         reservationService.delete(r.getId());
         return new ModelAndView("redirect:/customer/" + customerId);
+    }
+
+
+    @RequestMapping(value = {"/reservations/reserve"}, method =RequestMethod.POST)
+    public ModelAndView reserveRoom(@RequestParam List<String> roomCheckbox){
+
+        ReservationInProgress reservationInProgress=reservationService.preReserveSelectedDays(roomCheckbox);
+
+
+        return null;
     }
 
 }

@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <title>Rent a Room</title>
+    <title>${param.page} / Rent a Room</title>
     <meta charset="utf-8" />
     <link rel="shortcut icon" type="image/x-icon" href="<c:url value='${base}/resources/outlook_calendar_day.ico' />">
 

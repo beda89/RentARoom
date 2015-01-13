@@ -3,13 +3,13 @@
   <div class="form-group">
     <label class="col-sm-3 control-label">Vorname</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" name="firstName" />
+      <input type="text" class="form-control" name="firstName" value="Christian"/>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-3 control-label">Nachname</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" name="lastName" />
+      <input type="text" class="form-control" name="lastName" value="Huberer" />
     </div>
   </div>
   <div class="form-group">
@@ -21,13 +21,13 @@
   <div class="form-group">
     <label class="col-sm-3 control-label">Adresse</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" name="address" />
+      <input type="text" class="form-control" name="address" value="Testweg123"/>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-3 control-label">Telefon</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" name="phone" />
+      <input type="text" class="form-control" name="phone" value="06804023431"/>
     </div>
   </div>
   <div class="form-group">
@@ -39,7 +39,7 @@
   <div class="form-group">
     <label class="col-sm-3 control-label">E-Mail</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" name="mail" />
+      <input type="text" class="form-control" name="mail" value="christian.huberer@gmail.com" />
     </div>
   </div>
   <div class="form-group">

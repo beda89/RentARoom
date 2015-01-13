@@ -13,7 +13,7 @@
 <div id="dateSelection">
   <form id="dateSelectionForm" method="GET" action="<c:url value='/getRoomsForDate' />" >
     <input type="text" id="selectedDate" name="selectedDate" value="${selectedDate}" />
-    <input type="submit" id="submitTimeBtn" class="btn btn-default" name="submitTimeBtn" value="Zeit auswaehlen"/>
+    <input type="submit" id="submitTimeBtn" class="btn btn-default" name="submitTimeBtn" value="Zeit ausw&auml;hlen"/>
   </form>
 </div>
 
@@ -84,17 +84,6 @@
   </table>
 </div>
 </form>
-
-<div id="customer-search-result">
-  <ul>
-    <li><a href="#">Max Mustermann</a></li>
-    <li><a href="#">Max Mtest</a></li>
-    <li><a href="#">Max Mtest</a></li>
-    <li><a href="#">Max Mtest</a></li>
-    <li><a href="#">Max Mtest</a></li>
-    <li><a href="#">Max Mtest</a></li>
-  </ul>
-</div>
 
 <!-- Modals -->
 <div class="modal fade" id="edit-rooms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

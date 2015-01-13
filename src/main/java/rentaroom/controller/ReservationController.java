@@ -23,47 +23,18 @@ public class ReservationController {
     @Autowired
     ReservationService reservationService;
 
-    @Autowired
-    InvoiceService invoiceService;
-
     @RequestMapping(value = {"/reservations/cancel/{id}"}, method = RequestMethod.POST)
     public ModelAndView cancelReservation(@PathVariable String id) {
         Reservation r = reservationService.findById(id);
-
-        Invoice i = new Invoice();
-        i.setCustomer(r.getCustomer());
-        i.setPrice(1000L);
-        i.setInvoiceDate(System.currentTimeMillis());
-        i.setNotes("storniert");
-        i.setReservation(r);
-        String customerId = r.getCustomer().getId();
-        invoiceService.add(i);
-
-        reservationService.delete(id);
-        return new ModelAndView("redirect:/customer/" + customerId);
+        reservationService.cancel(r);
+        return new ModelAndView("redirect:/customer/" + r.getCustomer().getId());
     }
 
     @RequestMapping(value = {"/reservations/checkout/{id}"}, method = RequestMethod.POST)
     public ModelAndView checkoutReservation(@PathVariable String id) {
         Reservation r = reservationService.findById(id);
-
-        Invoice i = new Invoice();
-        i.setCustomer(r.getCustomer());
-        i.setInvoiceDate(System.currentTimeMillis());
-        double numDays = ((r.getDateTo() - r.getDateFrom()) / 86400000); // gesamtdauer der reservierung
-        i.setPrice((long)(r.getRoomPrice() * numDays * (100 - r.getDiscount()) / 100.0));
-        i.setReservation(r);
-        if (System.currentTimeMillis() < r.getDateTo() ) {
-            // frühzeitige Abreise -> prozentuelle abrechnung + 15% aufschlag
-            i.setNotes("frühzeitige Abreise");
-            double spentDays = ((System.currentTimeMillis() - r.getDateFrom()) / 86400000); // anzahl der gebliebenen tage
-            i.setPrice((long)((double)(i.getPrice()) * Math.min(1.0, (spentDays / numDays) + 0.15)));
-        }
-        String customerId = r.getCustomer().getId();
-        invoiceService.add(i);
-
-        reservationService.delete(r.getId());
-        return new ModelAndView("redirect:/customer/" + customerId);
+        reservationService.checkout(r);
+        return new ModelAndView("redirect:/customer/" + r.getCustomer().getId());
     }
 
 }

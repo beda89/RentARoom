@@ -89,11 +89,20 @@ public class RoomServiceTest {
     @Test
     public void testEditRoom() {
         Room savedRoom = roomRepository.save(room1);
-        Room editedRoom = roomService.editRoom(savedRoom.getId(),"1001", 100, 200L, 200L, 200L, 200L, 200L,200L);
+        Room editedRoom = roomService.editRoom(savedRoom.getId(),"001", 100, 200L, 200L, 200L, 200L, 200L,200L);
         assertEquals(savedRoom.getId(), editedRoom.getId());
         assertEquals(100L, (long) editedRoom.getMaxPersons());
 //        assertEquals(10L, editedRoom.getPrice_doubleRoom());
         assertNotEquals(17500L, editedRoom.getPrice_singleRoom());
-
     }
+
+    @Test
+    public void testEditRoomShouldFail() {
+        Room savedRoom = roomRepository.save(room1);
+        Room editedRoom = roomService.editRoom(savedRoom.getId(), "wrongId001", 100, 200L, 200L, 200L, 200L, 200L, 200L);
+        assertEquals(savedRoom.getId(), editedRoom.getId());
+        assertEquals(savedRoom.getMaxPersons(), editedRoom.getMaxPersons());
+        assertEquals(savedRoom.getPrice_singleRoom(), editedRoom.getPrice_singleRoom());
+    }
+
 }

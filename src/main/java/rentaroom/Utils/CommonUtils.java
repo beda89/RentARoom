@@ -15,6 +15,7 @@ public class CommonUtils {
 
 
     public static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
+    public static long STORNO_GEBUEHR = 1000L;
 
     public static Date getDateWithoutTime(Date chosenDate) throws ParseException{
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

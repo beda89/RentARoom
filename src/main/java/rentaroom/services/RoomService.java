@@ -33,9 +33,15 @@ public class RoomService {
                          long price_threePersons, long price_singleRoomOneChild, long price_singleRoomTwoChildren,
                          long price_doubleRoomOneChild) {
         Room r = roomRepo.findOne(id);
-        r.setRoomNbr(roomNbr);
-        r.setMaxPersons(maxPersons);
-        r.setPrice_singleRoom(price_singleRoom);
+        if (r.getRoomNbr().equals(roomNbr)) {
+            r.setMaxPersons(maxPersons);
+            r.setPrice_singleRoom(price_singleRoom);
+            r.setPrice_doubleRoom(price_doubleRoom);
+            r.setPrice_threePersons(price_threePersons);
+            r.setPrice_singleRoomOneChild(price_singleRoomOneChild);
+            r.setPrice_singleRoomTwoChildren(price_singleRoomTwoChildren);
+            r.setPrice_doubleRoomOneChild(price_doubleRoomOneChild);
+        }
         return roomRepo.save(r);
     }
 }

@@ -66,7 +66,8 @@ var Rooms = (function(window, document, undefined) {
                 });
 
                 // show modal dialog
-                modal.modal();
+                modal.modal('show');
+                modal.show();
             }).fail(function(e) {
                 console.error(e);
             });;

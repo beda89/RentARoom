@@ -10,7 +10,7 @@
 
 
 
-<div id="dateSelection">
+<div id="dateSelection" style="position:absolute">
   <form id="dateSelectionForm" method="GET" action="<c:url value='/getRoomsForDate' />" >
     <input type="text" id="selectedDate" name="selectedDate" value="${selectedDate}" />
     <input type="submit" id="submitTimeBtn" class="btn btn-default" name="submitTimeBtn" value="Zeit ausw&auml;hlen"/>
@@ -27,7 +27,7 @@
 
 <form id="reservationForm" method="POST" action="<c:url value='/reservations/reserve' />" >
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-<div class="btn-group">
+<div class="btn-group" style="float:right">
   <input type="submit" id="reserve-room" class="btn btn-default" name="reserve-room" value="Reservieren"/>
 
  <!-- <button id="reserve-room" type="button" class="btn btn-default dropdown-toggle disabled" data-toggle="dropdown">
@@ -38,6 +38,8 @@
     <li><a href="#">F&uuml;r neuen Kunden</a></li>
   </ul> -->
 </div>
+
+  <br/><br/>
 
 <div id="roomgrid">
 

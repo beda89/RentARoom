@@ -44,7 +44,7 @@ public class ReservationService {
         List<Reservation> reservations = new ArrayList<Reservation>();
         if (c != null) {
             for (Reservation r : reservationRepo.findByDateToGreaterThanOrderByDateFromAsc(new Date().getTime())) {
-                if (r.getCustomer() != null && r.getCustomer().getId().equals(c.getId())) {
+                if (r.getCustomer().getId().equals(c.getId())) {
                     reservations.add(r);
                 }
             }
@@ -253,7 +253,7 @@ public class ReservationService {
         }
 
         reservationInProgress.setCustomer(customer);
-
+        
         return reservationInProgress;
     }
 

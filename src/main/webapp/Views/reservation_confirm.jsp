@@ -93,14 +93,16 @@
         </div>
       </div>
 
+      <br/>
+
+      <div class="btn-group">
+        <input type="button" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/>
+        <input type="button" id="cancel" class="btn btn-danger" name="cancel" value="Abbrechen"/>
+        <input type="submit" id="confirm" class="btn btn-success" name="confirm" value="Best&auml;tigen"/>
+      </div>
+    </form>
+
   </div>
 </div>
-
-  <div class="btn-group">
-    <input type="submit" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/>
-    <input type="submit" id="cancel" class="btn btn-danger" name="cancel" value="Abbrechen"/>
-    <input type="submit" id="confirm" class="btn btn-success" name="confirm" value="Best&auml;tigen"/>
-  </div>
-</form>
 
 <jsp:include page="footer.jsp" />

@@ -18,12 +18,32 @@
 
   <br/>
 
-  Zimmer:   Einzelzimmer, Doppelzimmer... <br/>
-  Zimmer: ...             <br/>
+  <c:forEach items="${reservationInProgress.roomList}" var="room">
+  Zimmer: ${room.roomNbr} als
+    <c:if test="${room.bookedRoomTyp=='SINGLE_ROOM'}" >
+      Einzelzimmer
+    </c:if>
+    <c:if test="${room.bookedRoomTyp=='SINGLE_ROOM_ONE_CHILD'}" >
+      Einzelzimmer mit Kind
+    </c:if>
+    <c:if test="${room.bookedRoomTyp=='SINGLE_ROOM_TWO_CHILDREN'}" >
+      Doppelzimmer
+    </c:if>
+    <c:if test="${room.bookedRoomTyp=='DOUBLE_ROOM'}" >
+      Doppelzimmer mit Kind
+    </c:if>
+    <c:if test="${room.bookedRoomTyp=='DOUBLE_ROOM_ONE_CHILD'}" >
+      Doppelzimmer mit 2 Kindern
+    </c:if>
+    <c:if test="${room.bookedRoomTyp=='THREE_PERSONS'}" >
+      Dreifachbelegung
+    </c:if>
+    <br/>
+  </c:forEach>
 
   <br/>
   <br/>
-  Gesamtpreis:  <br/>
+  Gesamtpreis:  ${reservationInProgress.roomPrice} <br/>
 
 
 

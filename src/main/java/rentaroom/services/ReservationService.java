@@ -159,7 +159,6 @@ public class ReservationService {
         return reservationRepo.findOne(id);
     }
 
-<<<<<<< HEAD
     public ReservationInProgress preReserveSelectedDays(List<String> selectedCheckboxes){
 
         ReservationInProgress reservationInProgress = new ReservationInProgress();

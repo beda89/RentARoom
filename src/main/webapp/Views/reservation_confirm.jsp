@@ -7,52 +7,100 @@
   <jsp:param name="page" value="Rooms" />
 </jsp:include>
 
+<h2>Zusammenfassung</h2>
 
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Reservierung
+  </div>
+  <div class="panel-body">
+    <form id="overview" method="POST" action="<c:url value='/reservations/reserve/confirm/${progressId}' />" >
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-<form id="overview" method="POST" action="<c:url value='/reservations/reserve/confirm/${progressId}' />" >
-  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+      <div class="row">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Kunde</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="firstName" value="${reservationInProgress.customer.firstName} ${reservationInProgress.customer.lastName}"/>
+          </div>
+        </div>
+      </div>
 
-  Kunde: ${reservationInProgress.customer.firstName} ${reservationInProgress.customer.lastName} <br/> <br/>
-  Von:  ${formattedDateFrom}  <br/>   Bis: ${formattedDateTo} <br/> <br/>
+      <div class="row">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Datum von</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="firstName" value="${formattedDateFrom}"/>
+          </div>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Datum bis</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="firstName" value="${formattedDateTo}"/>
+          </div>
+        </div>
+      </div>
 
-  <br/>
+      <div class="row">
+        <table class="table table-striped table-hover table-condensed">
+          <thead>
+            <th>#</th>
+            <th>Zimmernummer</th>
+            <th>Belegungsart</th>
+          </thead>
+          <tbody>
+            <c:set var="i" value="1"></c:set>
+            <c:forEach items="${reservationInProgress.roomList}" var="room">
+              <tr>
+                <td>${i}</td>
+                <td>${room.roomNbr}</td>
+                <td>
+                  <c:if test="${room.bookedRoomTyp=='SINGLE_ROOM'}" >
+                    Einzelzimmer
+                  </c:if>
+                  <c:if test="${room.bookedRoomTyp=='SINGLE_ROOM_ONE_CHILD'}" >
+                    Einzelzimmer mit Kind
+                  </c:if>
+                  <c:if test="${room.bookedRoomTyp=='SINGLE_ROOM_TWO_CHILDREN'}" >
+                    Doppelzimmer
+                  </c:if>
+                  <c:if test="${room.bookedRoomTyp=='DOUBLE_ROOM'}" >
+                    Doppelzimmer mit Kind
+                  </c:if>
+                  <c:if test="${room.bookedRoomTyp=='DOUBLE_ROOM_ONE_CHILD'}" >
+                    Doppelzimmer mit 2 Kindern
+                  </c:if>
+                  <c:if test="${room.bookedRoomTyp=='THREE_PERSONS'}" >
+                    Dreifachbelegung
+                  </c:if>
+                </td>
+              </tr>
+              <c:set var="i" value="${i + 1}"></c:set>
+            </c:forEach>
+          </tbody>
+        </table>
+      </div>
 
-  <c:forEach items="${reservationInProgress.roomList}" var="room">
-  Zimmer: ${room.roomNbr} als
-    <c:if test="${room.bookedRoomTyp=='SINGLE_ROOM'}" >
-      Einzelzimmer
-    </c:if>
-    <c:if test="${room.bookedRoomTyp=='SINGLE_ROOM_ONE_CHILD'}" >
-      Einzelzimmer mit Kind
-    </c:if>
-    <c:if test="${room.bookedRoomTyp=='SINGLE_ROOM_TWO_CHILDREN'}" >
-      Doppelzimmer
-    </c:if>
-    <c:if test="${room.bookedRoomTyp=='DOUBLE_ROOM'}" >
-      Doppelzimmer mit Kind
-    </c:if>
-    <c:if test="${room.bookedRoomTyp=='DOUBLE_ROOM_ONE_CHILD'}" >
-      Doppelzimmer mit 2 Kindern
-    </c:if>
-    <c:if test="${room.bookedRoomTyp=='THREE_PERSONS'}" >
-      Dreifachbelegung
-    </c:if>
-    <br/>
-  </c:forEach>
+      <div class="row">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Gesamtpreis</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="firstName" value="${reservationInProgress.roomPrice} &euro;"/>
+          </div>
+        </div>
+      </div>
 
-  <br/>
-  <br/>
-  Gesamtpreis:  ${reservationInProgress.roomPrice} <br/>
-
-
+  </div>
+</div>
 
   <div class="btn-group">
-    <input type="submit" id="back" class="btn btn-default" name="back" value="Zurueck"/>
+    <input type="submit" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/>
     <input type="submit" id="cancel" class="btn btn-danger" name="cancel" value="Abbrechen"/>
-    <input type="submit" id="confirm" class="btn btn-success" name="confirm" value="Bestaetigen"/>
+    <input type="submit" id="confirm" class="btn btn-success" name="confirm" value="Best&auml;tigen"/>
   </div>
 </form>
-
 
 <jsp:include page="footer.jsp" />

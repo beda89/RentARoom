@@ -2,12 +2,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:set var="req" value="${pageContext.request}" />
+<c:set var="url">${req.requestURL}</c:set>
+<c:set var="uri" value="${req.requestURI}" />
+<c:set var="base" value="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}" />
 
 <jsp:include page="header.jsp">
   <jsp:param name="page" value="Rooms" />
 </jsp:include>
-
-
 
 <form id="chooseRoom" method="POST" action="<c:url value='/reservations/reserve/step2/${progressId}' />" >
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -15,8 +17,8 @@
     <h2>Zimmerbelegung</h2>
 
     <c:forEach items="${reservationInProgress.roomList}" var="room">
-      ${room.roomNbr} :
-        <select name="roomSelection">
+      <p>f&uuml;r Zimmer <b>${room.roomNbr}</b>:</p>
+        <select name="roomSelection" class="form-control">
           <option value="0">Einzelzimmer</option>
           <option value="1">Einzelzimmer mit Kind</option>
           <option value="2">Einzelzimmer mit zwei Kindern</option>
@@ -28,12 +30,10 @@
       <br/>
     </c:forEach>
 
-
     <div class="btn-group">
-      <input type="submit" id="back" class="btn btn-default" name="back" value="Zurueck"/>
+      <a href="${base}/rooms"><input type="button" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/></a>
       <input type="submit" id="next" class="btn btn-default" name="next" value="Weiter"/>
     </div>
 </form>
-
 
 <jsp:include page="footer.jsp" />

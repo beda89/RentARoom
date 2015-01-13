@@ -8,7 +8,7 @@
 </jsp:include>
 
 <div class="btn-group">
-  <input type="submit" id="back" class="btn btn-default" name="back" value="Zurueck"/>
+  <input type="submit" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/>
 </div>
 
 <form id="chooseCustomer" method="POST" action="<c:url value='/reservations/reserve/step3_1/${progressId}' />" >

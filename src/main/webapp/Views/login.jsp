@@ -15,7 +15,7 @@
 </div>
 
 <c:if test="${not empty error}">
-    <div class="alert alert-danger" role="alert"><b>Error!</b> ${error}</div>
+    <div class="alert alert-danger" role="alert"><b>Fehler!</b> ${error}</div>
 </c:if>
 
 <c:if test="${not empty msg}">

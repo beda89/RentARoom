@@ -7,36 +7,53 @@
   <jsp:param name="page" value="Rooms" />
 </jsp:include>
 
-<div class="btn-group">
-  <input type="submit" id="back" class="btn btn-default" name="back" value="Zurueck"/>
+<h2>Kundenauswahl</h2>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+        Bestehender Kunde
+      </label>
+    </div>
+   </div>
+  <div class="panel-body">
+    <form id="existingCustomer" method="POST" action="${base}/reservations/reserve/step3_1/${progressId}">
+      <input type="text" name="userSelection" id="autocomplete_reservation" title="Kundenauswahl" class="form-control" />
+      <input type="hidden" id="selectedCustomerId" name="selectedCustomerId" />
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+    </form>
+  </div>
 </div>
 
-<form id="chooseCustomer" method="POST" action="<c:url value='/reservations/reserve/step3_1/${progressId}' />" >
-  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+<h4>oder</h4>
 
-
-  <div class="existing_customer">
-    Bestehender Kunde:
-    <input type="text" name="userSelection" id="autocomplete_reservation" title="Kundenauswahl"/>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+        Neuer Kunde
+      </label>
+    </div>
   </div>
+  <div class="panel-body">
+    <form id="createCustomer" method="POST" action="${base}/reservations/reserve/step3_2/${progressId}">
+      <jsp:include page="newCustomerFormElems.jsp"></jsp:include>
+    </form>
+  </div>
+</div>
 
-  <input type="submit" class="btn btn-default" name="next" value="Weiter"/>
-  <input type="hidden" id="selectedCustomerId" name="selectedCustomerId"  />
-</form>
-
-<form id="createCustomer" method="POST" action="<c:url value='/reservations/reserve/step3_2/${progressId}' />" >
-  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
-  TODO XXXX
-
-
-  <input type="submit" class="btn btn-default" name="next" value="Weiter"/>
-</form>
+<div class="btn-group">
+  <input type="submit" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/>
+  <input type="submit" id="next" class="btn btn-default" name="back" value="Weiter"/>
+</div>
 
 <script>
   $('#autocomplete_reservation').autocomplete({
     serviceUrl: '${base}/autocomplete/names',
-    onSelect:function(suggestion){
+    onSelect: function(suggestion) {
         $('#selectedCustomerId').val(suggestion.data);
     }
   });

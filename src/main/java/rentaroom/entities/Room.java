@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 
 @Document
-public class Room implements Serializable {
+public class Room implements Serializable,Comparable {
 
     private static final long serialVersionUID = 1L;
 
@@ -112,11 +112,24 @@ public class Room implements Serializable {
         this.roomNbr = roomNbr;
     }
 
-    public RoomTypEnum getBookedRoom() {
+    public RoomTypEnum getBookedRoomTyp() {
         return bookedRoom;
     }
 
-    public void setBookedRoom(RoomTypEnum bookedRoom) {
+    public void setBookedRoomTyp(RoomTypEnum bookedRoom) {
         this.bookedRoom = bookedRoom;
+    }
+
+    public int compareTo(Object room2){
+
+        if(room2 instanceof Room) {
+            Room r2=(Room) room2;
+
+            return this.getRoomNbr().compareTo(r2.getRoomNbr());
+
+        }else{
+            return 1;
+        }
+
     }
 }

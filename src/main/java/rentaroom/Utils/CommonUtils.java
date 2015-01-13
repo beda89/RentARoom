@@ -1,6 +1,8 @@
 package rentaroom.Utils;
 
 import rentaroom.dtos.ReservationDates;
+import rentaroom.entities.Room;
+import rentaroom.entities.RoomTypEnum;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -60,6 +62,37 @@ public class CommonUtils {
             return null;
         }
     }
+
+    public static Long getRoomPriceForSelectionAndDays(Room room, RoomTypEnum roomTyp, Long daysCount){
+
+        if(roomTyp.equals(RoomTypEnum.DOUBLE_ROOM)){
+            return room.getPrice_doubleRoom()*daysCount;
+        }
+
+        if(roomTyp.equals(RoomTypEnum.DOUBLE_ROOM_ONE_CHILD)){
+            return room.getPrice_doubleRoomOneChild()*daysCount;
+        }
+
+        if(roomTyp.equals(RoomTypEnum.SINGLE_ROOM)){
+            return room.getPrice_singleRoom()*daysCount;
+        }
+
+        if(roomTyp.equals(RoomTypEnum.SINGLE_ROOM_ONE_CHILD)){
+            return room.getPrice_singleRoomOneChild()*daysCount;
+        }
+
+        if(roomTyp.equals(RoomTypEnum.SINGLE_ROOM_TWO_CHILDREN)){
+            return room.getPrice_singleRoomTwoChildren()*daysCount;
+        }
+
+        if(roomTyp.equals(RoomTypEnum.THREE_PERSONS)){
+            return room.getPrice_threePersons()*daysCount;
+        }
+
+
+        return 0L;
+    }
+
 
     public static String getGermanWeekday(Date date){
 

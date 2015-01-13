@@ -12,11 +12,7 @@ import rentaroom.repositories.InvoiceRepository;
 import rentaroom.repositories.ReservationRepository;
 import rentaroom.repositories.RoomRepository;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Peter on 03.12.2014.
@@ -39,6 +35,7 @@ public class ReservationService {
     @Autowired
     private ReservationInProgressRepository inProgressRepo;
 
+    @Autowired
     private InvoiceRepository invoiceRepo;
 
     public List<Reservation> findOutstandingByCustomer(Customer c) {
@@ -201,6 +198,8 @@ public class ReservationService {
             roomList.add(room);
         }
 
+        Collections.sort(roomList);
+
         Long dateFrom=null;
         Long dateTo=null;
 
@@ -221,6 +220,29 @@ public class ReservationService {
         return inProgressRepo.save(reservationInProgress);
     }
 
+    public ReservationInProgress addNewCustomerToReservationInProgess(String reservationInProgressId, String firstName, String lastName, String address, String companyName, String phone, String fax,
+                                                                      String mail, String homepage, String avatarUrl, String notes){
+        Customer c = new Customer(firstName, lastName);
+        c.setAddress(address);
+        c.setCompanyName(companyName);
+        c.setPhone(phone);
+        c.setFax(fax);
+        c.setMail(mail);
+        c.setHomepage(homepage);
+        c.setAvatarUrl(avatarUrl);
+        c.setNotes(notes);
+        Customer saved = customerRepo.save(c);
+
+        ReservationInProgress reservationInProgress= inProgressRepo.findOne(reservationInProgressId);
+
+        if(reservationInProgress==null){
+            return null;
+        }
+
+        reservationInProgress.setCustomer(saved);
+
+        return reservationInProgress;
+    }
 
     public ReservationInProgress addCustomerToReservationInProgess(String reservationInProgressId, String customerId){
 
@@ -237,8 +259,9 @@ public class ReservationService {
         }
 
         reservationInProgress.setCustomer(customer);
+        
 
-        return reservationInProgress;
+        return inProgressRepo.save(reservationInProgress);
     }
 
     public void confirmReservation(String reservationInProgressId){
@@ -288,20 +311,25 @@ public class ReservationService {
 
         int i=0;
 
+        Long roomCost=0L;
+
+        Long reservedDays=(reservationInProgress.getDateTo() - reservationInProgress.getDateFrom()) / DAY_IN_MS +1;
+
         for(Room room: reservationInProgress.getRoomList()){
             String selectedRoom=selectedRooms.get(i);
 
             try {
                 int selectedRoomOrdinal=Integer.parseInt(selectedRoom);
                 RoomTypEnum roomTyp=RoomTypEnum.fromOrdinal(selectedRoomOrdinal);
-                room.setBookedRoom(roomTyp);
+                room.setBookedRoomTyp(roomTyp);
+                roomCost+=CommonUtils.getRoomPriceForSelectionAndDays(room,roomTyp,reservedDays);
             } catch (NumberFormatException e) {
-
             }
 
             i++;
         }
 
+        reservationInProgress.setRoomPrice(roomCost);
         inProgressRepo.save(reservationInProgress);
     }
 }

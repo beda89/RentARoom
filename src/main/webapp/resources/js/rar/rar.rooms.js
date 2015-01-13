@@ -70,8 +70,41 @@ var Rooms = (function(window, document, undefined) {
                 modal.show();
             }).fail(function(e) {
                 console.error(e);
-            });;
+            });
         });
+
+        var input = 'input.roomCheckbox[type="checkbox"]';
+        $('#roomgrid ' + input).click(function(e) {
+            var checked = $(this).parents('tr').find(input + ':checked');
+            if ($(this).val() == checked.first().parents('td').prev('td').find(input).val()) {
+                var tdsToUncheck = ($(this).parents('tr').find(input));
+                tdsToUncheck.each(function(i, td) {
+                    $(td).prop('checked', false);
+                });
+            } else {
+                if (checked.size() > 1) {
+                    var tdsToCheck = checked.first().parents('td').nextUntil($(this).parents('td').next('td')).andSelf();
+                    tdsToCheck.each(function(i, td) {
+                        $(td).find(input).prop('checked', true);
+                    });
+                    tdsToUncheck = ($(this).parents('td').next('td').nextUntil(checked.last().parents('td').next('td')).andSelf());
+                    tdsToUncheck.each(function(i, td) {
+                        $(td).find(input).prop('checked', false);
+                    });
+                }
+            }
+            updateReservierenButton();
+        });
+
+        updateReservierenButton();
+    };
+
+    var updateReservierenButton = function() {
+        if ($('#roomgrid input[type="checkbox"]:checked').size() == 0) {
+            $('#reserve-room').attr('disabled', 'disabled');
+        } else {
+            $('#reserve-room').removeAttr('disabled');
+        }
     };
 
     return {

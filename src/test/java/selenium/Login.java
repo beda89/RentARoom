@@ -100,7 +100,7 @@ public class Login {
         assertEquals(baseUrl() + "/login?logout", driver.getCurrentUrl());
         WebElement infoAlert = driver.findElement(By.className("alert-info"));
         assertNotNull(infoAlert);
-        assertTrue(infoAlert.getText().contains("successfully"));
+        assertTrue(infoAlert.getText().contains("Erfolgreich"));
 
         testRedirectToLogin();
     }
@@ -109,7 +109,7 @@ public class Login {
     public void testLoginThenAccessRoot() {
         login("admin", "admin");
         driver.get(baseUrl() + "/");
-        assertEquals(baseUrl() + "/", driver.getCurrentUrl());
+        assertEquals(baseUrl() + "/rooms", driver.getCurrentUrl());
         assertNotNull(logoutBtn());
         assertNull(loginBtn());
 

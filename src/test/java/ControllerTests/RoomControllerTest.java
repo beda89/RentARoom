@@ -105,9 +105,8 @@ public class RoomControllerTest {
         Room savedRoom = roomRepository.save(room1);
         Room editedRoom = roomController.editRoom(savedRoom.getId(), "101", "1000", "10", "10", "10", "10", "10", "10");
         assertEquals(savedRoom.getId(), editedRoom.getId());
-        assertEquals(1000L, (long) editedRoom.getMaxPersons());
-//        assertEquals(10L, editedRoom.getPrice_doubleRoom());
-        assertNotEquals(17500L, editedRoom.getPrice_singleRoom());
+        assertEquals(3L, (long) editedRoom.getMaxPersons());
+        assertEquals(17500L, editedRoom.getPrice_singleRoom());
 
     }
 }

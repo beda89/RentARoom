@@ -91,11 +91,28 @@ public class ReservationController {
 
     //handling when new customer is created for reservation
     @RequestMapping(value = {"/reservations/reserve/step3_2/{id}"}, method =RequestMethod.POST)
-    public ModelAndView reservationStep3_2(@PathVariable String id){
+    public ModelAndView reservationStep3_2(@PathVariable String id,
+                                           @RequestParam String firstName,
+                                           @RequestParam String lastName,
+                                           @RequestParam String address,
+                                           @RequestParam String companyName,
+                                           @RequestParam String phone,
+                                           @RequestParam String fax,
+                                           @RequestParam String mail,
+                                           @RequestParam String homepage,
+                                           @RequestParam String avatarUrl,
+                                           @RequestParam String notes){
+        ReservationInProgress reservationInProgress=reservationService.addNewCustomerToReservationInProgess(id, firstName, lastName, address, companyName, phone, fax, mail, homepage, avatarUrl, notes);
+
         ModelAndView model = new ModelAndView("reservation_confirm");
         model.addObject("progressId",id);
+        model.addObject("reservationInProgress",reservationInProgress);
 
-        //TODO: implement adding of new user
+        Date fromDate=new Date(reservationInProgress.getDateFrom());
+        Date toDate=new Date(reservationInProgress.getDateTo());
+
+        model.addObject("formattedDateFrom", CommonUtils.getGermanWeekday(fromDate)+" "+CommonUtils.dateFormatter.format(fromDate));
+        model.addObject("formattedDateTo",CommonUtils.getGermanWeekday(toDate)+" "+CommonUtils.dateFormatter.format(toDate));
 
         return model;
     }

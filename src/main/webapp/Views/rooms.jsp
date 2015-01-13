@@ -57,7 +57,7 @@
       <c:forEach items="${roomOverview.rooms}" var="room">
         <tr data-rar-room-id="${room.id}">
           <td class="roomColumn">
-            <button class="btn btn-success edit-room">
+            <button type="button" class="btn btn-success edit-room">
               ${room.roomNbr}
             </button>
           </td>

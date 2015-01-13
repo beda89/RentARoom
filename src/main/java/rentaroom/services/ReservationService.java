@@ -5,17 +5,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import rentaroom.Utils.CommonUtils;
 import rentaroom.dtos.*;
-import rentaroom.entities.Customer;
-import rentaroom.entities.Invoice;
-import rentaroom.entities.Reservation;
-import rentaroom.entities.ReservationInProgress;
-import rentaroom.entities.Room;
+import rentaroom.entities.*;
 import rentaroom.repositories.CustomerRepository;
 import rentaroom.repositories.ReservationInProgressRepository;
 import rentaroom.repositories.InvoiceRepository;
 import rentaroom.repositories.ReservationRepository;
 import rentaroom.repositories.RoomRepository;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -283,5 +280,28 @@ public class ReservationService {
             invoiceRepo.save(i);
             reservationRepo.delete(r.getId());
         }
+    }
+
+    public void setSelectedRooms(String reservationInProgressId, List<String> selectedRooms){
+
+        ReservationInProgress reservationInProgress=inProgressRepo.findOne(reservationInProgressId);
+
+        int i=0;
+
+        for(Room room: reservationInProgress.getRoomList()){
+            String selectedRoom=selectedRooms.get(i);
+
+            try {
+                int selectedRoomOrdinal=Integer.parseInt(selectedRoom);
+                RoomTypEnum roomTyp=RoomTypEnum.fromOrdinal(selectedRoomOrdinal);
+                room.setBookedRoom(roomTyp);
+            } catch (NumberFormatException e) {
+
+            }
+
+            i++;
+        }
+
+        inProgressRepo.save(reservationInProgress);
     }
 }

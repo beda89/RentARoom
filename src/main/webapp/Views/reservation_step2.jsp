@@ -16,7 +16,7 @@
 
     <c:forEach items="${reservationInProgress.roomList}" var="room">
       ${room.roomNbr} :
-        <select name="_selection">
+        <select name="roomSelection">
           <option value="0">Einzelzimmer</option>
           <option value="1">Einzelzimmer mit Kind</option>
           <option value="2">Einzelzimmer mit zwei Kindern</option>

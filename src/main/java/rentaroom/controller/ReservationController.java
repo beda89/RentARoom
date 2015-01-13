@@ -59,7 +59,10 @@ public class ReservationController {
 
 
     @RequestMapping(value = {"/reservations/reserve/step2/{id}"}, method =RequestMethod.POST)
-    public ModelAndView reservationStep2(@PathVariable String id){
+    public ModelAndView reservationStep2(@PathVariable String id, @RequestParam List<String> roomSelection ){
+
+
+        reservationService.setSelectedRooms(id,roomSelection);
 
         ModelAndView model = new ModelAndView("reservation_step3");
         model.addObject("progressId",id);
@@ -89,9 +92,10 @@ public class ReservationController {
     //handling when new customer is created for reservation
     @RequestMapping(value = {"/reservations/reserve/step3_2/{id}"}, method =RequestMethod.POST)
     public ModelAndView reservationStep3_2(@PathVariable String id){
-
         ModelAndView model = new ModelAndView("reservation_confirm");
         model.addObject("progressId",id);
+
+        //TODO: implement adding of new user
 
         return model;
     }
@@ -99,7 +103,6 @@ public class ReservationController {
 
     @RequestMapping(value = {"/reservations/reserve/confirm/{id}"}, method =RequestMethod.POST)
     public String reservationConfirm(@PathVariable String id){
-
         reservationService.confirmReservation(id);
 
         return "redirect:/rooms";

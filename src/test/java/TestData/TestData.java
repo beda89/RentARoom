@@ -360,6 +360,7 @@ public class TestData {
         customer2.setAvatarUrl("http://ww1.prweb.com/prfiles/2013/08/14/12190096/gI_137366_glenAvatar.png");
         customerRepo.save(customer2);
 
+        /*
         //---------------------------------CREATE RESERVATIONS -----------------------------------------------------------//
         Reservation r1 = new Reservation();
         r1.setCustomer(customer2);
@@ -416,7 +417,7 @@ public class TestData {
         i3.setInvoiceDate(CommonUtils.dateFormatter.parse("23.12.2014").getTime());
         invoiceRepo.save(i3);
 
-
+        */
     }
 
 }

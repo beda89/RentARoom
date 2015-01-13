@@ -254,7 +254,8 @@ public class ReservationService {
 
         reservationInProgress.setCustomer(customer);
         
-        return reservationInProgress;
+
+        return inProgressRepo.save(reservationInProgress);
     }
 
     public void confirmReservation(String reservationInProgressId){

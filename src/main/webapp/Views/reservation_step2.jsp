@@ -17,23 +17,25 @@
     <h2>Zimmerbelegung</h2>
 
     <c:forEach items="${reservationInProgress.roomList}" var="room">
-      <p>f&uuml;r Zimmer <b>${room.roomNbr}</b>:</p>
-        <select name="roomSelection" class="form-control">
-          <option value="0">Einzelzimmer</option>
-          <option value="1">Einzelzimmer mit Kind</option>
-          <option value="2">Einzelzimmer mit zwei Kindern</option>
-          <option value="3">Doppelzimmer</option>
-          <option value="4">Doppelzimmer mit Kind</option>
-          <option value="5">Dreifachbelegung</option>
-        </select>
-      <br/>
-      <br/>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Zimmer <b>${room.roomNbr}</b>
+        </div>
+        <div class="panel-body">
+          <select name="roomSelection" class="form-control">
+            <option value="0">Einzelzimmer</option>
+            <option value="1">Einzelzimmer mit Kind</option>
+            <option value="2">Einzelzimmer mit zwei Kindern</option>
+            <option value="3">Doppelzimmer</option>
+            <option value="4">Doppelzimmer mit Kind</option>
+            <option value="5">Dreifachbelegung</option>
+          </select>
+        </div>
+      </div>
     </c:forEach>
 
-    <div class="btn-group">
-      <a href="${base}/rooms"><input type="button" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/></a>
-      <input type="submit" id="next" class="btn btn-default" name="next" value="Weiter"/>
-    </div>
+  <a href="${base}/rooms"><input type="button" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/></a>
+  <input type="submit" id="next" class="btn btn-default" name="next" value="Weiter"/>
 </form>
 
 <jsp:include page="footer.jsp" />

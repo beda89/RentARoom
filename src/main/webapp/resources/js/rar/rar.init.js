@@ -26,4 +26,5 @@ $(document).ready(function() {
     Header.init();
 	Rooms.init();
 	Customer.init();
+	Reservation.init();
 });

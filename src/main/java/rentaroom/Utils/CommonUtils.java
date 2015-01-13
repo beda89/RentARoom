@@ -60,4 +60,39 @@ public class CommonUtils {
         }
     }
 
+    public static String getGermanWeekday(Date date){
+
+        int day=date.getDay();
+
+        if(day==0){
+            return "Sonntag";
+        }
+
+        if(day==1){
+            return "Montag";
+        }
+
+        if(day==2){
+            return "Dienstag";
+        }
+
+        if(day==3){
+            return "Mittwoch";
+        }
+
+        if(day==4){
+            return "Donnerstag";
+        }
+
+        if(day==5){
+            return "Freitag";
+        }
+
+
+        return "Samstag";
+
+
+
+    }
+
 }

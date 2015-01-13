@@ -9,6 +9,7 @@ import rentaroom.entities.Customer;
 import rentaroom.entities.Reservation;
 import rentaroom.entities.ReservationInProgress;
 import rentaroom.entities.Room;
+import rentaroom.repositories.CustomerRepository;
 import rentaroom.repositories.ReservationInProgressRepository;
 import rentaroom.repositories.ReservationRepository;
 import rentaroom.repositories.RoomRepository;
@@ -32,6 +33,9 @@ public class ReservationService {
 
     @Autowired
     private RoomRepository roomRepo;
+
+    @Autowired
+    private CustomerRepository customerRepo;
 
     @Autowired
     private ReservationInProgressRepository inProgressRepo;
@@ -161,7 +165,7 @@ public class ReservationService {
 
         ReservationInProgress reservationInProgress = new ReservationInProgress();
 
-        HashMap<String,List<Date>> roomReservationMap = new HashMap<String,List<Date>>();
+        HashMap<String,ArrayList<Date>> roomReservationMap = new HashMap<String,ArrayList<Date>>();
 
         for(String selected:selectedCheckboxes){
             String[] splitted= selected.split("_");
@@ -175,7 +179,7 @@ public class ReservationService {
             String roomNbr=splitted[0];
             String date=splitted[1];
 
-            List<Date> dateList=roomReservationMap.get(roomNbr);
+            ArrayList<Date> dateList=roomReservationMap.get(roomNbr);
 
             if(dateList==null){
                 dateList=new ArrayList<Date>();
@@ -197,18 +201,57 @@ public class ReservationService {
 
         List<Room> roomList= new ArrayList<Room>();
 
-        for(String key:roomReservationMap.keySet()){
-            Room room=roomRepo.findOneByRoomNbr(key);
+        for(String key:roomReservationMap.keySet()) {
+            Room room = roomRepo.findOneByRoomNbr(key);
             roomList.add(room);
         }
 
+        Long dateFrom=null;
+        Long dateTo=null;
+
+        for(ArrayList<Date> dateList:roomReservationMap.values()){
+            if(dateList!=null && dateList.size()>0){
+                dateFrom=dateList.get(0).getTime();
+                dateTo=dateList.get(dateList.size()-1).getTime();
+                break;
+
+            }
+        }
 
 
         reservationInProgress.setRoomList(roomList);
-    //    reservationInProgress.setDateFrom();
-    //    reservationInProgress.setDateTo();
-
+        reservationInProgress.setDateFrom(dateFrom);
+        reservationInProgress.setDateTo(dateTo);
 
         return inProgressRepo.save(reservationInProgress);
+    }
+
+
+    public ReservationInProgress addCustomerToReservationInProgess(String reservationInProgressId, String customerId){
+
+        Customer customer=customerRepo.findOne(customerId);
+
+        if(customer==null){
+            return null;
+        }
+
+        ReservationInProgress reservationInProgress= inProgressRepo.findOne(reservationInProgressId);
+
+        if(reservationInProgress==null){
+            return null;
+        }
+
+        reservationInProgress.setCustomer(customer);
+
+        return reservationInProgress;
+    }
+
+    public void confirmReservation(String reservationInProgressId){
+
+        ReservationInProgress reservationInProgress= inProgressRepo.findOne(reservationInProgressId);
+        Reservation reservation=new Reservation(reservationInProgress);
+
+        reservationRepo.save(reservation);
+
     }
 }

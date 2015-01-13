@@ -35,6 +35,15 @@ public class Reservation implements Serializable {
     public Reservation() {
     }
 
+    public Reservation(ReservationInProgress inProgress){
+        this.customer=inProgress.getCustomer();
+        this.roomList=inProgress.getRoomList();
+        this.discount=inProgress.getDiscount();
+        this.dateFrom=inProgress.getDateFrom();
+        this.dateTo=inProgress.getDateTo();
+        this.roomPrice=inProgress.getRoomPrice();
+    }
+
     public String getId() {
         return id;
     }

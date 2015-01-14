@@ -76,11 +76,11 @@
                 <c:if test="${!day.isReserved}">
                   <c:if test="${!day.isWeekend}">
                     <input type="checkbox" class="roomCheckbox" name="roomCheckbox" id="${room.roomNbr}_${day.selectBoxId}" value="${room.roomNbr}_${day.selectBoxId}" ${disabled}>
-                    <label class="roomCheckbox available" for="${room.roomNbr}_${day.selectBoxId}"></label>
+                    <label class="roomCheckbox <c:if test="${!day.isPast()}">available</c:if>" for="${room.roomNbr}_${day.selectBoxId}"></label>
                   </c:if>
                   <c:if test="${day.isWeekend}">
                     <input type="checkbox" class="roomCheckbox" name="roomCheckbox" id="${room.roomNbr}_${day.selectBoxId}" value="${room.roomNbr}_${day.selectBoxId}" ${disabled}>
-                    <label class="roomCheckbox available weekend" for="${room.roomNbr}_${day.selectBoxId}"></label>
+                    <label class="roomCheckbox <c:if test="${!day.isPast()}">available</c:if> weekend" for="${room.roomNbr}_${day.selectBoxId}"></label>
                   </c:if>
                 </c:if>
                 <c:if test="${day.isReserved}">

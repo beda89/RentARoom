@@ -85,7 +85,8 @@
 
 .roomCheckbox{
 	width: 30px;
-	height: 30px
+	height: 30px;
+	background-color:	darkgray;
 }
 
 .roomCheckbox.available{
@@ -96,9 +97,15 @@
 	background-color:	lightskyblue;
 }
 
+.roomCheckbox.weekend{
+	background-color:	gray;
+}
+
 .roomCheckbox.reserved{
 	background-color:	darkred;
 }
+
+
 
 #roomgrid label{
 	margin-left:	5px;

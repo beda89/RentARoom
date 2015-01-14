@@ -36,35 +36,35 @@ public class TestData {
     //ALL PRICES ARE IN CENT
 
     //DOUBLEROOM PRICES
-    private static final Long HIGH_DOUBLEROOM_PRICE = 20000L;
-    private static final Long MIDDLE_DOUBLEROOM_PRICE = 15000L;
-    private static final Long CHEAP_DOUBLEROOM_PRICE = 12500L;
+    private static final Long HIGH_DOUBLEROOM_PRICE = 200L;
+    private static final Long MIDDLE_DOUBLEROOM_PRICE = 150L;
+    private static final Long CHEAP_DOUBLEROOM_PRICE = 125L;
 
     //SINGLEROOM PRICES
-    private static final Long HIGH_SINGLEROOM_PRICE = 17500L;
-    private static final Long MIDDLE_SINGLEROOM_PRICE = 12500L;
-    private static final Long CHEAP_SINGLEROOM_PRICE = 10000L;
+    private static final Long HIGH_SINGLEROOM_PRICE = 175L;
+    private static final Long MIDDLE_SINGLEROOM_PRICE = 125L;
+    private static final Long CHEAP_SINGLEROOM_PRICE = 100L;
 
     //DOUBLEROOM + 1 CHILD PRICES
-    private static final Long HIGH_DOUBLEROOM_PLUS1CHILD_PRICE = 21000L;
-    private static final Long MIDDLE_DOUBLEROOM_PLUS1CHILD_PRICE = 16000L;
-    private static final Long CHEAP_DOUBLEROOM_PLUS1CHILD_PRICE = 13500L;
+    private static final Long HIGH_DOUBLEROOM_PLUS1CHILD_PRICE = 210L;
+    private static final Long MIDDLE_DOUBLEROOM_PLUS1CHILD_PRICE = 160L;
+    private static final Long CHEAP_DOUBLEROOM_PLUS1CHILD_PRICE = 135L;
 
     //SINGLEROOM + 1 CHILD PRICES
-    private static final Long HIGH_SINGLEROOM_PLUS1CHILD_PRICE = 18500L;
-    private static final Long MIDDLE_SINGLEROOM_PLUS1CHILD_PRICE = 13500L;
-    private static final Long CHEAP_SINGLEROOM_PLUS1CHILD_PRICE = 11000L;
+    private static final Long HIGH_SINGLEROOM_PLUS1CHILD_PRICE = 185L;
+    private static final Long MIDDLE_SINGLEROOM_PLUS1CHILD_PRICE = 135L;
+    private static final Long CHEAP_SINGLEROOM_PLUS1CHILD_PRICE = 110L;
 
     //SINGLEROOM + 2 CHILDREN PRICES
-    private static final Long HIGH_SINGLEROOM_PLUS2CHILDREN_PRICE = 19500L;
-    private static final Long MIDDLE_SINGLEROOM_PLUS2CHILDREN_PRICE = 14500L;
-    private static final Long CHEAP_SINGLEROOM_PLUS2CHILDREN_PRICE = 12000L;
+    private static final Long HIGH_SINGLEROOM_PLUS2CHILDREN_PRICE = 195L;
+    private static final Long MIDDLE_SINGLEROOM_PLUS2CHILDREN_PRICE = 145L;
+    private static final Long CHEAP_SINGLEROOM_PLUS2CHILDREN_PRICE = 120L;
 
 
     //THREE PERSONS PRICE
-    private static final Long HIGH_THREEPERSON_PRICE = 26000L;
-    private static final Long MIDDLE_THREEPERSON_PRICE = 21500L;
-    private static final Long CHEAP_THREEPERSON_PRICE = 185000L;
+    private static final Long HIGH_THREEPERSON_PRICE = 260L;
+    private static final Long MIDDLE_THREEPERSON_PRICE = 215L;
+    private static final Long CHEAP_THREEPERSON_PRICE = 185L;
 
     @Autowired
     private CustomerRepository customerRepo;

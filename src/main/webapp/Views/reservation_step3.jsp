@@ -57,6 +57,24 @@
         $('#selectedCustomerId').val(suggestion.data);
     }
   });
+
+  if($("#optionsRadios1").checked()){
+    if($('#autocomplete_reservation').val().isEmpty()){
+
+
+    }
+  }
+
+  $('#autocomplete_reservation').change(function(){
+
+      if($("#optionsRadios1").checked()){
+        if(this.val().isEmpty()){
+
+
+        }
+      }
+
+  })
 </script>
 
 

@@ -23,19 +23,21 @@
         </div>
         <div class="panel-body">
           <select name="roomSelection" class="form-control">
-            <option value="0">Einzelzimmer</option>
-            <option value="1">Einzelzimmer mit Kind</option>
-            <option value="2">Einzelzimmer mit zwei Kindern</option>
-            <option value="3">Doppelzimmer</option>
-            <option value="4">Doppelzimmer mit Kind</option>
-            <option value="5">Dreifachbelegung</option>
+            <option value="0" <c:if test="${room.bookedRoomTyp=='SINGLE_ROOM'}"> selected </c:if> >Einzelzimmer</option>
+            <option value="1" <c:if test="${room.bookedRoomTyp=='SINGLE_ROOM_ONE_CHILD'}"> selected </c:if>>Einzelzimmer mit Kind</option>
+            <option value="2" <c:if test="${room.bookedRoomTyp=='SINGLE_ROOM_TWO_CHILDREN'}"> selected </c:if>>Einzelzimmer mit zwei Kindern</option>
+            <option value="3" <c:if test="${room.bookedRoomTyp=='DOUBLE_ROOM'}"> selected </c:if>>Doppelzimmer</option>
+            <option value="4" <c:if test="${room.bookedRoomTyp=='DOUBLE_ROOM_ONE_CHILD'}"> selected </c:if>>Doppelzimmer mit Kind</option>
+            <option value="5" <c:if test="${room.bookedRoomTyp=='THREE_PERSONS'}"> selected </c:if>>Dreifachbelegung</option>
           </select>
         </div>
       </div>
     </c:forEach>
 
-  <a href="${base}/rooms"><input type="button" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/></a>
-  <input type="submit" id="next" class="btn btn-default" name="next" value="Weiter"/>
+
+    <a href="${base}/rooms"><input type="button" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/></a>
+    <input type="submit" id="next" class="btn btn-default" name="next" value="Weiter"/>
+
 </form>
 
 <jsp:include page="footer.jsp" />

@@ -95,11 +95,11 @@
 
       <br/>
 
-      <div class="btn-group">
-        <input type="button" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/>
-        <input type="button" id="cancel" class="btn btn-danger" name="cancel" value="Abbrechen"/>
-        <input type="submit" id="confirm" class="btn btn-success" name="confirm" value="Best&auml;tigen"/>
-      </div>
+
+      <a href="<c:url value='/reservations/reserve/step3/${progressId}' />">
+      <input type="button" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/></a>
+      <a href="${base}/rooms"><input type="button" id="cancel" class="btn btn-danger" name="cancel" value="Abbrechen"/></a>
+      <input type="submit" id="confirm" class="btn btn-success" name="confirm" value="Best&auml;tigen"/>
     </form>
 
   </div>

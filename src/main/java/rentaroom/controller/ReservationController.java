@@ -70,6 +70,38 @@ public class ReservationController {
         return model;
     }
 
+
+    @RequestMapping(value = {"/reservations/reserve/step2/{id}"}, method =RequestMethod.GET)
+         public ModelAndView reservationBackToStep2(@PathVariable String id){
+
+        ModelAndView model = new ModelAndView("reservation_step2");
+
+        ReservationInProgress reservationInProgress=reservationService.findInProgressById(id);
+
+        model.addObject("progressId",reservationInProgress.getId());
+        model.addObject("reservationInProgress",reservationInProgress);
+
+
+        return model;
+    }
+
+
+    @RequestMapping(value = {"/reservations/reserve/step3/{id}"}, method =RequestMethod.GET)
+    public ModelAndView reservationBackToStep3(@PathVariable String id){
+
+        ModelAndView model = new ModelAndView("reservation_step3");
+
+        ReservationInProgress reservationInProgress=reservationService.findInProgressById(id);
+
+        model.addObject("progressId",reservationInProgress.getId());
+        model.addObject("reservationInProgress",reservationInProgress);
+        model.addObject("chosenName",reservationInProgress.getCustomer().getFirstName()+" "+reservationInProgress.getCustomer().getLastName());
+        model.addObject("userId",reservationInProgress.getCustomer().getId());
+
+        return model;
+    }
+
+
     //handling when existing customer is choosen
     @RequestMapping(value = {"/reservations/reserve/step3_1/{id}"}, method =RequestMethod.POST)
     public ModelAndView reservationStep3_1(@PathVariable String id,@RequestParam String selectedCustomerId){

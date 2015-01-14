@@ -20,8 +20,8 @@
    </div>
   <div class="panel-body">
     <form id="existingCustomer" method="POST" action="${base}/reservations/reserve/step3_1/${progressId}">
-      <input type="text" name="userSelection" id="autocomplete_reservation" title="Kundenauswahl" class="form-control" />
-      <input type="hidden" id="selectedCustomerId" name="selectedCustomerId" />
+      <input type="text" name="userSelection" id="autocomplete_reservation" title="Kundenauswahl" class="form-control" value="${chosenName}" />
+      <input type="hidden" id="selectedCustomerId" name="selectedCustomerId" value="${userId}" />
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </form>
   </div>
@@ -45,10 +45,10 @@
   </div>
 </div>
 
-<div class="btn-group">
-  <input type="submit" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/>
+  <a href="<c:url value='/reservations/reserve/step2/${progressId}' />">
+    <input type="button" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/>
+  </a>
   <input type="submit" id="next" class="btn btn-default" name="back" value="Weiter"/>
-</div>
 
 <script>
   $('#autocomplete_reservation').autocomplete({

@@ -153,6 +153,10 @@ public class ReservationService {
         return reservationRepo.findOne(id);
     }
 
+    public ReservationInProgress findInProgressById(String id) {
+        return inProgressRepo.findOne(id);
+    }
+
     public ReservationInProgress preReserveSelectedDays(List<String> selectedCheckboxes){
 
         ReservationInProgress reservationInProgress = new ReservationInProgress();

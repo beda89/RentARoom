@@ -6,9 +6,8 @@ var Reservation = (function(window, document, undefined) {
     //////////////////////
 
     var init = function() {
-        $('div.radio label').click(function() {
-            var otherRadioBtn = $('div.radio label').not($(this));
-            otherRadioBtn.toggle();
+        $('div.radio').click(function() {
+            var otherRadioBtn = $('div.radio').not($(this));
             otherRadioBtn.parents('div.panel').find('div.panel-body').find('input, textarea').attr('disabled', 'disabled');
             $(this).parents('div.panel').find('div.panel-body').find('input, textarea').removeAttr('disabled');
         });

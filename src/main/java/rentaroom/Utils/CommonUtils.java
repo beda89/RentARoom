@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class CommonUtils {
 
-    public final Long DAY_IN_MS=1000*60*60*24L;
+    public static final Long DAY_IN_MS=1000*60*60*24L;
 
     public static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
     public static long STORNO_GEBUEHR = 10L;

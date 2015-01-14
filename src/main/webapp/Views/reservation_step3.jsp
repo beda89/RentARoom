@@ -48,7 +48,7 @@
   <a href="<c:url value='/reservations/reserve/step2/${progressId}' />">
     <input type="button" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/>
   </a>
-  <input type="submit" id="next" class="btn btn-default" name="back" value="Weiter"/>
+  <input type="button" id="next" class="btn btn-default" name="next" value="Weiter" onClick="validateForm()" />
 
 <script>
   $('#autocomplete_reservation').autocomplete({
@@ -58,23 +58,22 @@
     }
   });
 
-  if($("#optionsRadios1").checked()){
-    if($('#autocomplete_reservation').val().isEmpty()){
+  function validateForm(){
 
-
-    }
-  }
-
-  $('#autocomplete_reservation').change(function(){
-
-      if($("#optionsRadios1").checked()){
-        if(this.val().isEmpty()){
-
-
-        }
+    if($("#optionsRadios1").prop('checked')){
+      if($('#selectedCustomerId').val().length==0 ){
+        alert("Es wurde kein Kunde eingegeben!");
+      }else{
+        // Bestehender Kunde
+        $('#existingCustomer').submit();
       }
+    }else{
+      // Neuer Kunde
+      $('#createCustomer').submit();
+    }
+  };
 
-  })
+
 </script>
 
 

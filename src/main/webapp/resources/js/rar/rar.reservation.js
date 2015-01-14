@@ -12,16 +12,6 @@ var Reservation = (function(window, document, undefined) {
             $(this).parents('div.panel').find('div.panel-body').find('input, textarea').removeAttr('disabled');
         });
 
-        $('#next').click(function() {
-            if ($('#optionsRadios1').prop('checked')) {
-                // Bestehender Kunde
-                $('#existingCustomer').submit();
-            } else {
-                // Neuer Kunde
-                $('#createCustomer').submit();
-            }
-        });
-
         // disable form for new customer on site load
         $('div.panel').last().find('div.panel-body').find('input[type="text"], textarea').attr('disabled', 'disabled');
     };

@@ -243,9 +243,8 @@ public class ReservationService {
             return null;
         }
 
-        reservationInProgress.setCustomer(saved);
-
-        return reservationInProgress;
+        reservationInProgress.setCustomer(c);
+        return inProgressRepo.save(reservationInProgress);
     }
 
     public ReservationInProgress addCustomerToReservationInProgess(String reservationInProgressId, String customerId){

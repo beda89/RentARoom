@@ -126,7 +126,7 @@ public class ReservationServiceTest {
             r3.setRoomPrice(HIGH_SINGLEROOM_PRICE);
             r3.setDiscount(10);
             roomList = new ArrayList<Room>();
-            roomList.add(room1);;
+            roomList.add(room1);
             r3.setRoomList(roomList);
 
             reservationRepository.save(r1);

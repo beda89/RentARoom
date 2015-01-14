@@ -64,22 +64,30 @@
             </button>
           </td>
             <c:forEach items="${room.dayOverview}" var="day" varStatus="loop">
-            <td <c:if test="${loop.index==7}">class="today"</c:if>>
-              <c:if test="${!day.isReserved}">
-                <c:if test="${!day.isWeekend}">
-                  <input type="checkbox" class="roomCheckbox" name="roomCheckbox" id="${room.roomNbr}_${day.selectBoxId}" value="${room.roomNbr}_${day.selectBoxId}">
-                  <label class="roomCheckbox available" for="${room.roomNbr}_${day.selectBoxId}"></label>
+              <c:choose>
+                <c:when test="${day.isPast()}">
+                  <c:set var="disabled" value="disabled='disabled'"></c:set>
+                </c:when>
+                <c:otherwise>
+                  <c:set var="disabled" value=""></c:set>
+                </c:otherwise>
+              </c:choose>
+              <td <c:if test="${loop.index==7}">class="today"</c:if>>
+                <c:if test="${!day.isReserved}">
+                  <c:if test="${!day.isWeekend}">
+                    <input type="checkbox" class="roomCheckbox" name="roomCheckbox" id="${room.roomNbr}_${day.selectBoxId}" value="${room.roomNbr}_${day.selectBoxId}" ${disabled}>
+                    <label class="roomCheckbox available" for="${room.roomNbr}_${day.selectBoxId}"></label>
+                  </c:if>
+                  <c:if test="${day.isWeekend}">
+                    <input type="checkbox" class="roomCheckbox" name="roomCheckbox" id="${room.roomNbr}_${day.selectBoxId}" value="${room.roomNbr}_${day.selectBoxId}" ${disabled}>
+                    <label class="roomCheckbox available weekend" for="${room.roomNbr}_${day.selectBoxId}"></label>
+                  </c:if>
                 </c:if>
-                <c:if test="${day.isWeekend}">
-                  <input type="checkbox" class="roomCheckbox" name="roomCheckbox" id="${room.roomNbr}_${day.selectBoxId}" value="${room.roomNbr}_${day.selectBoxId}">
-                  <label class="roomCheckbox available weekend" for="${room.roomNbr}_${day.selectBoxId}"></label>
+                <c:if test="${day.isReserved}">
+                  <input type="checkbox" class="roomCheckbox" disabled id="${room.roomNbr}_${day.selectBoxId}" name="roomCheckbox" value="${room.roomNbr}_${day.selectBoxId}" ${disabled}>
+                  <label class="roomCheckbox reserved" for="${room.roomNbr}_${day.selectBoxId}"></label>
                 </c:if>
-              </c:if>
-              <c:if test="${day.isReserved}">
-                <input type="checkbox" class="roomCheckbox" disabled id="${room.roomNbr}_${day.selectBoxId}" name="roomCheckbox" value="${room.roomNbr}_${day.selectBoxId}">
-                <label class="roomCheckbox reserved" for="${room.roomNbr}_${day.selectBoxId}"></label>
-              </c:if>
-            </td>
+              </td>
             </c:forEach>
         </tr>
       </c:forEach>

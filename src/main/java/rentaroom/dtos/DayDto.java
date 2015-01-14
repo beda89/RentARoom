@@ -6,6 +6,7 @@ package rentaroom.dtos;
 public class DayDto {
     private Boolean isReserved=false;
     private Boolean isWeekend=false;
+    private Boolean isPast=false;
     private String selectBoxId;
 
     public Boolean getIsWeekend() {
@@ -32,5 +33,11 @@ public class DayDto {
         this.selectBoxId = selectBoxId;
     }
 
+    public void setIsPast(boolean isPast) {
+        this.isPast = isPast;
+    }
 
+    public Boolean isPast() {
+        return isPast;
+    }
 }

@@ -12,6 +12,7 @@ import rentaroom.repositories.InvoiceRepository;
 import rentaroom.repositories.ReservationRepository;
 import rentaroom.repositories.RoomRepository;
 
+import java.text.ParseException;
 import java.util.*;
 
 /**
@@ -130,7 +131,14 @@ public class ReservationService {
                 }
 
                 dayDto.setSelectBoxId(CommonUtils.getFormDateString(date));
-
+                try {
+                    // schneide stunden, minuten, sekunden und millisekunden ab
+                    dayDto.setIsPast(CommonUtils.dateFormatter.parse(CommonUtils.dateFormatter.format(date))
+                            .before(CommonUtils.dateFormatter.parse(CommonUtils.dateFormatter.format(new Date()))));
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                    dayDto.setIsPast(true);
+                }
 
                 if(CommonUtils.checkIfReserved(roomReservationMap.get(r.getId()),date)){
                     dayDto.setIsReserved(true);

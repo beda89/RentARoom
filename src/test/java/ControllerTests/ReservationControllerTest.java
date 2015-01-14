@@ -142,7 +142,7 @@ public class ReservationControllerTest {
         Invoice createdInvoice = invoiceRepository.findByCustomerOrderByInvoiceDateDesc(customer2).get(0);
         assertEquals(customer2.getId(), createdInvoice.getCustomer().getId());
         assertEquals(customer2.getFirstName(), createdInvoice.getCustomer().getFirstName());
-        assertEquals(1000L, createdInvoice.getPrice());
+        assertEquals(10L, createdInvoice.getPrice());
         assertEquals("storniert", createdInvoice.getNotes());
     }
 

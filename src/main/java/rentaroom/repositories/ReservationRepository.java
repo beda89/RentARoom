@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 public interface ReservationRepository extends PagingAndSortingRepository<Reservation, String> {
     public List<Reservation> findByCustomer(Customer c);
-    public List<Reservation> findByDateToGreaterThanOrderByDateFromAsc(long time);
+    public List<Reservation> findByDateToGreaterThanEqualOrderByDateFromAsc(long time);
 
     @Query("{$or: [" +
             " {$and: " +

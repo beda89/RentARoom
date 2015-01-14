@@ -146,7 +146,7 @@ public class ReservationServiceTest {
     }
 
     @Test
-    public void testFindOutstandingByCustomer(){
+    public void testFindOutstandingByCustomer() throws ParseException {
         List<Reservation> foundReservationList = reservationService.findOutstandingByCustomer(customer2);
         assertTrue(!foundReservationList.isEmpty());
         assertEquals(customer2.getFirstName(), foundReservationList.get(0).getCustomer().getFirstName());

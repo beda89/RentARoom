@@ -114,8 +114,8 @@ public class ReservationServiceMockTest {
     }
 
     @Test
-    public void testFindOutstandingByCustomer() {
-        Mockito.when(reservationRepository.findByDateToGreaterThanOrderByDateFromAsc(Mockito.anyLong())).thenReturn(reservationList);
+    public void testFindOutstandingByCustomer() throws ParseException {
+        Mockito.when(reservationRepository.findByDateToGreaterThanEqualOrderByDateFromAsc(Mockito.anyLong())).thenReturn(reservationList);
         List<Reservation> findByCustomerResult = reservationService.findOutstandingByCustomer(customer1);
         Assert.assertTrue(!findByCustomerResult.isEmpty());
         Assert.assertEquals(findByCustomerResult, reservationList);

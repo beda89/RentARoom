@@ -11,6 +11,8 @@ import rentaroom.services.CustomerService;
 import rentaroom.services.InvoiceService;
 import rentaroom.services.ReservationService;
 
+import java.text.ParseException;
+
 /**
  * Created by Christian on 29.11.2014.
  */
@@ -35,7 +37,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = {"/customer/{id}"}, method = RequestMethod.GET)
-    public ModelAndView customerPage(@PathVariable String id) {
+    public ModelAndView customerPage(@PathVariable String id) throws ParseException {
         ModelAndView model = new ModelAndView("customer");
         Customer c = customerService.findById(id);
         model.addObject("customer", c);

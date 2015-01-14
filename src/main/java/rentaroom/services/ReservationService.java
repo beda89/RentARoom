@@ -39,10 +39,11 @@ public class ReservationService {
     @Autowired
     private InvoiceRepository invoiceRepo;
 
-    public List<Reservation> findOutstandingByCustomer(Customer c) {
+    public List<Reservation> findOutstandingByCustomer(Customer c) throws ParseException {
         List<Reservation> reservations = new ArrayList<Reservation>();
         if (c != null) {
-            for (Reservation r : reservationRepo.findByDateToGreaterThanOrderByDateFromAsc(new Date().getTime())) {
+            for (Reservation r : reservationRepo.findByDateToGreaterThanEqualOrderByDateFromAsc(
+                    CommonUtils.dateFormatter.parse(CommonUtils.dateFormatter.format(new Date())).getTime() - CommonUtils.DAY_IN_MS.longValue())) {
                 if (r.getCustomer().getId().equals(c.getId())) {
                     reservations.add(r);
                 }

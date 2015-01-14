@@ -45,7 +45,7 @@
   </div>
 </div>
 
-  <a href="<c:url value='/reservations/reserve/step2/${progressId}' />">
+  <a href="<c:url value='${base}/reservations/reserve/step2/${progressId}' />">
     <input type="button" id="back" class="btn btn-default" name="back" value="Zur&uuml;ck"/>
   </a>
   <input type="button" id="next" class="btn btn-default" name="next" value="Weiter" onClick="validateForm()" />

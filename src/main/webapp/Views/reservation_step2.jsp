@@ -11,7 +11,7 @@
   <jsp:param name="page" value="Rooms" />
 </jsp:include>
 
-<form id="chooseRoom" method="POST" action="<c:url value='${base}/reservations/reserve/step2/${progressId}' />" >
+<form id="chooseRoom" method="POST" action="${base}/reservations/reserve/step2/${progressId}">
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
     <h2>Zimmerbelegung</h2>

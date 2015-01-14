@@ -15,9 +15,10 @@ import java.util.Date;
  */
 public class CommonUtils {
 
+    public final Long DAY_IN_MS=1000*60*60*24L;
 
     public static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
-    public static long STORNO_GEBUEHR = 1000L;
+    public static long STORNO_GEBUEHR = 10L;
 
     public static Date getDateWithoutTime(Date chosenDate) throws ParseException{
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

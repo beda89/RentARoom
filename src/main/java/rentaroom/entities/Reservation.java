@@ -15,6 +15,8 @@ import java.util.List;
 public class Reservation implements Serializable {
 
     private static final long serialVersionUID = 1111L;
+    private final Long DAY_IN_MS=1000*60*60*24L;
+
 
     @Id
     private String id;
@@ -105,6 +107,6 @@ public class Reservation implements Serializable {
     }
 
     public String dateToAsString() {
-        return CommonUtils.dateFormatter.format(dateTo);
+        return CommonUtils.dateFormatter.format(dateTo+DAY_IN_MS);
     }
 }

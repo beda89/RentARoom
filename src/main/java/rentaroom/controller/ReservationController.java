@@ -141,7 +141,7 @@ public class ReservationController {
         model.addObject("reservationInProgress",reservationInProgress);
 
         Date fromDate=new Date(reservationInProgress.getDateFrom());
-        Date toDate=new Date(reservationInProgress.getDateTo());
+        Date toDate=new Date(reservationInProgress.getDateTo()+CommonUtils.DAY_IN_MS);
 
         model.addObject("formattedDateFrom", CommonUtils.getGermanWeekday(fromDate)+" "+CommonUtils.dateFormatter.format(fromDate));
         model.addObject("formattedDateTo",CommonUtils.getGermanWeekday(toDate)+" "+CommonUtils.dateFormatter.format(toDate));

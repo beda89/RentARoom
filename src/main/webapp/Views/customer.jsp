@@ -74,7 +74,7 @@
                 ${room.roomNbr},
               </c:forEach>
             </td>
-            <td>${reservation.roomPrice/100} &euro;</td>
+            <td>${reservation.roomPrice} &euro;</td>
             <td><c:choose><c:when test="${reservation.discount != null}">${reservation.discount} %</c:when><c:otherwise>-</c:otherwise></c:choose></td>
             <td width="1%"><button class="btn btn-xs btn-default cancel-reservation <c:if test="${reservation.dateFrom <= now.time}">disabled</c:if>" type="button">Stornieren</button></td>
             <td width="1%"><button class="btn btn-xs btn-default checkout-reservation <c:if test="${reservation.dateFrom > now.time}">disabled</c:if>" type="button">Checkout</button></td>
@@ -102,7 +102,7 @@
           <tr>
             <td>${i}</td>
             <td>${invoice.invoiceDateAsString()}</td>
-            <td>${invoice.price/100} &euro;</td>
+            <td>${invoice.price} &euro;</td>
             <td>${invoice.reservation.roomList.size()}</td>
             <td>${(invoice.reservation.dateTo - invoice.reservation.dateFrom)/86400000}</td>
             <td>${invoice.notes}</td>
